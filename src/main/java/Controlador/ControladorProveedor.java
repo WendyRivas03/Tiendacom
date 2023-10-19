@@ -47,9 +47,9 @@ public class ControladorProveedor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(provee.getBtnguardarprovee())) {
             //validar campos vacios
-            if ((provee.getTxtdocuprovee().getText().isEmpty()) || (provee.getTxtnomprovee().getText().isEmpty()) || (provee.getTxtdireprovee().getText().isEmpty())
+            if ((provee.getTxtdocuprovee().getText().isEmpty()) ||(provee.getCmbtipodoc_prove().getSelectedItem().equals("Seleccione..."))|| (provee.getTxtnomprovee().getText().isEmpty()) || (provee.getTxtdireprovee().getText().isEmpty())
                     || (provee.getTxtcorrprovee().getText().isEmpty()) || (provee.getTxtteleprovee().getText().isEmpty())|| (provee.getJdcfechaprovee().getDate() == null) 
-                    || (provee.getTxttipo_per().getText().isEmpty()) ||(provee.getCmbgeneprovee().getSelectedItem().equals("Seleccione..."))) {
+                    || (provee.getCmbtipersona().getSelectedItem().equals("Seleccione...")) ||(provee.getCmbgeneprovee().getSelectedItem().equals("Seleccione..."))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar información en todos los campos");
             } else {
               //Convertimos el dato de los combox al que entiende sql
@@ -62,9 +62,10 @@ public class ControladorProveedor implements ActionListener {
                 java.sql.Date fecha = new Date(fe);
                         
                 modproveedor.setDoc(Integer.parseInt(provee.getTxtdocuprovee().getText()));
+                modproveedor.setTipo_docu(provee.getCmbtipodoc_prove().getSelectedItem().toString());
                 modproveedor.setNom(provee.getTxtnomprovee().getText());
                 modproveedor.setDire(provee.getTxtdireprovee().getText());
-                modproveedor.setTipo_per(provee.getTxttipo_per().getText());
+                modproveedor.setTipo_per(provee.getCmbtipersona().getSelectedItem().toString());
                 modproveedor.setCorreo(provee.getTxtcorrprovee().getText());
                 modproveedor.setTele(provee.getTxtteleprovee().getText());
                 modproveedor.setFec(fecha);

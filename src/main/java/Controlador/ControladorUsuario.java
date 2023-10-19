@@ -65,7 +65,7 @@ public class ControladorUsuario implements ActionListener {
         }
         if (e.getSource().equals(usu.getBtnGuardar())) {
             //validar campos vacios
-            if ((usu.getTxtDocumento().getText().isEmpty()) || (usu.getTxtNombre().getText().isEmpty()) || (usu.getTxtDire().getText().isEmpty())
+            if ((usu.getTxtDocumento().getText().isEmpty()) ||(usu.getCmbtipodocu().getSelectedItem().equals("Seleccione...")) || (usu.getTxtNombre().getText().isEmpty()) || (usu.getTxtDire().getText().isEmpty())
                     || (usu.getTxtCorreo().getText().isEmpty()) || (usu.getTxtLogin().getText().isEmpty()) || (usu.getTxtTele().getText().isEmpty())
                     || (usu.getPssContrase().getPassword()== null) || (usu.getJdcfechanaci().getDate()== null) || (usu.getCmbrol().getSelectedItem().equals("Seleccione..."))
                     || (usu.getCmbSexo().getSelectedItem().equals("Seleccione..."))) {
@@ -87,6 +87,7 @@ public class ControladorUsuario implements ActionListener {
                 String contrasena = String.valueOf(contra);
                 
                 modusuario.setDoc(Integer.parseInt(usu.getTxtDocumento().getText()));
+                modusuario.setTipo_doc(usu.getCmbtipodocu().getSelectedItem().toString());
                 modusuario.setNom(usu.getTxtNombre().getText());
                 modusuario.setDire(usu.getTxtDire().getText());
                 modusuario.setCorreo(usu.getTxtCorreo().getText());

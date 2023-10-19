@@ -24,7 +24,8 @@ DROP TABLE IF EXISTS `cliente`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
   `idcliente` int NOT NULL,
-  `nombre` varchar(250) NOT NULL,
+  `tipo_doc` varchar(60) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
   `telefono` varchar(13) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `direccion` varchar(250) NOT NULL,
@@ -43,7 +44,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1098,'Maria','27363','marialamejor','caraño',1,'2023-10-16',1);
+INSERT INTO `cliente` VALUES (1098,'CC','Maria','27363','marialamejor','caraño',1,'2023-10-16',1),(1297,'Cédula de extranjería','Jhon','4444','jhonelsexy','cabi',2,'2023-10-16',1);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,6 +208,63 @@ INSERT INTO `genero` VALUES (1,'Femenino',1),(2,'Masculino',1),(3,'Otro',1);
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `mostrar_cliente`
+--
+
+DROP TABLE IF EXISTS `mostrar_cliente`;
+/*!50001 DROP VIEW IF EXISTS `mostrar_cliente`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `mostrar_cliente` AS SELECT 
+ 1 AS `idcliente`,
+ 1 AS `tipo_doc`,
+ 1 AS `nombre`,
+ 1 AS `telefono`,
+ 1 AS `correo`,
+ 1 AS `direccion`,
+ 1 AS `genero`,
+ 1 AS `fecha_nacimiento`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `mostrar_factura`
+--
+
+DROP TABLE IF EXISTS `mostrar_factura`;
+/*!50001 DROP VIEW IF EXISTS `mostrar_factura`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `mostrar_factura` AS SELECT 
+ 1 AS `Factura`,
+ 1 AS `Empleado`,
+ 1 AS `Cliente`,
+ 1 AS `Fecha compra`,
+ 1 AS `Tipo de pago`,
+ 1 AS `Impuesto`,
+ 1 AS `Total`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `mostrar_proveedor`
+--
+
+DROP TABLE IF EXISTS `mostrar_proveedor`;
+/*!50001 DROP VIEW IF EXISTS `mostrar_proveedor`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `mostrar_proveedor` AS SELECT 
+ 1 AS `idproveedor`,
+ 1 AS `tipo_docu_pro`,
+ 1 AS `nombre_pro`,
+ 1 AS `telefono_pro`,
+ 1 AS `correo`,
+ 1 AS `direccion_pro`,
+ 1 AS `tipo_persona`,
+ 1 AS `genero`,
+ 1 AS `fecha_nacimiento`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `mostrar_rol`
 --
 
@@ -230,6 +288,26 @@ SET @saved_cs_client     = @@character_set_client;
 /*!50001 CREATE VIEW `mostrar_sexo` AS SELECT 
  1 AS `id`,
  1 AS `nombre`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `mostrar_usuario`
+--
+
+DROP TABLE IF EXISTS `mostrar_usuario`;
+/*!50001 DROP VIEW IF EXISTS `mostrar_usuario`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `mostrar_usuario` AS SELECT 
+ 1 AS `idusuario`,
+ 1 AS `tipo_docusu`,
+ 1 AS `nombre`,
+ 1 AS `rango`,
+ 1 AS `telefono`,
+ 1 AS `correo`,
+ 1 AS `genero`,
+ 1 AS `direccion`,
+ 1 AS `fecha_nacimiento`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -301,7 +379,8 @@ DROP TABLE IF EXISTS `proveedor`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proveedor` (
   `idproveedor` int NOT NULL,
-  `nombre_pro` varchar(150) NOT NULL,
+  `tipo_docu_pro` varchar(45) NOT NULL,
+  `nombre_pro` varchar(45) NOT NULL,
   `telefono_pro` varchar(13) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `direccion_pro` varchar(250) NOT NULL,
@@ -321,7 +400,7 @@ CREATE TABLE `proveedor` (
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES (1627363,'arnol','2345','sfdf','medrano','juridica',2,'2023-10-16',1);
+INSERT INTO `proveedor` VALUES (1077473,'nit','Hibi','2134','hibi.com','porvenir','Juridica',1,'2023-10-16',1),(1627363,'nit','arnol','2345','sfdf','medrano','juridica',2,'2023-10-16',1);
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,14 +438,15 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `idusuario` int NOT NULL,
-  `nombre` varchar(250) NOT NULL,
+  `tipo_docusu` varchar(60) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
   `rango` int NOT NULL,
   `telefono` varchar(13) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `sexo` int NOT NULL,
-  `direccion` varchar(250) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
-  `login` varchar(100) NOT NULL,
+  `login` varchar(45) NOT NULL,
   `contrasena` varchar(45) NOT NULL,
   `condicion` tinyint NOT NULL,
   PRIMARY KEY (`idusuario`),
@@ -383,13 +463,51 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (107780,'Yari Eliza',1,'312988','yarielisaQokok',1,'porvenir','2023-12-04','admin','123456',1),(134560,'Eliza',1,'987654','fggf@',1,'aqui','1998-03-11','admin','123',1),(1077345,'Maria',1,'310293','wendhs@hotmail',1,'porvenir','1997-06-09','admin','123456',0);
+INSERT INTO `usuario` VALUES (2222,'Cédula de ciudadanía','marcela',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1111',1),(107780,'CC','Yari Eliza',1,'312988','yarielisaQokok',1,'porvenir','2023-12-04','admin','123456',1),(134560,'CC','Eliza',1,'987654','fggf@',1,'aqui','1998-03-11','admin','123',1),(1077345,'CC','Maria',1,'310293','wendhs@hotmail',1,'porvenir','1997-06-09','admin','123456',0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'tiendacom_wendy'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `consultar_cliente` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_cliente`(in valor varchar(45))
+BEGIN
+select * from mostrar_cliente where idcliente like concat('%',valor,'%') || tipo_doc like concat('%',valor,'%') || nombre like concat('%',valor,'%') || telefono like concat('%',valor,'%') || correo like concat('%',valor,'%') || direccion like concat('%',valor,'%') || genero like concat('%',valor,'%') || fecha_nacimiento like concat('%',valor,'%');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `consultar_usuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_usuario`(in valor varchar(45))
+BEGIN
+select * from mostrar_usuario where idusuario like concat('%',valor,'%') || tipo_docusu like concat('%',valor,'%') || nombre like concat('%',valor,'%') || rango like concat('%',valor,'%') || telefono like concat('%',valor,'%') || correo like concat('%',valor,'%') || genero like concat('%',valor,'%') || direccion like concat('%',valor,'%') || fecha_nacimiento like concat('%',valor,'%');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `ingreso` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -419,10 +537,10 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_cliente`(in idcliente int, in nom varchar(250), in tele varchar(250), in correo varchar(100),
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_cliente`(in idcliente int, in tipo_doc varchar(60), in nom varchar(45), in tele varchar(250), in correo varchar(100),
 in dire varchar(250), in sexocli int, in fecha_naci date)
 BEGIN
-insert into cliente values (idcliente, nom, tele, correo, dire, sexocli, fecha_naci, '1');
+insert into cliente values (idcliente, tipo_doc, nom, tele, correo, dire, sexocli, fecha_naci, '1');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -534,10 +652,10 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_proveedor`(in idproveedor int, in nom varchar(150), in tele varchar(13), in correo varchar(100), 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_proveedor`(in idproveedor int, in tipo_docu varchar(45), in nom varchar(45), in tele varchar(13), in correo varchar(100), 
 in dire varchar(250), in tipo_per varchar(100), in sexo_pro int, in fecha_nacimi date)
 BEGIN
-insert into proveedor values (idproveedor, nom, tele, correo, dire, tipo_per, sexo_pro, fecha_nacimi, '1');
+insert into proveedor values (idproveedor, tipo_docu, nom, tele, correo, dire, tipo_per, sexo_pro, fecha_nacimi, '1');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -554,16 +672,70 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_usuario`(in idusuario int, in nom varchar(250), in rang int, in tele VARCHAR(13), in correo varchar(100),
-in sex int, in dire varchar(250), in fecha_nacimien date, in log varchar(100), in contra varchar(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_usuario`(in idusuario int, in tipo_doc varchar(60), in nom varchar(45), in rang int, in tele VARCHAR(13), in correo varchar(100),
+in sex int, in dire varchar(250), in fecha_nacimien date, in log varchar(45), in contra varchar(45))
 BEGIN
-insert into usuario (idusuario, nombre, rango, telefono, correo, sexo, direccion,fecha_nacimiento, login, contrasena, condicion) values (idusuario, nom, rang, tele, correo, sex, dire,fecha_nacimien, log, contra, '1');
+insert into usuario (idusuario, tipo_docusu, nombre, rango, telefono, correo, sexo, direccion, fecha_nacimiento, login, contrasena, condicion) values (idusuario, tipo_doc, nom, rang, tele, correo, sex, dire,fecha_nacimien, log, contra, '1');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Final view structure for view `mostrar_cliente`
+--
+
+/*!50001 DROP VIEW IF EXISTS `mostrar_cliente`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `mostrar_cliente` AS select `cliente`.`idcliente` AS `idcliente`,`cliente`.`tipo_doc` AS `tipo_doc`,`cliente`.`nombre` AS `nombre`,`cliente`.`telefono` AS `telefono`,`cliente`.`correo` AS `correo`,`cliente`.`direccion` AS `direccion`,`genero`.`nombre` AS `genero`,`cliente`.`fecha_nacimiento` AS `fecha_nacimiento` from (`cliente` join `genero` on((`genero`.`idgenero` = `cliente`.`sexo_cli`))) where (`cliente`.`condicion` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `mostrar_factura`
+--
+
+/*!50001 DROP VIEW IF EXISTS `mostrar_factura`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `mostrar_factura` AS select `factura`.`idfactura` AS `Factura`,`usuario`.`nombre` AS `Empleado`,`cliente`.`nombre` AS `Cliente`,`factura`.`fecha` AS `Fecha compra`,`factura`.`tipo_pago` AS `Tipo de pago`,`factura`.`impuesto` AS `Impuesto`,`factura`.`total_factura` AS `Total` from ((`cliente` join `factura` on((`cliente`.`idcliente` = `factura`.`idfactura`))) join `usuario` on((`factura`.`usuario` = `usuario`.`idusuario`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `mostrar_proveedor`
+--
+
+/*!50001 DROP VIEW IF EXISTS `mostrar_proveedor`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `mostrar_proveedor` AS select `proveedor`.`idproveedor` AS `idproveedor`,`proveedor`.`tipo_docu_pro` AS `tipo_docu_pro`,`proveedor`.`nombre_pro` AS `nombre_pro`,`proveedor`.`telefono_pro` AS `telefono_pro`,`proveedor`.`correo` AS `correo`,`proveedor`.`direccion_pro` AS `direccion_pro`,`proveedor`.`tipo_persona` AS `tipo_persona`,`genero`.`nombre` AS `genero`,`proveedor`.`fecha_nacimiento` AS `fecha_nacimiento` from (`proveedor` join `genero` on((`genero`.`idgenero` = `proveedor`.`sexo_pro`))) where (`proveedor`.`condicion_pro` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
 -- Final view structure for view `mostrar_rol`
@@ -600,6 +772,24 @@ DELIMITER ;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `mostrar_usuario`
+--
+
+/*!50001 DROP VIEW IF EXISTS `mostrar_usuario`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `mostrar_usuario` AS select `usuario`.`idusuario` AS `idusuario`,`usuario`.`tipo_docusu` AS `tipo_docusu`,`usuario`.`nombre` AS `nombre`,`rol`.`nombre` AS `rango`,`usuario`.`telefono` AS `telefono`,`usuario`.`correo` AS `correo`,`genero`.`nombre` AS `genero`,`usuario`.`direccion` AS `direccion`,`usuario`.`fecha_nacimiento` AS `fecha_nacimiento` from ((`usuario` join `rol` on((`rol`.`idrol` = `usuario`.`rango`))) join `genero` on((`genero`.`idgenero` = `usuario`.`sexo`))) where (`usuario`.`condicion` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -610,4 +800,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-17  9:15:55
+-- Dump completed on 2023-10-19 11:45:47

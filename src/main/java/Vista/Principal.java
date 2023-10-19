@@ -5,6 +5,8 @@
 package Vista;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -42,8 +44,63 @@ public class Principal extends javax.swing.JFrame {
     public void setBtnnuevoprovee(JButton btnnuevoprovee) {
         this.btnnuevoprovee = btnnuevoprovee;
     }
-    
-    
+
+    public JTable getJtcliente() {
+        return jtcliente;
+    }
+
+    public void setJtcliente(JTable jtcliente) {
+        this.jtcliente = jtcliente;
+    }
+
+    public JTextField getJtfcliente() {
+        return jtfcliente;
+    }
+
+    public void setJtfcliente(JTextField jtfcliente) {
+        this.jtfcliente = jtfcliente;
+    }
+
+    public JTextField getJtfprovee() {
+        return jtfprovee;
+    }
+
+    public void setJtfprovee(JTextField jtfprovee) {
+        this.jtfprovee = jtfprovee;
+    }
+
+    public JTextField getJtfusuario() {
+        return jtfusuario;
+    }
+
+    public void setJtfusuario(JTextField jtfusuario) {
+        this.jtfusuario = jtfusuario;
+    }
+
+    public JTable getJtprovee() {
+        return jtprovee;
+    }
+
+    public void setJtprovee(JTable jtprovee) {
+        this.jtprovee = jtprovee;
+    }
+
+    public JTable getJtusuario() {
+        return jtusuario;
+    }
+
+    public void setJtusuario(JTable jtusuario) {
+        this.jtusuario = jtusuario;
+    }
+
+    public JButton getBtnmostarusu() {
+        return btnmostarusu;
+    }
+
+    public void setBtnmostarusu(JButton btnmostarusu) {
+        this.btnmostarusu = btnmostarusu;
+    }
+      
     
     
 
@@ -64,6 +121,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtusuario = new javax.swing.JTable();
         jtfusuario = new javax.swing.JTextField();
+        btnmostarusu = new javax.swing.JButton();
         jpcliente = new javax.swing.JPanel();
         btnnueclien = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -132,6 +190,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnmostarusu.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        btnmostarusu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar2.png"))); // NOI18N
+
         javax.swing.GroupLayout jpusuarioLayout = new javax.swing.GroupLayout(jpusuario);
         jpusuario.setLayout(jpusuarioLayout);
         jpusuarioLayout.setHorizontalGroup(
@@ -144,19 +205,19 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnmostarusu, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jpusuarioLayout.setVerticalGroup(
             jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpusuarioLayout.createSequentialGroup()
-                .addGroup(jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpusuarioLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpusuarioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
+                .addGroup(jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnmostarusu, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -325,6 +386,7 @@ public class Principal extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnmostarusu;
     private javax.swing.JButton btnnueclien;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnnuevoprovee;

@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 public class ModeloProveedor {
 
     private int doc, sex;
-    private String nom, tele, correo, dire, tipo_per;
+    private String nom, tipo_docu, tele, correo, dire, tipo_per;
     private Date fec;
 
     public int getDoc() {
@@ -29,6 +29,14 @@ public class ModeloProveedor {
         this.doc = doc;
     }
 
+    public String getTipo_docu() {
+        return tipo_docu;
+    }
+
+    public void setTipo_docu(String tipo_docu) {
+        this.tipo_docu = tipo_docu;
+    }
+    
     public int getSex() {
         return sex;
     }
@@ -107,18 +115,19 @@ public class ModeloProveedor {
     public void insertarProveedor() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
-        String sql = "Call inst_proveedor(?,?,?,?,?,?,?,?)";
+        String sql = "Call inst_proveedor(?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = co.prepareStatement(sql);
             ps.setInt(1, getDoc());
-            ps.setString(2, getNom());
-            ps.setString(3, getTele());
-            ps.setString(4, getCorreo());
-            ps.setString(5, getDire());
-            ps.setString(6, getTipo_per());
-            ps.setInt(7, getSex());
-            ps.setDate(8, getFec());
+            ps.setString(2, getTipo_docu());
+            ps.setString(3, getNom());
+            ps.setString(4, getTele());
+            ps.setString(5, getCorreo());
+            ps.setString(6, getDire());
+            ps.setString(7, getTipo_per());
+            ps.setInt(8, getSex());
+            ps.setDate(9, getFec());
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Información Guardada");

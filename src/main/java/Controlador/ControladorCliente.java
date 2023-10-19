@@ -48,7 +48,7 @@ public class ControladorCliente implements ActionListener {
           
         if (e.getSource().equals(cli.getBtnguardarcli())) {
             //validar campos vacios
-            if ((cli.getTxtdocucli().getText().isEmpty()) || (cli.getTxtnomcli().getText().isEmpty()) || (cli.getTxtdirecli().getText().isEmpty())
+            if ((cli.getTxtdocucli().getText().isEmpty()) ||(cli.getCmbtipodocu_cli().getSelectedItem().equals("Seleccione..."))|| (cli.getTxtnomcli().getText().isEmpty()) || (cli.getTxtdirecli().getText().isEmpty())
                     || (cli.getTxtcorrcli().getText().isEmpty()) || (cli.getTxttelecli().getText().isEmpty())|| (cli.getJdcfechacli().getDate() == null) 
                     || (cli.getCmbgenecli().getSelectedItem().equals("Seleccione..."))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar información en todos los campos");
@@ -63,6 +63,7 @@ public class ControladorCliente implements ActionListener {
                 java.sql.Date fecha = new Date(fe);
       
                 modcliente.setDoc(Integer.parseInt(cli.getTxtdocucli().getText()));
+                modcliente.setTipo_doc(cli.getCmbtipodocu_cli().getSelectedItem().toString());
                 modcliente.setNom(cli.getTxtnomcli().getText());
                 modcliente.setTele(cli.getTxttelecli().getText());
                 modcliente.setCorreo(cli.getTxtcorrcli().getText());

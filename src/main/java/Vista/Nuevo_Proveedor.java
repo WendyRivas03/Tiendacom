@@ -79,6 +79,14 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
         this.txtdocuprovee = txtdocuprovee;
     }
 
+    public JComboBox<String> getCmbtipodoc_prove() {
+        return cmbtipodoc_prove;
+    }
+
+    public void setCmbtipodoc_prove(JComboBox<String> cmbtipodoc_prove) {
+        this.cmbtipodoc_prove = cmbtipodoc_prove;
+    }
+
     public JTextField getTxtnomprovee() {
         return txtnomprovee;
     }
@@ -95,12 +103,12 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
         this.txtteleprovee = txtteleprovee;
     }
 
-    public JTextField getTxttipo_per() {
-        return txttipo_per;
+    public JComboBox<String> getCmbtipersona() {
+        return cmbtipersona;
     }
 
-    public void setTxttipo_per(JTextField txttipo_per) {
-        this.txttipo_per = txttipo_per;
+    public void setCmbtipersona(JComboBox<String> cmbtipersona) {
+        this.cmbtipersona = cmbtipersona;
     }
 
     public JPanel getJpProvee() {
@@ -147,7 +155,10 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
         btnguardarprovee = new javax.swing.JButton();
         lbltipo_per = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txttipo_per = new javax.swing.JTextField();
+        lbltipo_doc_prov = new javax.swing.JLabel();
+        cmbtipersona = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        cmbtipodoc_prove = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -237,7 +248,24 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(204, 0, 0));
         jLabel8.setText("*");
 
-        txttipo_per.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        lbltipo_doc_prov.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        lbltipo_doc_prov.setForeground(new java.awt.Color(204, 0, 204));
+        lbltipo_doc_prov.setText("Tipo de documento");
+
+        cmbtipersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbtipersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Natural", "Juridica" }));
+        cmbtipersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbtipersonaActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel9.setText("*");
+
+        cmbtipodoc_prove.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbtipodoc_prove.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Nit", "Cédula" }));
 
         javax.swing.GroupLayout jpProveeLayout = new javax.swing.GroupLayout(jpProvee);
         jpProvee.setLayout(jpProveeLayout);
@@ -246,134 +274,155 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
             .addGroup(jpProveeLayout.createSequentialGroup()
                 .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpProveeLayout.createSequentialGroup()
-                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpProveeLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbldireccion)
-                                    .addComponent(lblcorreo)
-                                    .addComponent(lbltelefono)
-                                    .addComponent(lblnombre)
-                                    .addComponent(lbldocumento))
-                                .addGap(140, 140, 140)
-                                .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtdocuprovee, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                                    .addComponent(txtnomprovee)
-                                    .addComponent(txtteleprovee)
-                                    .addComponent(txtcorrprovee)
-                                    .addComponent(txtdireprovee))
-                                .addGap(6, 6, 6)
-                                .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel7)))
-                            .addGroup(jpProveeLayout.createSequentialGroup()
-                                .addGap(143, 143, 143)
-                                .addComponent(btnguardarprovee)
-                                .addGap(68, 68, 68)
-                                .addComponent(btncancelarprovee)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(144, 144, 144)
+                        .addComponent(btnguardarprovee)
+                        .addGap(68, 68, 68)
+                        .addComponent(btncancelarprovee))
                     .addGroup(jpProveeLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpProveeLayout.createSequentialGroup()
-                                .addComponent(lbltipo_per)
-                                .addGap(103, 103, 103)
-                                .addComponent(txttipo_per)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8))
+                                .addComponent(lbldocumento)
+                                .addGap(140, 140, 140)
+                                .addComponent(txtdocuprovee, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtnomprovee, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                                .addComponent(txtteleprovee)
+                                .addComponent(txtcorrprovee)
+                                .addComponent(txtdireprovee)))
+                        .addGap(6, 6, 6)
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7)))
+                    .addGroup(jpProveeLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbldireccion)
+                            .addComponent(lblcorreo)
+                            .addComponent(lbltelefono)
+                            .addComponent(lblnombre)
+                            .addGroup(jpProveeLayout.createSequentialGroup()
+                                .addComponent(lbltipo_doc_prov)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                                .addComponent(cmbtipodoc_prove, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15))
                             .addGroup(jpProveeLayout.createSequentialGroup()
                                 .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblfechanaci)
-                                    .addComponent(lblgenero))
-                                .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jpProveeLayout.createSequentialGroup()
-                                        .addGap(65, 65, 65)
-                                        .addComponent(cmbgeneprovee, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProveeLayout.createSequentialGroup()
-                                        .addGap(64, 64, 64)
-                                        .addComponent(jdcfechaprovee, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblgenero)
+                                    .addComponent(lbltipo_per))
+                                .addGap(65, 65, 65)
+                                .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbtipersona, 0, 254, Short.MAX_VALUE)
+                                    .addComponent(jdcfechaprovee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbgeneprovee, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                .addContainerGap())
+                                    .addComponent(jLabel8)
+                                    .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)))))))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jpProveeLayout.setVerticalGroup(
             jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpProveeLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpProveeLayout.createSequentialGroup()
-                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbldocumento)
-                            .addComponent(txtdocuprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblnombre)
-                            .addComponent(txtnomprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbltelefono)
-                            .addComponent(txtteleprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblcorreo)
-                            .addComponent(txtcorrprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbldireccion)
-                            .addComponent(txtdireprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
+                    .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbldocumento)
+                        .addComponent(txtdocuprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpProveeLayout.createSequentialGroup()
-                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbltipo_per)
-                            .addComponent(jLabel8))
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProveeLayout.createSequentialGroup()
-                        .addComponent(txttipo_per, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblgenero)
-                    .addComponent(cmbgeneprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
+                    .addComponent(lbltipo_doc_prov)
+                    .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(cmbtipodoc_prove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblfechanaci)
-                    .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel11)
-                        .addComponent(jdcfechaprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnguardarprovee)
-                    .addComponent(btncancelarprovee))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpProveeLayout.createSequentialGroup()
+                        .addComponent(txtnomprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbltelefono)
+                            .addComponent(txtteleprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblcorreo)
+                            .addComponent(txtcorrprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbldireccion)
+                            .addComponent(txtdireprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpProveeLayout.createSequentialGroup()
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(lblnombre))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpProveeLayout.createSequentialGroup()
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpProveeLayout.createSequentialGroup()
+                                .addComponent(lbltipo_per)
+                                .addGap(19, 19, 19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProveeLayout.createSequentialGroup()
+                                .addComponent(cmbtipersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblgenero)
+                            .addComponent(cmbgeneprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblfechanaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jdcfechaprovee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(16, 16, 16)
+                        .addGroup(jpProveeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnguardarprovee)
+                            .addComponent(btncancelarprovee)))
+                    .addGroup(jpProveeLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel8)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpProvee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jpProvee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpProvee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbtipersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbtipersonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbtipersonaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,6 +433,8 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
     private javax.swing.JButton btncancelarprovee;
     private javax.swing.JButton btnguardarprovee;
     private javax.swing.JComboBox<String> cmbgeneprovee;
+    private javax.swing.JComboBox<String> cmbtipersona;
+    private javax.swing.JComboBox<String> cmbtipodoc_prove;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
@@ -392,6 +443,7 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private com.toedter.calendar.JDateChooser jdcfechaprovee;
     private javax.swing.JPanel jpProvee;
     private javax.swing.JLabel lblcorreo;
@@ -401,12 +453,12 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
     private javax.swing.JLabel lblgenero;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JLabel lbltelefono;
+    private javax.swing.JLabel lbltipo_doc_prov;
     private javax.swing.JLabel lbltipo_per;
     private javax.swing.JTextField txtcorrprovee;
     private javax.swing.JTextField txtdireprovee;
     private javax.swing.JTextField txtdocuprovee;
     private javax.swing.JTextField txtnomprovee;
     private javax.swing.JTextField txtteleprovee;
-    private javax.swing.JTextField txttipo_per;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 public class ModeloUsuario {
     
     private int doc, sex, rol;
-    private String nom, tele, correo, dire, log, contra;
+    private String nom,tipo_doc, tele, correo, dire, log, contra;
     private Date fec;
     
     public int getDoc() {
@@ -51,6 +51,14 @@ public class ModeloUsuario {
     
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getTipo_doc() {
+        return tipo_doc;
+    }
+
+    public void setTipo_doc(String tipo_doc) {
+        this.tipo_doc = tipo_doc;
     }
     
     public String getTele() {
@@ -123,20 +131,21 @@ public class ModeloUsuario {
     public void insertarUsuario() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
-        String sql = "Call inst_usuario(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "Call inst_usuario(?,?,?,?,?,?,?,?,?,?,?)";
         
         try {
             PreparedStatement ps = co.prepareStatement(sql);
             ps.setInt(1, getDoc());
-            ps.setString(2, getNom());
-            ps.setInt(3, getRol());
-            ps.setString(4, getTele());
-            ps.setString(5, getCorreo());
-            ps.setInt(6, getSex());
-            ps.setString(7, getDire());
-            ps.setDate(8, getFec());
-            ps.setString(9, getLog());
-            ps.setString(10, getContra());
+            ps.setString(2, getTipo_doc());
+            ps.setString(3, getNom());
+            ps.setInt(4, getRol());
+            ps.setString(5, getTele());
+            ps.setString(6, getCorreo());
+            ps.setInt(7, getSex());
+            ps.setString(8, getDire());
+            ps.setDate(9, getFec());
+            ps.setString(10, getLog());
+            ps.setString(11, getContra());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Información Guardada");
             

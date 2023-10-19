@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 
 public class ModeloCliente {
     private int doc, sex;
-    private String nom, tele, correo, dire;
+    private String nom, tipo_doc, tele, correo, dire;
     private Date fec;
 
     public int getDoc() {
@@ -44,6 +44,14 @@ public class ModeloCliente {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getTipo_doc() {
+        return tipo_doc;
+    }
+
+    public void setTipo_doc(String tipo_doc) {
+        this.tipo_doc = tipo_doc;
     }
 
     public String getTele() {
@@ -100,17 +108,18 @@ public class ModeloCliente {
     public void insertarCliente() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
-        String sql = "Call inst_cliente(?,?,?,?,?,?,?)";
+        String sql = "Call inst_cliente(?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = co.prepareStatement(sql);
             ps.setInt(1, getDoc());
-            ps.setString(2, getNom());
-            ps.setString(3, getTele());
-            ps.setString(4, getCorreo());
-            ps.setString(5, getDire());
-            ps.setInt(6, getSex());
-            ps.setDate(7, getFec());
+            ps.setString(2, getTipo_doc());
+            ps.setString(3, getNom());
+            ps.setString(4, getTele());
+            ps.setString(5, getCorreo());
+            ps.setString(6, getDire());
+            ps.setInt(7, getSex());
+            ps.setDate(8, getFec());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Información Guardada");
 
