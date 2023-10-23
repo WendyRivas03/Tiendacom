@@ -5,6 +5,7 @@
 package Vista;
 
 import javax.swing.JButton;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -100,8 +101,15 @@ public class Principal extends javax.swing.JFrame {
     public void setBtnmostarusu(JButton btnmostarusu) {
         this.btnmostarusu = btnmostarusu;
     }
-      
-    
+
+    public JTabbedPane getTpPrincipal() {
+        return tpPrincipal;
+    }
+
+    public void setTpPrincipal(JTabbedPane tpPrincipal) {
+        this.tpPrincipal = tpPrincipal;
+    }
+       
     
 
     /**
@@ -146,16 +154,16 @@ public class Principal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(255, 255, 255)
+                .addGap(328, 328, 328)
                 .addComponent(lbltienda)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(31, 31, 31)
                 .addComponent(lbltienda)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         tpPrincipal.setForeground(new java.awt.Color(204, 0, 204));
@@ -165,7 +173,7 @@ public class Principal extends javax.swing.JFrame {
         btnnuevo.setForeground(new java.awt.Color(204, 0, 204));
         btnnuevo.setIcon(new javax.swing.ImageIcon("C:\\Users\\SENA\\Documents\\NetBeansProjects\\Tienda_Com\\src\\main\\resources\\img\\usuario.png")); // NOI18N
         btnnuevo.setText("Nuevo");
-        btnnuevo.setBorder(null);
+        btnnuevo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jtusuario.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jtusuario.setModel(new javax.swing.table.DefaultTableModel(
@@ -191,7 +199,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnmostarusu.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        btnmostarusu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar2.png"))); // NOI18N
+        btnmostarusu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar1.png"))); // NOI18N
 
         javax.swing.GroupLayout jpusuarioLayout = new javax.swing.GroupLayout(jpusuario);
         jpusuario.setLayout(jpusuarioLayout);
@@ -200,9 +208,9 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpusuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
                     .addGroup(jpusuarioLayout.createSequentialGroup()
-                        .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -213,13 +221,14 @@ public class Principal extends javax.swing.JFrame {
             jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpusuarioLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnmostarusu, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnmostarusu, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tpPrincipal.addTab("Usuario", jpusuario);
@@ -228,6 +237,7 @@ public class Principal extends javax.swing.JFrame {
         btnnueclien.setForeground(new java.awt.Color(204, 0, 204));
         btnnueclien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
         btnnueclien.setText("Nuevo");
+        btnnueclien.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jtcliente.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jtcliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -254,9 +264,9 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpclienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
                     .addGroup(jpclienteLayout.createSequentialGroup()
-                        .addComponent(btnnueclien)
+                        .addComponent(btnnueclien, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtfcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -266,10 +276,10 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpclienteLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jpclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnnueclien)
+                    .addComponent(btnnueclien, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -279,6 +289,7 @@ public class Principal extends javax.swing.JFrame {
         btnnuevoprovee.setForeground(new java.awt.Color(204, 0, 204));
         btnnuevoprovee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
         btnnuevoprovee.setText("Nuevo");
+        btnnuevoprovee.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jtprovee.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jtprovee.setModel(new javax.swing.table.DefaultTableModel(
@@ -305,9 +316,9 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpproveedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
                     .addGroup(jpproveedorLayout.createSequentialGroup()
-                        .addComponent(btnnuevoprovee)
+                        .addComponent(btnnuevoprovee, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jtfprovee, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -316,9 +327,9 @@ public class Principal extends javax.swing.JFrame {
             jpproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpproveedorLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jpproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnnuevoprovee)
-                    .addComponent(jtfprovee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtfprovee)
+                    .addComponent(btnnuevoprovee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -330,7 +341,7 @@ public class Principal extends javax.swing.JFrame {
         jpproducto.setLayout(jpproductoLayout);
         jpproductoLayout.setHorizontalGroup(
             jpproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 729, Short.MAX_VALUE)
+            .addGap(0, 907, Short.MAX_VALUE)
         );
         jpproductoLayout.setVerticalGroup(
             jpproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,7 +354,7 @@ public class Principal extends javax.swing.JFrame {
         jpfactura.setLayout(jpfacturaLayout);
         jpfacturaLayout.setHorizontalGroup(
             jpfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 729, Short.MAX_VALUE)
+            .addGap(0, 907, Short.MAX_VALUE)
         );
         jpfacturaLayout.setVerticalGroup(
             jpfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,10 +370,8 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(tpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tpPrincipal))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -371,7 +380,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(tpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         pack();

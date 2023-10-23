@@ -11,44 +11,49 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 public class ModeloUsuario {
-    
+
     private int doc, sex, rol;
-    private String nom,tipo_doc, tele, correo, dire, log, contra;
+    private String nom, tipo_doc, tele, correo, dire, log, contra;
     private Date fec;
-    
+
     public int getDoc() {
         return doc;
     }
-    
+
     public void setDoc(int doc) {
         this.doc = doc;
     }
-    
+
     public int getSex() {
         return sex;
     }
-    
+
     public void setSex(int sex) {
         this.sex = sex;
     }
-    
+
     public int getRol() {
         return rol;
     }
-    
+
     public void setRol(int rol) {
         this.rol = rol;
     }
-    
+
     public String getNom() {
         return nom;
     }
-    
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -60,61 +65,61 @@ public class ModeloUsuario {
     public void setTipo_doc(String tipo_doc) {
         this.tipo_doc = tipo_doc;
     }
-    
+
     public String getTele() {
         return tele;
     }
-    
+
     public void setTele(String tele) {
         this.tele = tele;
     }
-    
+
     public String getCorreo() {
         return correo;
     }
-    
+
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
+
     public String getDire() {
         return dire;
     }
-    
+
     public void setDire(String dire) {
         this.dire = dire;
     }
-    
+
     public String getLog() {
         return log;
     }
-    
+
     public void setLog(String log) {
         this.log = log;
     }
-    
+
     public String getContra() {
         return contra;
     }
-    
+
     public void setContra(String contra) {
         this.contra = contra;
     }
-    
+
     public Date getFec() {
         return fec;
     }
-    
+
     public void setFec(Date fec) {
         this.fec = fec;
     }
-    
+
     public Map<String, Integer> llenarCombo(String valor) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
-        
+
         String sql = "select * from mostrar_" + valor;
-        
+
         Map<String, Integer> llenar_combo = new HashMap<>();
         try {
             Statement st = co.createStatement();
@@ -127,12 +132,12 @@ public class ModeloUsuario {
         }
         return llenar_combo;
     }
-    
+
     public void insertarUsuario() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
         String sql = "Call inst_usuario(?,?,?,?,?,?,?,?,?,?,?)";
-        
+
         try {
             PreparedStatement ps = co.prepareStatement(sql);
             ps.setInt(1, getDoc());
@@ -148,28 +153,87 @@ public class ModeloUsuario {
             ps.setString(11, getContra());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Información Guardada");
-            
+
             co.close();
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
         }
         conect.cerrarConexion();
     }
-    
-    public void limpiar(Component[] panelusuario){
+
+    public void limpiar(Component[] panelusuario) {
         for (Object limpiar : panelusuario) {
-            if (limpiar instanceof JTextField){
+            if (limpiar instanceof JTextField) {
                 ((JTextField) limpiar).setText("");
             }
-            if (limpiar instanceof JComboBox){
+            if (limpiar instanceof JComboBox) {
                 ((JComboBox) limpiar).setSelectedItem("Seleccione...");
             }
-            if (limpiar instanceof JDateChooser){
+            if (limpiar instanceof JDateChooser) {
                 ((JDateChooser) limpiar).setDate(null);
             }
         }
-        
+
     }
-    
+
+    public void mostrarTablaUsuario(JTable tabla, String valor) {
+        Conexion conect = new Conexion();
+        Connection co = conect.iniciarConexion();
+
+        //Personalizar Emcabezado
+        JTableHeader encabeza = tabla.getTableHeader();
+        encabeza.setDefaultRenderer(new GestionEncabezado());
+        tabla.setTableHeader(encabeza);
+
+        //Personalizar Celdas
+        tabla.setDefaultRenderer(Object.class, new GestionCeldas());
+        JButton editar = new JButton();
+        JButton eliminar = new JButton();
+
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
+
+        String[] titulo = {"Documento", "Tipo de Documento", "Nombre", "Rol", "Telefono", "Correo", "Género", "Dirección", "Fecha de Nacimiento", "", ""};
+
+        DefaultTableModel tablaUsuario = new DefaultTableModel(null, titulo) {
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+
+            }
+        };
+
+        String sqlUsuario;
+        if (valor.equals("")) {
+            sqlUsuario = "SELECT * FROM mostrar_usuario";
+        } else {
+            sqlUsuario = "call consultar_usuario('" + valor + "')";
+        }
+        try {
+            String[] dato = new String[titulo.length];
+            Statement st = co.createStatement(); //Crea una consulta
+            ResultSet rs = st.executeQuery(sqlUsuario);
+            while (rs.next()) {
+                for (int i = 0; i < titulo.length - 2; i++) {
+                    dato[i] = rs.getString(i + 1);
+                }
+                tablaUsuario.addRow(new Object[]{dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8], editar, eliminar});
+            }
+            co.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        tabla.setModel(tablaUsuario);
+        //Darle Tamaño a cada Columna
+        int cantColum = tabla.getColumnCount();
+        int[] ancho = {100,180,100,150,100,160,100,180,150,30,30};
+        for(int i=0; i<cantColum; i++){
+            TableColumn columna=tabla.getColumnModel().getColumn(i);
+            columna.setPreferredWidth(ancho[i]);
+        }
+        conect.cerrarConexion();
+    }
+
 }
