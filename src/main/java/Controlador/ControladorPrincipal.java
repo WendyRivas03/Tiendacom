@@ -5,7 +5,6 @@ import Vista.Nuevo_Cliente;
 import Vista.Nuevo_Proveedor;
 import Vista.Nuevo_Usuario;
 import Vista.Principal;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -13,6 +12,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class ControladorPrincipal implements ActionListener {
 
@@ -43,30 +44,59 @@ public class ControladorPrincipal implements ActionListener {
 
     public void gestionarPestanas() {
         ModeloUsuario modusu = new ModeloUsuario();
-        if (prin.getTpPrincipal().getSelectedIndex() == 0) {
+        int seleccionar = prin.getTpPrincipal().getSelectedIndex();
+        if (seleccionar == 0) {
             modusu.mostrarTablaUsuario(prin.getJtusuario(), "");
+
+            prin.getTpPrincipal().addChangeListener(new ChangeListener() {
+
+                @Override
+                public void stateChanged(ChangeEvent e) {
+
+                }
+            });
+            prin.getJtfusuario().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    prin.getJtfusuario().setText("");
+                    prin.getJtfusuario().setForeground(new java.awt.Color(0, 0, 0));
+                }
+            });
+            prin.getJtfusuario().getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText());
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText());
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText());
+                }
+            });
+            //Para darle clic al boton de editar
+            prin.getJtusuario().addMouseListener(new MouseAdapter(){
+                @Override
+                public void mouseClicked(MouseEvent e){
+                    int fila = prin.getJtusuario().rowAtPoint(e.getPoint());
+                    int colum = prin.getJtusuario().columnAtPoint(e.getPoint());
+                    modusu.setDoc(Integer.parseInt(prin.getJtusuario().getValueAt(fila, 1).toString()));
+                    
+                    if(colum == 9){
+                        controusu.actualizarUsuario(modusu.getDoc());
+                    }
+                }
+            });   
         }
-        prin.getTpPrincipal().addChangeListener(new ChangeListener() {
-
-            @Override
-            public void stateChanged(ChangeEvent e) {
-
-            }
-        });
-        
-        prin.getJtfusuario().addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                prin.getJtfusuario().setText("");
-                prin.getJtfusuario().setForeground (new java.awt.Color(0, 0, 0));
-            }
-        }); 
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         if (e.getSource().equals(prin.getBtnnuevo())) {
             prin.setVisible(false);
             controusu.controlUsuario();

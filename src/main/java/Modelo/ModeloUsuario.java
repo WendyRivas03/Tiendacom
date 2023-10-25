@@ -176,6 +176,7 @@ public class ModeloUsuario {
         }
 
     }
+//Creación de la tabla Usuario en la ventana principal 
 
     public void mostrarTablaUsuario(JTable tabla, String valor) {
         Conexion conect = new Conexion();
@@ -228,12 +229,50 @@ public class ModeloUsuario {
         tabla.setModel(tablaUsuario);
         //Darle Tamaño a cada Columna
         int cantColum = tabla.getColumnCount();
-        int[] ancho = {100,180,100,150,100,160,100,180,150,30,30};
-        for(int i=0; i<cantColum; i++){
-            TableColumn columna=tabla.getColumnModel().getColumn(i);
+        int[] ancho = {100, 180, 100, 150, 100, 160, 100, 180, 150, 30, 30};
+        for (int i = 0; i < cantColum; i++) {
+            TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(ancho[i]);
         }
         conect.cerrarConexion();
+    }
+
+    public void buscarUsuario(int valor) {
+        Conexion conect = new Conexion();
+        Connection co = conect.iniciarConexion();
+        String sql = "call buscar_usuario(" + valor + ")";
+        try {
+            Statement st = co.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                setDoc(rs.getInt(1));
+                setTipo_doc(rs.getString(2));
+                setNom(rs.getNString(3));
+                setRol(rs.getInt(4));
+                setTele(rs.getString(5));
+                setCorreo(rs.getString(6));
+                setSex(rs.getInt(7));
+                setDire(rs.getString(8));
+                setFec(rs.getDate(9));
+                setLog(rs.getString(10));
+                setContra(rs.getString(11));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //Para que al actualizar me muestre el dato que selecciono el usuario
+    public String obtenerSeleccion(Map<String, Integer> info, int valor) {
+        for (Map.Entry<String, Integer> seleccion : info.entrySet()) {
+            if (seleccion.getValue() == valor) {
+                return seleccion.getKey();
+            }
+        }
+        return null;
     }
 
 }

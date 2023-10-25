@@ -94,14 +94,6 @@ public class Principal extends javax.swing.JFrame {
         this.jtusuario = jtusuario;
     }
 
-    public JButton getBtnmostarusu() {
-        return btnmostarusu;
-    }
-
-    public void setBtnmostarusu(JButton btnmostarusu) {
-        this.btnmostarusu = btnmostarusu;
-    }
-
     public JTabbedPane getTpPrincipal() {
         return tpPrincipal;
     }
@@ -129,7 +121,6 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtusuario = new javax.swing.JTable();
         jtfusuario = new javax.swing.JTextField();
-        btnmostarusu = new javax.swing.JButton();
         jpcliente = new javax.swing.JPanel();
         btnnueclien = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -198,9 +189,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        btnmostarusu.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        btnmostarusu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar1.png"))); // NOI18N
-
         javax.swing.GroupLayout jpusuarioLayout = new javax.swing.GroupLayout(jpusuario);
         jpusuario.setLayout(jpusuarioLayout);
         jpusuarioLayout.setHorizontalGroup(
@@ -212,20 +200,16 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jpusuarioLayout.createSequentialGroup()
                         .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnmostarusu, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jpusuarioLayout.setVerticalGroup(
             jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpusuarioLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnmostarusu, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jpusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -395,7 +379,6 @@ public class Principal extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnmostarusu;
     private javax.swing.JButton btnnueclien;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnnuevoprovee;
