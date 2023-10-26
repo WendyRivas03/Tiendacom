@@ -248,7 +248,7 @@ public class ModeloUsuario {
             while (rs.next()) {
                 setDoc(rs.getInt(1));
                 setTipo_doc(rs.getString(2));
-                setNom(rs.getNString(3));
+                setNom(rs.getString(3));
                 setRol(rs.getInt(4));
                 setTele(rs.getString(5));
                 setCorreo(rs.getString(6));

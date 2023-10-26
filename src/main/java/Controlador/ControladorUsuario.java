@@ -142,7 +142,9 @@ public class ControladorUsuario implements ActionListener {
         usu.getCmbtipodocu().setSelectedItem(modusuario.getTipo_doc());
         
         //Cambiar Titulo
-        Border borde = BorderFactory.createTitledBorder(null,"Actualizar Usuario", javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font ("Yu Gothic UI", 1, 36),
+        Border borde = BorderFactory.createTitledBorder(null,"Actualizar Usuario", 
+            javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.DEFAULT_POSITION,
+            new java.awt.Font ("Yu Gothic UI", 1, 36),
         new java.awt.Color(204, 0, 204));
         usu.getUsuarios().setBorder(borde);
         usu.setLocationRelativeTo(null);

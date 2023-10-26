@@ -1,7 +1,10 @@
 package Controlador;
 
 import Modelo.ModeloUsuario;
+import Vista.Nueva_Factura_Compra;
+import Vista.Nueva_Venta;
 import Vista.Nuevo_Cliente;
+import Vista.Nuevo_Producto;
 import Vista.Nuevo_Proveedor;
 import Vista.Nuevo_Usuario;
 import Vista.Principal;
@@ -21,6 +24,9 @@ public class ControladorPrincipal implements ActionListener {
     Nuevo_Usuario usu = new Nuevo_Usuario();
     Nuevo_Cliente cli = new Nuevo_Cliente();
     Nuevo_Proveedor provee = new Nuevo_Proveedor();
+    Nuevo_Producto produc = new Nuevo_Producto();
+    Nueva_Factura_Compra factcompr = new Nueva_Factura_Compra();
+    Nueva_Venta vent = new Nueva_Venta();
     ControladorUsuario controusu = new ControladorUsuario();
     ControladorCliente controcli = new ControladorCliente();
     ControladorProveedor contropro = new ControladorProveedor();
@@ -29,9 +35,15 @@ public class ControladorPrincipal implements ActionListener {
         prin.getBtnnuevo().addActionListener(this);
         prin.getBtnnueclien().addActionListener(this);
         prin.getBtnnuevoprovee().addActionListener(this);
+        prin.getBtnnuevoproducto().addActionListener(this);
+        prin.getBtnnuevaFactura().addActionListener(this);
+        prin.getBtnnuevaVenta().addActionListener(this);
         usu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         cli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         provee.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        produc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        factcompr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        vent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public void iniciarPrincipal() {
@@ -79,18 +91,18 @@ public class ControladorPrincipal implements ActionListener {
                 }
             });
             //Para darle clic al boton de editar
-            prin.getJtusuario().addMouseListener(new MouseAdapter(){
+            prin.getJtusuario().addMouseListener(new MouseAdapter() {
                 @Override
-                public void mouseClicked(MouseEvent e){
+                public void mouseClicked(MouseEvent e) {
                     int fila = prin.getJtusuario().rowAtPoint(e.getPoint());
                     int colum = prin.getJtusuario().columnAtPoint(e.getPoint());
                     modusu.setDoc(Integer.parseInt(prin.getJtusuario().getValueAt(fila, 1).toString()));
-                    
-                    if(colum == 9){
+
+                    if (colum == 9) {
                         controusu.actualizarUsuario(modusu.getDoc());
                     }
                 }
-            });   
+            });
         }
     }
 
@@ -108,6 +120,24 @@ public class ControladorPrincipal implements ActionListener {
         if (e.getSource().equals(prin.getBtnnuevoprovee())) {
             prin.setVisible(false);
             contropro.controlProveedor();
+        }
+        if (e.getSource().equals(prin.getBtnnuevoproducto())) {
+            prin.setVisible(false);
+            produc.setLocationRelativeTo(null);
+            produc.setTitle("Nuevo Producto");
+            produc.setVisible(true);
+        }
+        if (e.getSource().equals(prin.getBtnnuevaFactura())) {
+            prin.setVisible(false);
+            factcompr.setLocationRelativeTo(null);
+            factcompr.setTitle("Nueva Factura Compra");
+            factcompr.setVisible(true);
+        }
+        if (e.getSource().equals(prin.getBtnnuevaVenta())) {
+            prin.setVisible(false);
+            vent.setLocationRelativeTo(null);
+            vent.setTitle("Nueva Venta");
+            vent.setVisible(true);
         }
     }
 }
