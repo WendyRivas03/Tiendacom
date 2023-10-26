@@ -6,7 +6,6 @@ package Vista;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -46,30 +45,21 @@ public class Nueva_Venta extends javax.swing.JFrame {
         this.cmbtipopagoventa = cmbtipopagoventa;
     }
 
-    public JPanel getPanelnuevaventa() {
-        return panelnuevaventa;
+    public JTextField getTxtidenticliventa() {
+        return txtidenticliventa;
     }
 
-    public void setPanelnuevaventa(JPanel panelnuevaventa) {
-        this.panelnuevaventa = panelnuevaventa;
+    public void setTxtidenticliventa(JTextField txtidenticliventa) {
+        this.txtidenticliventa = txtidenticliventa;
     }
 
-    public JTextField getTxtidentiprovefact() {
-        return txtidentiprovefact;
+    public JTextField getTxtidentusuaventa() {
+        return txtidentusuaventa;
     }
 
-    public void setTxtidentiprovefact(JTextField txtidentiprovefact) {
-        this.txtidentiprovefact = txtidentiprovefact;
+    public void setTxtidentusuaventa(JTextField txtidentusuaventa) {
+        this.txtidentusuaventa = txtidentusuaventa;
     }
-
-    public JTextField getTxtidentiusufactcomp() {
-        return txtidentiusufactcomp;
-    }
-
-    public void setTxtidentiusufactcomp(JTextField txtidentiusufactcomp) {
-        this.txtidentiusufactcomp = txtidentiusufactcomp;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,13 +71,13 @@ public class Nueva_Venta extends javax.swing.JFrame {
 
         panelnuevaventa = new javax.swing.JPanel();
         lblidenticlienventa = new javax.swing.JLabel();
-        txtidentiprovefact = new javax.swing.JTextField();
         lblidentiusuventa = new javax.swing.JLabel();
-        txtidentiusufactcomp = new javax.swing.JTextField();
         lbltipopagoventa = new javax.swing.JLabel();
-        cmbtipopagoventa = new javax.swing.JComboBox<>();
         btnguardarventa = new javax.swing.JButton();
         btncancelarventa = new javax.swing.JButton();
+        txtidenticliventa = new javax.swing.JTextField();
+        txtidentusuaventa = new javax.swing.JTextField();
+        cmbtipopagoventa = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,20 +87,13 @@ public class Nueva_Venta extends javax.swing.JFrame {
         lblidenticlienventa.setForeground(new java.awt.Color(0, 153, 153));
         lblidenticlienventa.setText("Identificación Cliente");
 
-        txtidentiprovefact.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-
         lblidentiusuventa.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         lblidentiusuventa.setForeground(new java.awt.Color(0, 153, 153));
         lblidentiusuventa.setText("Identificación Usuario");
 
-        txtidentiusufactcomp.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-
         lbltipopagoventa.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         lbltipopagoventa.setForeground(new java.awt.Color(0, 153, 153));
         lbltipopagoventa.setText("Tipo de Pago");
-
-        cmbtipopagoventa.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        cmbtipopagoventa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "PSE", "Tarjeta de Débito", "Tarjeta de Crédito", "Efectivo" }));
 
         btnguardarventa.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         btnguardarventa.setForeground(new java.awt.Color(0, 153, 153));
@@ -120,38 +103,48 @@ public class Nueva_Venta extends javax.swing.JFrame {
         btncancelarventa.setForeground(new java.awt.Color(0, 153, 153));
         btncancelarventa.setText("Cancelar");
 
+        txtidenticliventa.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+
+        txtidentusuaventa.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+
+        cmbtipopagoventa.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbtipopagoventa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "PSE", "Tarjete de Débito", "Tarjeta de Crédito", "Efectivo" }));
+
         javax.swing.GroupLayout panelnuevaventaLayout = new javax.swing.GroupLayout(panelnuevaventa);
         panelnuevaventa.setLayout(panelnuevaventaLayout);
         panelnuevaventaLayout.setHorizontalGroup(
             panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelnuevaventaLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
+                .addGap(122, 122, 122)
                 .addComponent(btnguardarventa)
-                .addGap(37, 37, 37)
-                .addComponent(btncancelarventa)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmbtipopagoventa, 0, 244, Short.MAX_VALUE)
+                    .addComponent(txtidentusuaventa)
+                    .addComponent(txtidenticliventa)
+                    .addGroup(panelnuevaventaLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(btncancelarventa)))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelnuevaventaLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(panelnuevaventaLayout.createSequentialGroup()
-                            .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblidenticlienventa)
-                                .addComponent(lblidentiusuventa))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtidentiusufactcomp, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                                .addComponent(txtidentiprovefact)))
-                        .addGroup(panelnuevaventaLayout.createSequentialGroup()
-                            .addComponent(lbltipopagoventa)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                            .addComponent(cmbtipopagoventa, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap()))
+                        .addComponent(lblidenticlienventa, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblidentiusuventa, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbltipopagoventa, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addContainerGap(251, Short.MAX_VALUE)))
         );
         panelnuevaventaLayout.setVerticalGroup(
             panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelnuevaventaLayout.createSequentialGroup()
-                .addContainerGap(187, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addComponent(txtidenticliventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtidentusuaventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cmbtipopagoventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnguardarventa)
                     .addComponent(btncancelarventa))
@@ -159,18 +152,12 @@ public class Nueva_Venta extends javax.swing.JFrame {
             .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelnuevaventaLayout.createSequentialGroup()
                     .addGap(36, 36, 36)
-                    .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblidenticlienventa)
-                        .addComponent(txtidentiprovefact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblidenticlienventa)
                     .addGap(18, 18, 18)
-                    .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblidentiusuventa)
-                        .addComponent(txtidentiusufactcomp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblidentiusuventa)
                     .addGap(18, 18, 18)
-                    .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lbltipopagoventa)
-                        .addComponent(cmbtipopagoventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(101, Short.MAX_VALUE)))
+                    .addComponent(lbltipopagoventa)
+                    .addContainerGap(102, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,7 +187,7 @@ public class Nueva_Venta extends javax.swing.JFrame {
     private javax.swing.JLabel lblidentiusuventa;
     private javax.swing.JLabel lbltipopagoventa;
     private javax.swing.JPanel panelnuevaventa;
-    private javax.swing.JTextField txtidentiprovefact;
-    private javax.swing.JTextField txtidentiusufactcomp;
+    private javax.swing.JTextField txtidenticliventa;
+    private javax.swing.JTextField txtidentusuaventa;
     // End of variables declaration//GEN-END:variables
 }
