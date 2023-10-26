@@ -133,6 +133,7 @@ public class Principal extends javax.swing.JFrame {
         jtfprovee = new javax.swing.JTextField();
         jpproducto = new javax.swing.JPanel();
         jpfactura = new javax.swing.JPanel();
+        jpVenta = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -347,6 +348,19 @@ public class Principal extends javax.swing.JFrame {
 
         tpPrincipal.addTab("Factura", jpfactura);
 
+        javax.swing.GroupLayout jpVentaLayout = new javax.swing.GroupLayout(jpVenta);
+        jpVenta.setLayout(jpVentaLayout);
+        jpVentaLayout.setHorizontalGroup(
+            jpVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 907, Short.MAX_VALUE)
+        );
+        jpVentaLayout.setVerticalGroup(
+            jpVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 313, Short.MAX_VALUE)
+        );
+
+        tpPrincipal.addTab("Venta", jpVenta);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -386,6 +400,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JPanel jpVenta;
     private javax.swing.JPanel jpcliente;
     private javax.swing.JPanel jpfactura;
     private javax.swing.JPanel jpproducto;
