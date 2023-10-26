@@ -162,10 +162,10 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jpProvee.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Proveedor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 36), new java.awt.Color(204, 0, 204))); // NOI18N
+        jpProvee.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Proveedor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 36), new java.awt.Color(0, 153, 153))); // NOI18N
 
         lbldocumento.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lbldocumento.setForeground(new java.awt.Color(204, 0, 204));
+        lbldocumento.setForeground(new java.awt.Color(0, 153, 153));
         lbldocumento.setText("Documento");
 
         txtdocuprovee.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -181,11 +181,11 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
         txtnomprovee.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
         lblnombre.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblnombre.setForeground(new java.awt.Color(204, 0, 204));
+        lblnombre.setForeground(new java.awt.Color(0, 153, 153));
         lblnombre.setText("Nombre");
 
         lbltelefono.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lbltelefono.setForeground(new java.awt.Color(204, 0, 204));
+        lbltelefono.setForeground(new java.awt.Color(0, 153, 153));
         lbltelefono.setText("Teléfono");
 
         txtteleprovee.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -201,11 +201,11 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
         txtcorrprovee.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
         lblcorreo.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblcorreo.setForeground(new java.awt.Color(204, 0, 204));
+        lblcorreo.setForeground(new java.awt.Color(0, 153, 153));
         lblcorreo.setText("Correo");
 
         lbldireccion.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lbldireccion.setForeground(new java.awt.Color(204, 0, 204));
+        lbldireccion.setForeground(new java.awt.Color(0, 153, 153));
         lbldireccion.setText("Dirección");
 
         txtdireprovee.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -221,11 +221,11 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
         cmbgeneprovee.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
         lblgenero.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblgenero.setForeground(new java.awt.Color(204, 0, 204));
+        lblgenero.setForeground(new java.awt.Color(0, 153, 153));
         lblgenero.setText("Género");
 
         lblfechanaci.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblfechanaci.setForeground(new java.awt.Color(204, 0, 204));
+        lblfechanaci.setForeground(new java.awt.Color(0, 153, 153));
         lblfechanaci.setText("Fecha de Nacimiento");
 
         jLabel11.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
@@ -233,15 +233,15 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
         jLabel11.setText("*");
 
         btncancelarprovee.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        btncancelarprovee.setForeground(new java.awt.Color(204, 0, 204));
+        btncancelarprovee.setForeground(new java.awt.Color(0, 153, 153));
         btncancelarprovee.setText("Cancelar");
 
         btnguardarprovee.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        btnguardarprovee.setForeground(new java.awt.Color(204, 0, 204));
+        btnguardarprovee.setForeground(new java.awt.Color(0, 153, 153));
         btnguardarprovee.setText("Guardar");
 
         lbltipo_per.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lbltipo_per.setForeground(new java.awt.Color(204, 0, 204));
+        lbltipo_per.setForeground(new java.awt.Color(0, 153, 153));
         lbltipo_per.setText("Tipo de persona");
 
         jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
@@ -249,7 +249,7 @@ public class Nuevo_Proveedor extends javax.swing.JFrame {
         jLabel8.setText("*");
 
         lbltipo_doc_prov.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lbltipo_doc_prov.setForeground(new java.awt.Color(204, 0, 204));
+        lbltipo_doc_prov.setForeground(new java.awt.Color(0, 153, 153));
         lbltipo_doc_prov.setText("Tipo de documento");
 
         cmbtipersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N

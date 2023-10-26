@@ -208,7 +208,7 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        usuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 36), new java.awt.Color(204, 0, 204))); // NOI18N
+        usuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 36), new java.awt.Color(0, 153, 153))); // NOI18N
         usuarios.setForeground(new java.awt.Color(51, 51, 255));
 
         pssContrase.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -220,15 +220,15 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
         btnvista.setContentAreaFilled(false);
 
         lblCorreo.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblCorreo.setForeground(new java.awt.Color(204, 0, 204));
+        lblCorreo.setForeground(new java.awt.Color(0, 153, 153));
         lblCorreo.setText("Correo");
 
         lblDocumento.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblDocumento.setForeground(new java.awt.Color(204, 0, 204));
+        lblDocumento.setForeground(new java.awt.Color(0, 153, 153));
         lblDocumento.setText("Documento");
 
         lblLogin.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblLogin.setForeground(new java.awt.Color(204, 0, 204));
+        lblLogin.setForeground(new java.awt.Color(0, 153, 153));
         lblLogin.setText("Login");
 
         txtNombre.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -238,42 +238,42 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         lblTelefono.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblTelefono.setForeground(new java.awt.Color(204, 0, 204));
+        lblTelefono.setForeground(new java.awt.Color(0, 153, 153));
         lblTelefono.setText("Teléfono");
 
         lblSexo.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblSexo.setForeground(new java.awt.Color(204, 0, 204));
+        lblSexo.setForeground(new java.awt.Color(0, 153, 153));
         lblSexo.setText("Sexo");
 
         lbldire.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lbldire.setForeground(new java.awt.Color(204, 0, 204));
+        lbldire.setForeground(new java.awt.Color(0, 153, 153));
         lbldire.setText("Dirección");
 
         lblNombre.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(204, 0, 204));
+        lblNombre.setForeground(new java.awt.Color(0, 153, 153));
         lblNombre.setText("Nombre");
 
         cmbSexo.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
         lblContra.setBackground(new java.awt.Color(255, 255, 255));
         lblContra.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblContra.setForeground(new java.awt.Color(204, 0, 204));
+        lblContra.setForeground(new java.awt.Color(0, 153, 153));
         lblContra.setText("Contraseña");
 
         txtDocumento.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
         lblRango.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblRango.setForeground(new java.awt.Color(204, 0, 204));
+        lblRango.setForeground(new java.awt.Color(0, 153, 153));
         lblRango.setText("Rol");
 
         txtLogin.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
         btnGuardar.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(204, 0, 204));
+        btnGuardar.setForeground(new java.awt.Color(0, 153, 153));
         btnGuardar.setText("Guardar");
 
         btcCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        btcCancelar.setForeground(new java.awt.Color(204, 0, 204));
+        btcCancelar.setForeground(new java.awt.Color(0, 153, 153));
         btcCancelar.setText("Cancelar");
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
@@ -305,7 +305,7 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
         jLabel9.setText("*");
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 0, 204));
+        jLabel10.setForeground(new java.awt.Color(0, 153, 153));
         jLabel10.setText("Fecha de Nacimiento");
 
         cmbrol.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -334,7 +334,7 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
         jLabel8.setText("*");
 
         lbltipo_doc.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lbltipo_doc.setForeground(new java.awt.Color(204, 0, 204));
+        lbltipo_doc.setForeground(new java.awt.Color(0, 153, 153));
         lbltipo_doc.setText("Tipo de Documento");
 
         cmbtipodocu.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -383,16 +383,15 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
                     .addComponent(cmbrol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTele)
                     .addComponent(txtCorreo)
-                    .addComponent(jdcfechanaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(usuariosLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
                         .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(usuariosLayout.createSequentialGroup()
                                 .addComponent(pssContrase)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnvista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(14, 14, 14))
-                            .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jdcfechanaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(cmbtipodocu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -420,7 +419,7 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
                     .addComponent(lblDocumento)
                     .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(lbltipo_doc)
@@ -429,17 +428,7 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
                 .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, usuariosLayout.createSequentialGroup()
                         .addComponent(lblNombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblRango)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblTelefono)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCorreo)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblSexo)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbldire)
-                        .addGap(67, 67, 67)
+                        .addGap(276, 276, 276)
                         .addComponent(lblLogin)
                         .addGap(20, 20, 20)
                         .addComponent(lblContra))
@@ -451,32 +440,39 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbrol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cmbrol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblRango))
                                     .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
                                 .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtTele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
+                                    .addComponent(jLabel3)
+                                    .addComponent(lblTelefono))
                                 .addGap(18, 18, 18)
                                 .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
+                                    .addComponent(jLabel7)
+                                    .addComponent(lblCorreo))
                                 .addGap(18, 18, 18)
                                 .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel4)
+                                    .addComponent(lblSexo))
                                 .addGap(18, 18, 18)
                                 .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtDire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))
+                                    .addComponent(jLabel6)
+                                    .addComponent(lbldire))
                                 .addGap(18, 18, 18)
                                 .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
-                                    .addComponent(jdcfechanaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, usuariosLayout.createSequentialGroup()
+                                        .addComponent(jdcfechanaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))))
                             .addGroup(usuariosLayout.createSequentialGroup()
                                 .addComponent(jLabel10)
-                                .addGap(3, 3, 3)))
-                        .addGap(18, 18, 18)
+                                .addGap(12, 12, 12)))
                         .addGroup(usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))

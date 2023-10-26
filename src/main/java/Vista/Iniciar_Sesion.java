@@ -68,18 +68,18 @@ public class Iniciar_Sesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        inicio_sesion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Iniciar Sesión", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 36), new java.awt.Color(204, 0, 204))); // NOI18N
+        inicio_sesion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Iniciar Sesión", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 36), new java.awt.Color(0, 153, 153))); // NOI18N
 
         lblUsua.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblUsua.setForeground(new java.awt.Color(204, 0, 204));
+        lblUsua.setForeground(new java.awt.Color(0, 153, 153));
         lblUsua.setText("Usuario");
 
         lblcontra.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblcontra.setForeground(new java.awt.Color(204, 0, 204));
+        lblcontra.setForeground(new java.awt.Color(0, 153, 153));
         lblcontra.setText("Contraseña");
 
         btnIniciar.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        btnIniciar.setForeground(new java.awt.Color(204, 0, 204));
+        btnIniciar.setForeground(new java.awt.Color(0, 153, 153));
         btnIniciar.setText("Iniciar");
         btnIniciar.setToolTipText("");
 
