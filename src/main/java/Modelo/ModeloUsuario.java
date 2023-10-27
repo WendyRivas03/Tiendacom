@@ -205,11 +205,11 @@ public class ModeloUsuario {
         int opcion = titulo.length;
         
         if(nompeste.equals("Usuario")){
-            titulo= Arrays.copyOf(titulo, titulo.length+2);
+            titulo= Arrays.copyOf(titulo, titulo.length + 2);
             titulo[titulo.length-2]="";
             titulo[titulo.length-1]="";
         }else{
-            titulo= Arrays.copyOf(titulo, titulo.length+1);
+            titulo= Arrays.copyOf(titulo, titulo.length + 1);
             titulo[titulo.length-1]="";
         }
         
@@ -236,6 +236,7 @@ public class ModeloUsuario {
                 }
                 Object[]mos = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8]};
                 if(nompeste.equals("Usuario")){
+                    mos=Arrays.copyOf(mos, mos.length+2);
                     mos[mos.length-2]=editar;
                     mos[mos.length-1]=eliminar;
                 }else{
