@@ -43,7 +43,7 @@ public class ControladorLogin implements ActionListener {
            modlog.setContrasena(pass);
            if(modlog.validar(modlog.getUsuario(), modlog.getContrasena())){
                ini.setVisible(false);
-               controprin.iniciarPrincipal();
+               controprin.iniciarPrincipal(0);
            }else{
                JOptionPane.showMessageDialog(null,"Usuario o Contraseña incorrecta");
            }

@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
@@ -113,6 +114,7 @@ public class ModeloUsuario {
     public void setFec(Date fec) {
         this.fec = fec;
     }
+ 
 
     public Map<String, Integer> llenarCombo(String valor) {
         Conexion conect = new Conexion();
@@ -178,7 +180,7 @@ public class ModeloUsuario {
     }
 //Creación de la tabla Usuario en la ventana principal 
 
-    public void mostrarTablaUsuario(JTable tabla, String valor) {
+    public void mostrarTablaUsuario(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
 
@@ -191,12 +193,26 @@ public class ModeloUsuario {
         tabla.setDefaultRenderer(Object.class, new GestionCeldas());
         JButton editar = new JButton();
         JButton eliminar = new JButton();
+        JButton agregar = new JButton();
 
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
-
-        String[] titulo = {"Documento", "Tipo de Documento", "Nombre", "Rol", "Telefono", "Correo", "Género", "Dirección", "Fecha de Nacimiento", "", ""};
-
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png")));
+        
+        
+        String[] titulo = {"Documento", "Tipo de Documento", "Nombre", "Rol", "Telefono", "Correo", 
+            "Género", "Dirección", "Fecha de Nacimiento"};
+        int opcion = titulo.length;
+        
+        if(nompeste.equals("Usuario")){
+            titulo= Arrays.copyOf(titulo, titulo.length+2);
+            titulo[titulo.length-2]="";
+            titulo[titulo.length-1]="";
+        }else{
+            titulo= Arrays.copyOf(titulo, titulo.length+1);
+            titulo[titulo.length-1]="";
+        }
+        
         DefaultTableModel tablaUsuario = new DefaultTableModel(null, titulo) {
             public boolean isCellEditable(int row, int column) {
 
@@ -204,7 +220,6 @@ public class ModeloUsuario {
 
             }
         };
-
         String sqlUsuario;
         if (valor.equals("")) {
             sqlUsuario = "SELECT * FROM mostrar_usuario";
@@ -216,10 +231,17 @@ public class ModeloUsuario {
             Statement st = co.createStatement(); //Crea una consulta
             ResultSet rs = st.executeQuery(sqlUsuario);
             while (rs.next()) {
-                for (int i = 0; i < titulo.length - 2; i++) {
+                for (int i = 0; i < opcion; i++) {
                     dato[i] = rs.getString(i + 1);
                 }
-                tablaUsuario.addRow(new Object[]{dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8], editar, eliminar});
+                Object[]mos = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8]};
+                if(nompeste.equals("Usuario")){
+                    mos[mos.length-2]=editar;
+                    mos[mos.length-1]=eliminar;
+                }else{
+                    mos[mos.length-1]=agregar;
+                }
+                tablaUsuario.addRow(mos);
             }
             co.close();
 

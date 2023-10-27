@@ -18,7 +18,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class ControladorPrincipal implements ActionListener {
+public class ControladorPrincipal implements ActionListener, ChangeListener, DocumentListener {
 
     Principal prin = new Principal();
     Nuevo_Usuario usu = new Nuevo_Usuario();
@@ -30,6 +30,7 @@ public class ControladorPrincipal implements ActionListener {
     ControladorUsuario controusu = new ControladorUsuario();
     ControladorCliente controcli = new ControladorCliente();
     ControladorProveedor contropro = new ControladorProveedor();
+    ModeloUsuario modusu = new ModeloUsuario();
 
     public ControladorPrincipal() {
         prin.getBtnnuevo().addActionListener(this);
@@ -38,6 +39,7 @@ public class ControladorPrincipal implements ActionListener {
         prin.getBtnnuevoproducto().addActionListener(this);
         prin.getBtnnuevaFactura().addActionListener(this);
         prin.getBtnnuevaVenta().addActionListener(this);
+        prin.getJtfusuario().getDocument().addDocumentListener(this);//Que escuche el txt para buscar
         usu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         cli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         provee.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -46,64 +48,69 @@ public class ControladorPrincipal implements ActionListener {
         vent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    public void iniciarPrincipal() {
-        prin.setLocationRelativeTo(null);
-        prin.setTitle("Principal");
-        prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        prin.setVisible(true);
-        gestionarPestanas();
+    public void iniciarPrincipal(int valor) {
+        prin.setLocationRelativeTo(null);//Centra la ventana
+        prin.setTitle("Principal");//Le da titulo a la ventana
+        prin.setExtendedState(JFrame.MAXIMIZED_BOTH);//Maximiza la ventana
+        prin.getTpPrincipal().setSelectedIndex(valor);
+        prin.setVisible(true);//Se visualiza la ventana
+        gestionUsuario();//llamo al metodo de Gestion usuario
     }
 
     public void gestionarPestanas() {
-        ModeloUsuario modusu = new ModeloUsuario();
-        int seleccionar = prin.getTpPrincipal().getSelectedIndex();
-        if (seleccionar == 0) {
-            modusu.mostrarTablaUsuario(prin.getJtusuario(), "");
 
-            prin.getTpPrincipal().addChangeListener(new ChangeListener() {
+    }
 
-                @Override
-                public void stateChanged(ChangeEvent e) {
+    public void gestionUsuario() {
+        modusu.mostrarTablaUsuario(prin.getJtusuario(), "", "Usuario");
 
-                }
-            });
-            prin.getJtfusuario().addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    prin.getJtfusuario().setText("");
-                    prin.getJtfusuario().setForeground(new java.awt.Color(0, 0, 0));
-                }
-            });
-            prin.getJtfusuario().getDocument().addDocumentListener(new DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText());
-                }
+        prin.getTpPrincipal().addChangeListener(new ChangeListener() {
 
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText());
-                }
+            @Override
+            public void stateChanged(ChangeEvent e) {
 
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText());
-                }
-            });
-            //Para darle clic al boton de editar
-            prin.getJtusuario().addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    int fila = prin.getJtusuario().rowAtPoint(e.getPoint());
-                    int colum = prin.getJtusuario().columnAtPoint(e.getPoint());
-                    modusu.setDoc(Integer.parseInt(prin.getJtusuario().getValueAt(fila, 1).toString()));
+            }
+        });
+        prin.getJtfusuario().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                prin.getJtfusuario().setText("");
+                prin.getJtfusuario().setForeground(new java.awt.Color(0, 0, 0));
+            }
+        });
+        //Para darle clic al boton de editar
+        prin.getJtusuario().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = prin.getJtusuario().rowAtPoint(e.getPoint());
+                int colum = prin.getJtusuario().columnAtPoint(e.getPoint());
+                modusu.setDoc(Integer.parseInt(prin.getJtusuario().getValueAt(fila, 1).toString()));
 
-                    if (colum == 9) {
-                        controusu.actualizarUsuario(modusu.getDoc());
-                    }
+                if (colum == 9) {
+                    controusu.actualizarUsuario(modusu.getDoc());
                 }
-            });
-        }
+            }
+        });
+    }
+    
+    public void gestionCliente(){
+        
+    }
+    
+    public void gestionProveedor(){
+        
+    }
+    
+    public void gestionProducto(){
+        
+    }
+    
+    public void gestionFacturacompra(){
+        
+    }
+    
+    public void gestionVenta(){
+        
     }
 
     @Override
@@ -139,5 +146,43 @@ public class ControladorPrincipal implements ActionListener {
             vent.setTitle("Nueva Venta");
             vent.setVisible(true);
         }
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        int seleccionar = prin.getTpPrincipal().getSelectedIndex();
+        if (seleccionar == 0) {
+            gestionUsuario();
+        }
+        if (seleccionar == 1) {
+            gestionCliente();
+        }
+        if (seleccionar == 2) {
+            gestionProveedor();
+        }
+        if (seleccionar == 3) {
+            gestionProducto();
+        }
+        if (seleccionar == 4) {
+            gestionFacturacompra();
+        }
+        if (seleccionar == 5) {
+            gestionVenta();
+        }
+    }
+
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(),"Usuario");
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
     }
 }

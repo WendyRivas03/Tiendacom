@@ -85,7 +85,7 @@ public class ModeloCliente {
     public void setFec(Date fec) {
         this.fec = fec;
     }
-    
+    //Mapa para llenar combo
     public Map<String, Integer> llenarCombo(String valor) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();

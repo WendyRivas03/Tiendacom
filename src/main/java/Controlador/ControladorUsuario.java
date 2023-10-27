@@ -27,7 +27,7 @@ public class ControladorUsuario implements ActionListener {
         usu.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
                 ControladorPrincipal princ = new ControladorPrincipal();
-                princ.iniciarPrincipal();
+                princ.iniciarPrincipal(0);
             }
         });
     }
