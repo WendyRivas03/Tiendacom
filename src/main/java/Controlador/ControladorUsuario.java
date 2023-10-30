@@ -20,6 +20,7 @@ public class ControladorUsuario implements ActionListener {
     Principal prin = new Principal();
     ModeloUsuario modusuario = new ModeloUsuario();
 
+    //constructor
     public ControladorUsuario() {
         usu.getBtnGuardar().addActionListener(this);
         usu.getBtnvista().addActionListener(this);
@@ -50,10 +51,10 @@ public class ControladorUsuario implements ActionListener {
         for (String rol : comborol.keySet()) {
             usu.getCmbrol().addItem(rol);
         }
-
     }
 
-    @Override //Metodo adstracto
+    //Metodo adstracto
+    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(usu.getBtnvista())) {
 
@@ -99,12 +100,23 @@ public class ControladorUsuario implements ActionListener {
                 modusuario.setContra(contrasena);
                 modusuario.setSex(sexo);
                 modusuario.setRol(rol);
-                modusuario.insertarUsuario();
-                modusuario.limpiar(usu.getUsuarios().getComponents());
+
+                if (usu.getBtnGuardar().getText().equals("Guardar")) {
+                    modusuario.insertarUsuario();
+                    modusuario.limpiar(usu.getUsuarios().getComponents());
+                }else{
+                    modusuario.actualizarUsuario();
+                    usu.setVisible(false);
+                    prin.setVisible(true);
+                    modusuario.mostrarTablaUsuario(prin.getJtusuario(), "", "Usuario");
+//                    prin.getTpPrincipal().setSelectedIndex(0);
+                }
+
             }
         }
 
     }
+//Actualizar Usuario
 
     void actualizarUsuario(int doc) {
         modusuario.buscarUsuario(doc);
@@ -116,6 +128,7 @@ public class ControladorUsuario implements ActionListener {
         usu.getTxtTele().setText(modusuario.getTele());
         usu.getTxtCorreo().setText(modusuario.getCorreo());
         usu.getTxtDire().setText(modusuario.getDire());
+        usu.getTxtLogin().setText(modusuario.getLog());
         usu.getPssContrase().setText(modusuario.getContra());
         usu.getJdcfechanaci().setDate(modusuario.getFec());
 
@@ -137,18 +150,21 @@ public class ControladorUsuario implements ActionListener {
         //obtener el valor de la base de datos
         String valoRol = modusuario.obtenerSeleccion(info, modusuario.getRol());
         usu.getCmbrol().setSelectedItem(valoRol);
-        
+
         //Llenar tipo de documento
         usu.getCmbtipodocu().setSelectedItem(modusuario.getTipo_doc());
-        
+
         //Cambiar Titulo
-        Border borde = BorderFactory.createTitledBorder(null,"Actualizar Usuario", 
-            javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.DEFAULT_POSITION,
-            new java.awt.Font ("Yu Gothic UI", 1, 36),
-        new java.awt.Color(204, 0, 204));
+        Border borde = BorderFactory.createTitledBorder(null, "Actualizar Usuario",
+                javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Yu Gothic UI", 1, 36),
+                new java.awt.Color(204, 0, 204));
         usu.getUsuarios().setBorder(borde);
+        prin.setVisible(false);
         usu.setLocationRelativeTo(null);
-        
+        usu.getBtnGuardar().setText("Actualizar");
+        usu.setVisible(true);
+
     }
 
 }

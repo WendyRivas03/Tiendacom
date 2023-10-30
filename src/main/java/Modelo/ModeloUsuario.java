@@ -115,7 +115,7 @@ public class ModeloUsuario {
         this.fec = fec;
     }
  
-
+//llenar los combos
     public Map<String, Integer> llenarCombo(String valor) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -134,7 +134,8 @@ public class ModeloUsuario {
         }
         return llenar_combo;
     }
-
+    
+    //insertar usuario
     public void insertarUsuario() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -163,7 +164,7 @@ public class ModeloUsuario {
         }
         conect.cerrarConexion();
     }
-
+ //limpiar campos
     public void limpiar(Component[] panelusuario) {
         for (Object limpiar : panelusuario) {
             if (limpiar instanceof JTextField) {
@@ -179,7 +180,6 @@ public class ModeloUsuario {
 
     }
 //Creación de la tabla Usuario en la ventana principal 
-
     public void mostrarTablaUsuario(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -234,15 +234,15 @@ public class ModeloUsuario {
                 for (int i = 0; i < opcion; i++) {
                     dato[i] = rs.getString(i + 1);
                 }
-                Object[]mos = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8]};
+                Object[]fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8]};
                 if(nompeste.equals("Usuario")){
-                    mos=Arrays.copyOf(mos, mos.length+2);
-                    mos[mos.length-2]=editar;
-                    mos[mos.length-1]=eliminar;
+                    fila=Arrays.copyOf(fila, fila.length+2);
+                    fila[fila.length-2]=editar;
+                    fila[fila.length-1]=eliminar;
                 }else{
-                    mos[mos.length-1]=agregar;
+                    fila[fila.length-1]=agregar;
                 }
-                tablaUsuario.addRow(mos);
+                tablaUsuario.addRow(fila);
             }
             co.close();
 
@@ -259,7 +259,7 @@ public class ModeloUsuario {
         }
         conect.cerrarConexion();
     }
-
+ //buscar usuario
     public void buscarUsuario(int valor) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -296,6 +296,34 @@ public class ModeloUsuario {
             }
         }
         return null;
+    }
+    
+    //Actualizar usuario
+    public void actualizarUsuario(){
+        Conexion conect = new Conexion();
+        Connection con = conect.iniciarConexion();
+        String sql = "call actualizar_usuario(?,?,?,?,?,?,?,?,?)";
+        
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, getDoc());
+            ps.setString(2, getNom());
+            ps.setInt(3, getRol());
+            ps.setString(4, getTele());
+            ps.setString(5, getCorreo());
+            ps.setInt(6, getSex());
+            ps.setString(7, getDire());
+            ps.setDate(8, getFec());
+            ps.setString(9, getContra());
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Información Actualizada");
+            con.close();
+            
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        conect.cerrarConexion();
     }
 
 }

@@ -84,10 +84,15 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             public void mouseClicked(MouseEvent e) {
                 int fila = prin.getJtusuario().rowAtPoint(e.getPoint());
                 int colum = prin.getJtusuario().columnAtPoint(e.getPoint());
-                modusu.setDoc(Integer.parseInt(prin.getJtusuario().getValueAt(fila, 1).toString()));
-
+                modusu.setDoc(Integer.parseInt(prin.getJtusuario().getValueAt(fila, 0).toString()));
+                
                 if (colum == 9) {
+                    prin.setVisible(false);
+                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     controusu.actualizarUsuario(modusu.getDoc());
+                }
+                if(colum==10){
+                    controusu.eliminarUsuario(modusu.getDoc());
                 }
             }
         });

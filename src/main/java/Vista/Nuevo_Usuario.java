@@ -67,8 +67,6 @@ public class Nuevo_Usuario extends javax.swing.JFrame {
         this.cmbtipodocu = cmbtipodocu;
     }
     
-    
-
     public JDateChooser getJdcfechanaci() {
         return jdcfechanaci;
     }
