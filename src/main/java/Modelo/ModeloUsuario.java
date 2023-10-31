@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -114,7 +116,7 @@ public class ModeloUsuario {
     public void setFec(Date fec) {
         this.fec = fec;
     }
- 
+
 //llenar los combos
     public Map<String, Integer> llenarCombo(String valor) {
         Conexion conect = new Conexion();
@@ -134,7 +136,7 @@ public class ModeloUsuario {
         }
         return llenar_combo;
     }
-    
+
     //insertar usuario
     public void insertarUsuario() {
         Conexion conect = new Conexion();
@@ -164,7 +166,8 @@ public class ModeloUsuario {
         }
         conect.cerrarConexion();
     }
- //limpiar campos
+    //limpiar campos
+
     public void limpiar(Component[] panelusuario) {
         for (Object limpiar : panelusuario) {
             if (limpiar instanceof JTextField) {
@@ -180,6 +183,7 @@ public class ModeloUsuario {
 
     }
 //Creación de la tabla Usuario en la ventana principal 
+
     public void mostrarTablaUsuario(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -198,21 +202,20 @@ public class ModeloUsuario {
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
         agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png")));
-        
-        
-        String[] titulo = {"Documento", "Tipo de Documento", "Nombre", "Rol", "Telefono", "Correo", 
+
+        String[] titulo = {"Documento", "Tipo de Documento", "Nombre", "Rol", "Telefono", "Correo",
             "Género", "Dirección", "Fecha de Nacimiento"};
         int opcion = titulo.length;
-        
-        if(nompeste.equals("Usuario")){
-            titulo= Arrays.copyOf(titulo, titulo.length + 2);
-            titulo[titulo.length-2]="";
-            titulo[titulo.length-1]="";
-        }else{
-            titulo= Arrays.copyOf(titulo, titulo.length + 1);
-            titulo[titulo.length-1]="";
+
+        if (nompeste.equals("Usuario")) {
+            titulo = Arrays.copyOf(titulo, titulo.length + 2);
+            titulo[titulo.length - 2] = "";
+            titulo[titulo.length - 1] = "";
+        } else {
+            titulo = Arrays.copyOf(titulo, titulo.length + 1);
+            titulo[titulo.length - 1] = "";
         }
-        
+
         DefaultTableModel tablaUsuario = new DefaultTableModel(null, titulo) {
             public boolean isCellEditable(int row, int column) {
 
@@ -234,13 +237,13 @@ public class ModeloUsuario {
                 for (int i = 0; i < opcion; i++) {
                     dato[i] = rs.getString(i + 1);
                 }
-                Object[]fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8]};
-                if(nompeste.equals("Usuario")){
-                    fila=Arrays.copyOf(fila, fila.length+2);
-                    fila[fila.length-2]=editar;
-                    fila[fila.length-1]=eliminar;
-                }else{
-                    fila[fila.length-1]=agregar;
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8]};
+                if (nompeste.equals("Usuario")) {
+                    fila = Arrays.copyOf(fila, fila.length + 2);
+                    fila[fila.length - 2] = editar;
+                    fila[fila.length - 1] = eliminar;
+                } else {
+                    fila[fila.length - 1] = agregar;
                 }
                 tablaUsuario.addRow(fila);
             }
@@ -259,7 +262,8 @@ public class ModeloUsuario {
         }
         conect.cerrarConexion();
     }
- //buscar usuario
+    //buscar usuario
+
     public void buscarUsuario(int valor) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -297,14 +301,14 @@ public class ModeloUsuario {
         }
         return null;
     }
-    
+
     //Actualizar usuario
-    public void actualizarUsuario(){
+    public void actualizarUsuario() {
         Conexion conect = new Conexion();
         Connection con = conect.iniciarConexion();
         String sql = "call actualizar_usuario(?,?,?,?,?,?,?,?,?)";
-        
-        try{
+
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, getDoc());
             ps.setString(2, getNom());
@@ -316,11 +320,31 @@ public class ModeloUsuario {
             ps.setDate(8, getFec());
             ps.setString(9, getContra());
             ps.executeUpdate();
-            
+
             JOptionPane.showMessageDialog(null, "Información Actualizada");
             con.close();
-            
-        }catch (SQLException e){
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conect.cerrarConexion();
+    }
+
+    //Eliminar usuario
+    public void eliminarUsuario() {
+        Conexion conect = new Conexion();
+        Connection con = conect.iniciarConexion();
+        String sql = "call eliminar_usuario(?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, getDoc());
+            ps.executeUpdate();
+            Icon elimina = new ImageIcon(getClass().getResource("/img/basura.png"));
+            JOptionPane.showMessageDialog(null, "Registro Eliminado", "Eliminar Usuario", JOptionPane.PLAIN_MESSAGE, (Icon) elimina);
+//            JOptionPane.showMessageDialog(null, "¿Desea Eliminar el Registro?");
+            con.close();
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         conect.cerrarConexion();

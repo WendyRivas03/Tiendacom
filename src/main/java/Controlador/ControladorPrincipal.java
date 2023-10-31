@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
@@ -93,6 +94,8 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 }
                 if(colum==10){
                     controusu.eliminarUsuario(modusu.getDoc());
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    modusu.mostrarTablaUsuario(prin.getJtusuario(), "", "Usuario");
                 }
             }
         });

@@ -104,7 +104,7 @@ public class ControladorUsuario implements ActionListener {
                 if (usu.getBtnGuardar().getText().equals("Guardar")) {
                     modusuario.insertarUsuario();
                     modusuario.limpiar(usu.getUsuarios().getComponents());
-                }else{
+                } else {
                     modusuario.actualizarUsuario();
                     usu.setVisible(false);
                     prin.setVisible(true);
@@ -166,5 +166,15 @@ public class ControladorUsuario implements ActionListener {
         usu.setVisible(true);
 
     }
+//Eliminar Usuario
+
+    void eliminarUsuario(int doc) {
+        int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar al usuario? \n" + doc,
+                 "Eliminar Usuario", JOptionPane.YES_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            modusuario.setDoc(doc);
+            modusuario.eliminarUsuario();
+        }
+     }
 
 }

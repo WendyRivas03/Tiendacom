@@ -39,6 +39,16 @@ CREATE TABLE `cliente` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `cliente`
+--
+
+LOCK TABLES `cliente` WRITE;
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (1098,'CC','Maria','27363','marialamejor','caraño',1,'2023-10-16',1),(1297,'Cédula de extranjería','Jhon','4444','jhonelsexy','cabi',2,'2023-10-16',1);
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `detalle_factura_compra`
 --
 
@@ -59,6 +69,15 @@ CREATE TABLE `detalle_factura_compra` (
   CONSTRAINT `id_producto` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`idproducto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `detalle_factura_compra`
+--
+
+LOCK TABLES `detalle_factura_compra` WRITE;
+/*!40000 ALTER TABLE `detalle_factura_compra` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detalle_factura_compra` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -123,6 +142,15 @@ CREATE TABLE `factura` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `factura`
+--
+
+LOCK TABLES `factura` WRITE;
+/*!40000 ALTER TABLE `factura` DISABLE KEYS */;
+/*!40000 ALTER TABLE `factura` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `factura_compra`
 --
 
@@ -146,6 +174,15 @@ CREATE TABLE `factura_compra` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `factura_compra`
+--
+
+LOCK TABLES `factura_compra` WRITE;
+/*!40000 ALTER TABLE `factura_compra` DISABLE KEYS */;
+/*!40000 ALTER TABLE `factura_compra` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `genero`
 --
 
@@ -159,6 +196,16 @@ CREATE TABLE `genero` (
   PRIMARY KEY (`idgenero`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `genero`
+--
+
+LOCK TABLES `genero` WRITE;
+/*!40000 ALTER TABLE `genero` DISABLE KEYS */;
+INSERT INTO `genero` VALUES (1,'Femenino',1),(2,'Masculino',1),(3,'Otro',1);
+/*!40000 ALTER TABLE `genero` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Temporary view structure for view `mostrar_cliente`
@@ -275,12 +322,22 @@ CREATE TABLE `producto` (
   `nombre` varchar(45) NOT NULL,
   `descripcion` varchar(250) NOT NULL,
   `cantidad` int NOT NULL,
-  `imagen` varchar(45) DEFAULT NULL,
+  `imagen` longblob,
   `precio` float NOT NULL,
   `condicion` tinyint NOT NULL,
   PRIMARY KEY (`idproducto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `producto`
+--
+
+LOCK TABLES `producto` WRITE;
+/*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES (1,'Portatil lenovo','5 de ram, disco duro ssd de 500G',50,NULL,2500000,1),(2,'Mause Inalambricos','Mause inalambrico, falcil manejo',49,NULL,60000,1),(3,'Teclado','teclado flexible, de facil portabilidad',33,NULL,72000,1),(4,'Portatil Dell','9 de ram, disco duro ssd de 500G',15,'',4000000,1),(5,'Teclado Inalambrico','teclado inalambrico y portable',15,NULL,48000,1),(6,'Porta celular','porta celular de aluminio',30,NULL,15000,1),(7,'Memoria USB','Capacidad 32GB',14,'',60000,1);
+/*!40000 ALTER TABLE `producto` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `producto_factura`
@@ -303,6 +360,15 @@ CREATE TABLE `producto_factura` (
   CONSTRAINT `producto` FOREIGN KEY (`producto`) REFERENCES `producto` (`idproducto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `producto_factura`
+--
+
+LOCK TABLES `producto_factura` WRITE;
+/*!40000 ALTER TABLE `producto_factura` DISABLE KEYS */;
+/*!40000 ALTER TABLE `producto_factura` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `proveedor`
@@ -329,6 +395,16 @@ CREATE TABLE `proveedor` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `proveedor`
+--
+
+LOCK TABLES `proveedor` WRITE;
+/*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
+INSERT INTO `proveedor` VALUES (1077473,'nit','Hibi','2134','hibi.com','porvenir','Juridica',1,'2023-10-16',1),(1627363,'nit','arnol','2345','sfdf','medrano','juridica',2,'2023-10-16',1);
+/*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `rol`
 --
 
@@ -342,6 +418,16 @@ CREATE TABLE `rol` (
   PRIMARY KEY (`idrol`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rol`
+--
+
+LOCK TABLES `rol` WRITE;
+/*!40000 ALTER TABLE `rol` DISABLE KEYS */;
+INSERT INTO `rol` VALUES (1,'administrador',1),(2,'usuario',1),(3,'invitado',1);
+/*!40000 ALTER TABLE `rol` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `usuario`
@@ -370,6 +456,16 @@ CREATE TABLE `usuario` (
   CONSTRAINT `sexo` FOREIGN KEY (`sexo`) REFERENCES `genero` (`idgenero`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (2222,'Cédula de ciudadanía','ana',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','123',1),(107780,'Cédula de ciudadanía','Eliza',1,'31456','hsjshdd',2,'medranosur','2023-10-17','admin','12345',1),(134560,'Cédula de ciudadanía','Camila',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1111',1),(1077345,'Cédula de ciudadanía','marcelaaaaa',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1010',0);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'tiendacom_wendy'
@@ -673,7 +769,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_producto`(in nom varchar(45), in descrip varchar(250), in img varchar(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_producto`(in nom varchar(45), in descrip varchar(250), in img LONGBLOB)
 BEGIN
 insert into producto (nombre, descripcion, cantidad, imagen, precio, condicion) values (nom, descrip, '0', img, '0', '1');
 END ;;
@@ -859,4 +955,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-30 12:01:44
+-- Dump completed on 2023-10-31 11:52:59
