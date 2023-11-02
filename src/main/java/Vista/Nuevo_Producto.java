@@ -129,9 +129,15 @@ public class Nuevo_Producto extends javax.swing.JFrame {
         texareadescripproduct.setRows(5);
         jScrollPane1.setViewportView(texareadescripproduct);
 
+        txtimagenproduc.setEditable(false);
         txtimagenproduc.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
         btnbuscarimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar2.png"))); // NOI18N
+        btnbuscarimagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarimagenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelProductoLayout = new javax.swing.GroupLayout(PanelProducto);
         PanelProducto.setLayout(PanelProductoLayout);
@@ -148,12 +154,13 @@ public class Nuevo_Producto extends javax.swing.JFrame {
                                 .addComponent(btnguardproduct)
                                 .addGap(30, 30, 30)
                                 .addComponent(btncancelarproduc)
-                                .addGap(0, 70, Short.MAX_VALUE))
+                                .addGap(0, 92, Short.MAX_VALUE))
                             .addGroup(PanelProductoLayout.createSequentialGroup()
                                 .addGap(47, 47, 47)
-                                .addComponent(txtimagenproduc)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addComponent(btnbuscarimagen))
+                                .addComponent(txtimagenproduc, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnbuscarimagen)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(PanelProductoLayout.createSequentialGroup()
                         .addGroup(PanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblnombreproduc)
@@ -179,11 +186,10 @@ public class Nuevo_Producto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(PanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnbuscarimagen)
-                    .addGroup(PanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblimagenproduc)
-                        .addComponent(txtimagenproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(PanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblimagenproduc)
+                    .addComponent(txtimagenproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscarimagen))
                 .addGap(37, 37, 37)
                 .addGroup(PanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnguardproduct)
@@ -204,6 +210,10 @@ public class Nuevo_Producto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnbuscarimagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarimagenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnbuscarimagenActionPerformed
 
     /**
      * @param args the command line arguments

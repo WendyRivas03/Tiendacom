@@ -72,7 +72,17 @@ public class ControladorCliente implements ActionListener {
                 modcliente.setFec(fecha);
                 modcliente.insertarCliente();
                 modcliente.limpiar(cli.getCliente().getComponents());
-
+                
+                if (cli.getBtnguardarcli().getText().equals("Guardar")) {
+                    modcliente.insertarCliente();
+                    modcliente.limpiar(cli.getCliente().getComponents());
+                } else {
+//                    modcliente.actualizarUsuario();
+//                    usu.setVisible(false);
+//                    prin.setVisible(true);
+                    modcliente.mostrarTablaCliente(prin.getJtcliente(), "", "Cliente");
+//                    prin.getTpPrincipal().setSelectedIndex(0);
+                }
             }
         }
     }

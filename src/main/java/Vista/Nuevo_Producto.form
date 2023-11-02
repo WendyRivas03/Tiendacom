@@ -59,15 +59,16 @@
                                   <Component id="btnguardproduct" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="btncancelarproduc" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="70" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="92" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Component id="txtimagenproduc" max="32767" attributes="0"/>
+                                  <Component id="txtimagenproduc" min="-2" pref="318" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnbuscarimagen" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="btnbuscarimagen" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -104,12 +105,10 @@
                       </Group>
                   </Group>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnbuscarimagen" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblimagenproduc" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtimagenproduc" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblimagenproduc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtimagenproduc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnbuscarimagen" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -201,6 +200,7 @@
         </Container>
         <Component class="javax.swing.JTextField" name="txtimagenproduc">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="14" style="0"/>
             </Property>
@@ -212,6 +212,9 @@
               <Image iconType="3" name="/img/buscar2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbuscarimagenActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

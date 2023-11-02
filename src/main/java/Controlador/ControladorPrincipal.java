@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.ModeloCliente;
 import Modelo.ModeloUsuario;
 import Vista.Nueva_Factura_Compra;
 import Vista.Nueva_Venta;
@@ -31,7 +32,9 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     ControladorUsuario controusu = new ControladorUsuario();
     ControladorCliente controcli = new ControladorCliente();
     ControladorProveedor contropro = new ControladorProveedor();
+    ControladorProducto controproduc = new ControladorProducto();
     ModeloUsuario modusu = new ModeloUsuario();
+    ModeloCliente modcli = new ModeloCliente();
 
     public ControladorPrincipal() {
         prin.getBtnnuevo().addActionListener(this);
@@ -56,6 +59,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getTpPrincipal().setSelectedIndex(valor);
         prin.setVisible(true);//Se visualiza la ventana
         gestionUsuario();//llamo al metodo de Gestion usuario
+        gestionCliente();
     }
 
     public void gestionarPestanas() {
@@ -86,13 +90,13 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 int fila = prin.getJtusuario().rowAtPoint(e.getPoint());
                 int colum = prin.getJtusuario().columnAtPoint(e.getPoint());
                 modusu.setDoc(Integer.parseInt(prin.getJtusuario().getValueAt(fila, 0).toString()));
-                
+
                 if (colum == 9) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     controusu.actualizarUsuario(modusu.getDoc());
                 }
-                if(colum==10){
+                if (colum == 10) {
                     controusu.eliminarUsuario(modusu.getDoc());
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
                     modusu.mostrarTablaUsuario(prin.getJtusuario(), "", "Usuario");
@@ -100,25 +104,25 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             }
         });
     }
-    
-    public void gestionCliente(){
-        
+
+    public void gestionCliente() {
+        modcli.mostrarTablaCliente(prin.getJtcliente(), "", "Cliente");
     }
-    
-    public void gestionProveedor(){
-        
+
+    public void gestionProveedor() {
+
     }
-    
-    public void gestionProducto(){
-        
+
+    public void gestionProducto() {
+
     }
-    
-    public void gestionFacturacompra(){
-        
+
+    public void gestionFacturacompra() {
+
     }
-    
-    public void gestionVenta(){
-        
+
+    public void gestionVenta() {
+
     }
 
     @Override
@@ -138,9 +142,8 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         }
         if (e.getSource().equals(prin.getBtnnuevoproducto())) {
             prin.setVisible(false);
-            produc.setLocationRelativeTo(null);
-            produc.setTitle("Nuevo Producto");
-            produc.setVisible(true);
+            controproduc.controlProducto();
+
         }
         if (e.getSource().equals(prin.getBtnnuevaFactura())) {
             prin.setVisible(false);
@@ -181,7 +184,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(),"Usuario");
+        modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
     }
 
     @Override

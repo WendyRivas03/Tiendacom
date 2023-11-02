@@ -245,6 +245,22 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `mostrar_producto`
+--
+
+DROP TABLE IF EXISTS `mostrar_producto`;
+/*!50001 DROP VIEW IF EXISTS `mostrar_producto`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `mostrar_producto` AS SELECT 
+ 1 AS `idproducto`,
+ 1 AS `nombre`,
+ 1 AS `descripcion`,
+ 1 AS `cantidad`,
+ 1 AS `precio`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `mostrar_proveedor`
 --
 
@@ -323,10 +339,11 @@ CREATE TABLE `producto` (
   `descripcion` varchar(250) NOT NULL,
   `cantidad` int NOT NULL,
   `imagen` longblob,
+  `ruta` varchar(450) DEFAULT NULL,
   `precio` float NOT NULL,
   `condicion` tinyint NOT NULL,
   PRIMARY KEY (`idproducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,7 +352,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'Portatil lenovo','5 de ram, disco duro ssd de 500G',50,NULL,2500000,1),(2,'Mause Inalambricos','Mause inalambrico, falcil manejo',49,NULL,60000,1),(3,'Teclado','teclado flexible, de facil portabilidad',33,NULL,72000,1),(4,'Portatil Dell','9 de ram, disco duro ssd de 500G',15,'',4000000,1),(5,'Teclado Inalambrico','teclado inalambrico y portable',15,NULL,48000,1),(6,'Porta celular','porta celular de aluminio',30,NULL,15000,1),(7,'Memoria USB','Capacidad 32GB',14,'',60000,1);
+INSERT INTO `producto` VALUES (1,'Portatil lenovo','5 de ram, disco duro ssd de 500G',50,NULL,NULL,2500000,1),(2,'Mause Inalambricos','Mause inalambrico, falcil manejo',49,NULL,NULL,60000,1),(3,'Teclado','teclado flexible, de facil portabilidad',33,NULL,NULL,72000,1),(4,'Portatil Dell','9 de ram, disco duro ssd de 500G',15,'',NULL,4000000,1),(5,'Teclado Inalambrico','teclado inalambrico y portable',15,NULL,NULL,48000,1),(6,'Porta celular','porta celular de aluminio',30,NULL,NULL,15000,1),(7,'Memoria USB','Capacidad 32GB',14,'',NULL,60000,1),(8,'portatil','dell',0,_binary 'ˇ\ÿˇ\‡\0JFIF\0\0\0\0\0\0ˇ˛\0;CREATOR: gd-jpeg v1.0 (using IJG JPEG v80), quality = 90\nˇ\€\0C\0\n\n\n\r\rˇ¿\0\0h\0h\0ˇ\ƒ\0\0\0\0\0\0\0\0\0\0\0\0\0	\nˇ\ƒ\09\0	\0\0\0\0\0\0!1	\"AÅ2Qaqë°¢É#BrÇ$R£±ˇ\⁄\0\0\0?\0⁄ö\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\".2+îD]µ¥ˆ\ÍIj™Áéööó\…4\œc\Z:íO >%c´ˆÛ[$\”!ﬂ©\Ì+J“πΩXn9\„¸Z\‚T\Î\⁄∞kc]¡Æ\‚∏\»9p[®jgœõc\«\›D.¶[,å9∂\Îf•∫ø˙K(cÖß\ŒI˚+GiE-Omz©˘ˆ_]sdP\∆;˛\’∑Ò÷∑,ä==b†i\Ëe|\’~L\nï˚\‘\Ì\"\Á≈ã\Õ>ñ¯\∆<\ﬁ\\≠ïõg\÷˜MFØªı\Œ!ÒÜ©¡∂∑_a⁄ùπó[Ωe]\‘˙ÑﬁπT˘Z◊∏ˇ\0-˝˜a¯˜8Øo\ \"Ç\Ì\”f\–\Ì{c\⁄\ÀFN/Vπ\È#q8\rî¥˙7y<4˘/\œm4∂˘Â¶®á’™†ë\–\Õ	dç%Øi˘GíìZ\‰\…o2T\ \Õ\'≤ß6Yz)≈¢†\09©=n\’Uæ\Ê\Z\√\ﬁVö\Î¡o6HXÒÕØõH\ËGö\ŸN¬∂ç‘∂_cøÒµ\’rE\Ëk\Z≥P\Œ\ÏÉÃé/ìÇü\".<ç7ıŸáßz\ÕeK&+u\ÓF_®\‹7Ü£&P>S6QÙXn\Ÿ/E/¥Ts\ngh´\∆9©\ÌÇ#SL\È\ﬂ;`Ñ<D	c\ﬁ^¸g≠Ú$¸GâWJäâ-≤˙)H\Œö\ÊûNi\ËG˛\œPyÖK=\Ï\0y˝íæ˜\»˜ó®˚;∂æ\⁄=e{\–usb§®Pµ«§ÒåH\—˝\—\·ﬂ∂Wø\—k≥∂e˛ª§¥F\—)°Ã∂∫∑\Ÿ\Îd}\„é\"~H\»˝≈≠;}F1\ÕIÌïò\«5*∂\‹xGU=\“C≠\”1TEMSSU/u$ﬁäVë\‚\◊`ıà#üí˙Ω\ÎI/\»˜JDqà\⁄\È\ÂÙí8dí\\\ÏíI\0r¢≤\œ}\‰{\ \ÕY|\»=\Ô∫˙\—NÆ\ŸŒ∫±jãsˇ\0\÷Zk#™csÌÜûÛ¡\Õ\‚i˘≠\ÂiMA¨ÙΩ¶ˇ\0kîOnπ\“\≈WO =Xˆá7\œ]ë`ΩΩoè°7xøRYu=5\Ó{Ö]8©Å∂˚y|on\\1\È\\\Ê≥9o1úéK\À{\ƒoôß∑ã\ÿ\Ó™–¥Z>≤\Ó¥\‹0V\◊U\∆\Ãpí\'Ü0;òs[˝Akä†Å\ﬁ.Òo∏¯Ö}¢≠\·öæR]8GUsÜıÅ\Ì.\√|\‰{\√\Í©fædÚ∂T\ﬁryZ*nπ\Œ\n⁄üeN\€€≠ˆMt–ïµ˜--8}3\\\Ón£òó7\Ÿ x˘9´\‹h∞\÷Ú{æZv\Ì§oØiıòüM0tO˜è∑%™}s†/\€\’U\Zz\Ï˜P\’4ó\“TπÄ≤°ÄıÚÛ¡\·=BÛæ≥£≠WpâºAí?”¥<\0{¸\» rˆ≥\—PA[\¬:™ÿÆ|>8]ﬂ≠µùd\ÊSıß=§∞=\√\ﬁ/™©µR]ı\‚eıÚ∏\‡2ñ7\Ã\Ô£YKInÉµ\›hXiÙù¬ö\'Ùí¥2ïøô\‚¸Vw\Ÿ\Áen≥∫\’E>®ªP\–\“\‰SQ5Û\ ·ûÖ\Ó\·hÚ{ˇ\0v=◊¥æ\ÓVzÿ¨v\ÊGq∏p\n\ ˘H|“ÜgÖπ¿\·h$û\„œö\Œ∏#!aΩ\·˜s∞m\«JTP\\ 1U¥\”\÷A›öˇ\0πé˜\—√ëZk\ﬁw›†lÛS2\’r±\’\‹\Í)ú!Ü≤\›K,∞\’F\‚\‚\◊F\0q\·9i\Ê\“\ÏxÇczgv\rØj™Ü\√C†oç\‚\¬Jäa0zw§p\«\”+6\Ëæ\Ã-Æ\ÍWµ\◊:õMÇ\‘I$ïRèÒ`k\"Ω	†ª!mt\‹\ÍMWu∏ªótåéí?∞sø%\Ëm\Ÿ”≤\r Y!\”ïÛ∑Œ∏óU??∏H˚,Èß∂G•Ù\Õ;a∑⁄©©¢h¿d15ç@(¶µ\“REO¡™§\0:|ó(à∏ ™\”p\“võ§ﬁñ™ä9d˜úÆ\ M5l°\0AG`{Ç∏G\"c\Z\—\Ìˇ\Ÿ','C:\\Users\\SENA\\Documents\\NetBeansProjects\\Tienda_Com\\target\\classes\\producto\\dell.jpg',0,1);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -490,6 +507,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `actualizar_producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_producto`(in idproduc int, in nom varchar(45), in descrip varchar(250), in img LONGBLOB, in ru varchar(450))
+BEGIN
+update producto set nombre= nom, descripcion= descrip, imagen= img, ruta= ru where idproducto= idproduc;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `actualizar_proveedor` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -543,6 +579,25 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_cliente`(in valor int)
 BEGIN
 select * from cliente where idcliente = valor;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `buscar_producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscar_producto`(in valor int)
+BEGIN
+select * from producto where idproducto = valor;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -606,6 +661,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `consultar_producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_producto`(in valor varchar(45))
+BEGIN
+select * from mostrar_producto where idproducto like concat('%',valor,'%') || nombre like concat('%',valor,'%') || descripcion like concat('%',valor,'%') || cantidad like concat('%',valor,'%') || precio like concat('%',valor,'%');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `consultar_proveedor` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -638,6 +712,63 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_usuario`(in valor varchar(45))
 BEGIN
 select * from mostrar_usuario where idusuario like concat('%',valor,'%') || tipo_docusu like concat('%',valor,'%') || nombre like concat('%',valor,'%') || rango like concat('%',valor,'%') || telefono like concat('%',valor,'%') || correo like concat('%',valor,'%') || genero like concat('%',valor,'%') || direccion like concat('%',valor,'%') || fecha_nacimiento like concat('%',valor,'%');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `eliminar_cliente` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_cliente`(in idclien int)
+BEGIN
+update cliente set condicion= '0' where idcliente= idcli;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `eliminar_producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_producto`(in idproduc int)
+BEGIN
+update producto set condicion= '0' where idproducto= idproduc;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `eliminar_proveedor` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_proveedor`(in idprovee int)
+BEGIN
+update proveedor set condicion= '0' where idproveedor= idprovee;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -769,9 +900,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_producto`(in nom varchar(45), in descrip varchar(250), in img LONGBLOB)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_producto`(in nom varchar(45), in descrip varchar(250), in img LONGBLOB, in ru varchar(450))
 BEGIN
-insert into producto (nombre, descripcion, cantidad, imagen, precio, condicion) values (nom, descrip, '0', img, '0', '1');
+insert into producto (nombre, descripcion, cantidad, imagen, ruta, precio, condicion) values (nom, descrip, '0', img, ru, '0', '1');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -875,6 +1006,24 @@ DELIMITER ;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `mostrar_producto`
+--
+
+/*!50001 DROP VIEW IF EXISTS `mostrar_producto`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `mostrar_producto` AS select `producto`.`idproducto` AS `idproducto`,`producto`.`nombre` AS `nombre`,`producto`.`descripcion` AS `descripcion`,`producto`.`cantidad` AS `cantidad`,`producto`.`precio` AS `precio` from `producto` where (`producto`.`condicion` = '1') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `mostrar_proveedor`
 --
 
@@ -955,4 +1104,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-31 11:52:59
+-- Dump completed on 2023-11-02 12:12:00

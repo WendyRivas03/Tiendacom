@@ -141,7 +141,7 @@ public class ModeloUsuario {
     public void insertarUsuario() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
-        String sql = "Call inst_usuario(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "call inst_usuario(?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = co.prepareStatement(sql);
@@ -218,9 +218,7 @@ public class ModeloUsuario {
 
         DefaultTableModel tablaUsuario = new DefaultTableModel(null, titulo) {
             public boolean isCellEditable(int row, int column) {
-
                 return false;
-
             }
         };
         String sqlUsuario;
