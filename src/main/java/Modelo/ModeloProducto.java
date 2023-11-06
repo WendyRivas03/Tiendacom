@@ -76,7 +76,7 @@ public class ModeloProducto {
             return null;
         }
     }
-
+//Insertar Producto
     public void insertarProducto() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -93,6 +93,18 @@ public class ModeloProducto {
             
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+//Limpiar Campos 
+        public void limpiar(Component[] panelproducto) {
+        for (Object limpiar : panelproducto) {
+            
+            if (limpiar instanceof JTextField) {
+                ((JTextField) limpiar).setText("");
+            }
+            if (limpiar instanceof JTextArea) {
+                ((JTextArea) limpiar).setText("");
+            }
         }
     }
 
