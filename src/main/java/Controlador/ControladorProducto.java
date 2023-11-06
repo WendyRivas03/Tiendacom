@@ -49,6 +49,7 @@ public class ControladorProducto implements ActionListener {
             modproduc.setDescri(pro.getTexareadescripproduct().getText());
             modproduc.setImagen(modproduc.convertirImagen(modproduc.getRuta()));
             modproduc.insertarProducto();
+            modproduc.limpiar(pro.get)
         }
 
     }
