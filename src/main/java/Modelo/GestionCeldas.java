@@ -2,6 +2,7 @@ package Modelo;
 
 import java.awt.Component;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -16,6 +17,13 @@ public class GestionCeldas extends DefaultTableCellRenderer {
             btn.setBorderPainted(false);
             btn.setContentAreaFilled(false);
             return btn;
+        }
+        if(value instanceof JLabel){
+            JLabel lbl = (JLabel) value;
+            lbl.setFont(new java.awt.Font("Yu Gothic UI", 0, 14));
+            lbl.setForeground(new java.awt.Color(204, 0, 204));
+           
+            return lbl;
         }
         return c;
 

@@ -86,4 +86,13 @@ public class ControladorCliente implements ActionListener {
             }
         }
     }
+
+    //Actualizar cliente
+    void actualizarCliente(int doc) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+//Eliminar cliente
+    void eliminarCliente(int doc) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

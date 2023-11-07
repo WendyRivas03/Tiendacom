@@ -1,4 +1,3 @@
-
 package Modelo;
 
 import Controlador.Conexion;
@@ -22,8 +21,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
-
 public class ModeloCliente {
+
     private int doc, sex;
     private String nom, tipo_doc, tele, correo, dire;
     private Date fec;
@@ -91,6 +90,7 @@ public class ModeloCliente {
     public void setFec(Date fec) {
         this.fec = fec;
     }
+
     //Mapa para llenar combo
     public Map<String, Integer> llenarCombo(String valor) {
         Conexion conect = new Conexion();
@@ -110,7 +110,7 @@ public class ModeloCliente {
         }
         return llenar_combo;
     }
-    
+
     public void insertarCliente() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -137,21 +137,22 @@ public class ModeloCliente {
         }
         conect.cerrarConexion();
     }
-    public void limpiar(Component[] panelcliente){
-         for (Object limpiar : panelcliente){
-             if (limpiar instanceof JTextField){
-                 ((JTextField) limpiar).setText("");
-              }
-             if (limpiar instanceof JComboBox){
-                 ((JComboBox) limpiar).setSelectedItem("Seleccione...");
-              }
-             if (limpiar instanceof JDateChooser){
-                 ((JDateChooser) limpiar).setDate(null);
-              }
+
+    public void limpiar(Component[] panelcliente) {
+        for (Object limpiar : panelcliente) {
+            if (limpiar instanceof JTextField) {
+                ((JTextField) limpiar).setText("");
+            }
+            if (limpiar instanceof JComboBox) {
+                ((JComboBox) limpiar).setSelectedItem("Seleccione...");
+            }
+            if (limpiar instanceof JDateChooser) {
+                ((JDateChooser) limpiar).setDate(null);
+            }
         }
-        
+
     }
-    
+
     //Creación de la tabla Usuario en la ventana principal 
     public void mostrarTablaCliente(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
@@ -172,7 +173,7 @@ public class ModeloCliente {
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
         agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png")));
 
-        String[] titulo = {"Documento", "Tipo de Documento", "Nombre", "Telefono", "Correo","Dirección",
+        String[] titulo = {"Documento", "Tipo de Documento", "Nombre", "Telefono", "Correo", "Dirección",
             "Género", "Fecha de Nacimiento"};
         int opcion = titulo.length;
 
@@ -229,5 +230,39 @@ public class ModeloCliente {
         }
         conect.cerrarConexion();
     }
-     
+    //buscar CLIENTE
+
+    public void buscarCliente(int valor) {
+        Conexion conect = new Conexion();
+        Connection co = conect.iniciarConexion();
+        String sql = "call buscar_cliente(" + valor + ")";
+        try {
+            Statement st = co.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                setDoc(rs.getInt(1));
+                setTipo_doc(rs.getString(2));
+                setNom(rs.getString(3));
+                setTele(rs.getString(4));
+                setCorreo(rs.getString(5));
+                setDire(rs.getString(6));
+                setSex(rs.getInt(7));
+                setFec(rs.getDate(8));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //ACTUALIZAR CLIENTE
+    public void actualizarCliente() {
+
+    }
+    //ELIMINAR CLIENTE
+    public void eliminarCliente(){
+        
+    }
+
 }

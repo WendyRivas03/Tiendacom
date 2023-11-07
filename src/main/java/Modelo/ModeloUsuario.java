@@ -188,7 +188,7 @@ public class ModeloUsuario {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
 
-        //Personalizar Emcabezado
+        //Personalizar Encabezado
         JTableHeader encabeza = tabla.getTableHeader();
         encabeza.setDefaultRenderer(new GestionEncabezado());
         tabla.setTableHeader(encabeza);
@@ -205,7 +205,7 @@ public class ModeloUsuario {
 
         String[] titulo = {"Documento", "Tipo de Documento", "Nombre", "Rol", "Telefono", "Correo",
             "Género", "Dirección", "Fecha de Nacimiento"};
-        int opcion = titulo.length;
+        int opcion = titulo.length;//tiene el tamaño original del titulo
 
         if (nompeste.equals("Usuario")) {
             titulo = Arrays.copyOf(titulo, titulo.length + 2);
