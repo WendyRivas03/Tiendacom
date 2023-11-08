@@ -169,7 +169,7 @@ public class ControladorUsuario implements ActionListener {
 //Eliminar Usuario
 
     void eliminarUsuario(int doc) {
-        int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar al usuario? \n" + doc,
+        int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar al Usuario? \n" + doc,
                  "Eliminar Usuario", JOptionPane.YES_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
             modusuario.setDoc(doc);

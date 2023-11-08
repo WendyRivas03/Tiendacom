@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -256,13 +258,62 @@ public class ModeloCliente {
 
     }
 
+    //Para que al actualizar me muestre el dato que selecciono el usuario
+    public String obtenerSeleccion(Map<String, Integer> info, int valor) {
+        for (Map.Entry<String, Integer> seleccion : info.entrySet()) {
+            if (seleccion.getValue() == valor) {
+                return seleccion.getKey();
+            }
+        }
+        return null;
+    }
+
     //ACTUALIZAR CLIENTE
     public void actualizarCliente() {
+        Conexion conect = new Conexion();
+        Connection con = conect.iniciarConexion();
+        String sql = "call actualizar_cliente(?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, getDoc());
+            ps.setString(2, getNom());
+            ps.setString(3, getTele());
+            ps.setString(4, getCorreo());
+            ps.setInt(5, getSex());
+            ps.setString(6, getDire());
+            ps.setDate(7, getFec());
+            
+            ps.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Información Actualizada");
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conect.cerrarConexion();
 
     }
+
     //ELIMINAR CLIENTE
-    public void eliminarCliente(){
-        
+    public void eliminarCliente() {
+        Conexion conect = new Conexion();
+        Connection con = conect.iniciarConexion();
+        String sql = "call eliminar_cliente(?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, getDoc());
+            ps.executeUpdate();
+            Icon elimina = new ImageIcon(getClass().getResource("/img/basura.png"));
+            JOptionPane.showMessageDialog(null, "Registro Eliminado", "Eliminar Usuario", JOptionPane.PLAIN_MESSAGE, (Icon) elimina);
+//            JOptionPane.showMessageDialog(null, "¿Desea Eliminar el Registro?");
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conect.cerrarConexion();
     }
 
 }
