@@ -107,7 +107,7 @@ public class ControladorUsuario implements ActionListener {
                 } else {
                     modusuario.actualizarUsuario();
                     usu.setVisible(false);
-                    prin.setVisible(true);
+                    usu.dispose();
                     modusuario.mostrarTablaUsuario(prin.getJtusuario(), "", "Usuario");
 //                    prin.getTpPrincipal().setSelectedIndex(0);
                 }

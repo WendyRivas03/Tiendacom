@@ -130,12 +130,11 @@ public class ModeloCliente {
             ps.setDate(8, getFec());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Información Guardada");
-
+            
             co.close();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
         }
         conect.cerrarConexion();
     }
@@ -155,7 +154,7 @@ public class ModeloCliente {
 
     }
 
-    //Creación de la tabla Usuario en la ventana principal 
+    //Creación de la tabla Cliente en la ventana principal 
     public void mostrarTablaCliente(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -280,8 +279,8 @@ public class ModeloCliente {
             ps.setString(2, getNom());
             ps.setString(3, getTele());
             ps.setString(4, getCorreo());
-            ps.setInt(5, getSex());
-            ps.setString(6, getDire());
+            ps.setString(5, getDire());
+            ps.setInt(6, getSex());
             ps.setDate(7, getFec());
             
             ps.executeUpdate();

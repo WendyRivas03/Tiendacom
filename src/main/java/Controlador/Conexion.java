@@ -25,6 +25,7 @@ public class Conexion {
         if (con != null) {
             try {
                 con.close();
+                System.out.println("Conexión Finalizada");
                 con = null;
             } catch (SQLException e) {
                 e.printStackTrace();

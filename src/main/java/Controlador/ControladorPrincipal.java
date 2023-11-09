@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.ModeloCliente;
+import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
 import Vista.Nueva_Factura_Compra;
 import Vista.Nueva_Venta;
@@ -31,10 +32,11 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     Nueva_Venta vent = new Nueva_Venta();
     ControladorUsuario controusu = new ControladorUsuario();
     ControladorCliente controcli = new ControladorCliente();
-    ControladorProveedor contropro = new ControladorProveedor();
+    ControladorProveedor controprovee = new ControladorProveedor();
     ControladorProducto controproduc = new ControladorProducto();
     ModeloUsuario modusu = new ModeloUsuario();
     ModeloCliente modcli = new ModeloCliente();
+    ModeloProveedor modprovee = new ModeloProveedor();
 
     public ControladorPrincipal() {
         prin.getBtnnuevo().addActionListener(this);
@@ -45,6 +47,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getBtnnuevaVenta().addActionListener(this);
         prin.getJtfusuario().getDocument().addDocumentListener(this);//Que escuche el txt para buscar
         prin.getJtfcliente().getDocument().addDocumentListener(this);
+        prin.getJtfprovee().getDocument().addDocumentListener(this);
         usu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         cli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         provee.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -61,6 +64,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.setVisible(true);//Se visualiza la ventana
         gestionUsuario();//llamo al metodo de Gestion usuario
         gestionCliente();
+        gestionProveedor();
     }
 
 //    public void gestionarPestanas() {
@@ -144,7 +148,41 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     }
 
     public void gestionProveedor() {
+        modprovee.mostrarTablaProveedor(prin.getJtprovee(), "", "Proveedor");
+        prin.getTpPrincipal().addChangeListener(new ChangeListener() {
 
+            @Override
+            public void stateChanged(ChangeEvent e) {
+
+            }
+        });
+        prin.getJtfprovee().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                prin.getJtfprovee().setText("");
+                prin.getJtfprovee().setForeground(new java.awt.Color(0, 0, 0));
+            }
+        });
+        //Para darle clic al boton de editar
+        prin.getJtprovee().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = prin.getJtprovee().rowAtPoint(e.getPoint());
+                int colum = prin.getJtprovee().columnAtPoint(e.getPoint());
+                modprovee.setDoc(Integer.parseInt(prin.getJtprovee().getValueAt(fila, 0).toString()));
+
+                if (colum == 9) {
+                    prin.setVisible(false);
+                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    controprovee.actualizarProveedor(modprovee.getDoc());
+                }
+                if (colum == 10) {
+                    controprovee.eliminarProveedor(modprovee.getDoc());
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    modprovee.mostrarTablaProveedor(prin.getJtprovee(), "", "Proveedor");
+                }
+            }
+        });
     }
 
     public void gestionProducto() {
@@ -172,12 +210,11 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         }
         if (e.getSource().equals(prin.getBtnnuevoprovee())) {
             prin.setVisible(false);
-            contropro.controlProveedor();
+            controprovee.controlProveedor();
         }
         if (e.getSource().equals(prin.getBtnnuevoproducto())) {
             prin.setVisible(false);
             controproduc.controlProducto();
-
         }
         if (e.getSource().equals(prin.getBtnnuevaFactura())) {
             prin.setVisible(false);
@@ -220,6 +257,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     public void insertUpdate(DocumentEvent e) {
         modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
+        modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
         
     }
 
@@ -227,11 +265,13 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     public void removeUpdate(DocumentEvent e) {
         modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
+        modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
         modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
+        modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
     }
 }

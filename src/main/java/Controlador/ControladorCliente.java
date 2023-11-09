@@ -72,8 +72,6 @@ public class ControladorCliente implements ActionListener {
                 modcliente.setDire(cli.getTxtdirecli().getText());
                 modcliente.setSex(sexo);
                 modcliente.setFec(fecha);
-                modcliente.insertarCliente();
-                modcliente.limpiar(cli.getCliente().getComponents());
 
                 if (cli.getBtnguardarcli().getText().equals("Guardar")) {
                     modcliente.insertarCliente();
@@ -81,7 +79,7 @@ public class ControladorCliente implements ActionListener {
                 } else {
                     modcliente.actualizarCliente();
                     cli.setVisible(false);
-                    prin.setVisible(true);
+                    cli.dispose();
                     modcliente.mostrarTablaCliente(prin.getJtcliente(), "", "Cliente");
 //                    prin.getTpPrincipal().setSelectedIndex(0);
                 }
@@ -114,7 +112,7 @@ public class ControladorCliente implements ActionListener {
         cli.getCmbtipodocu_cli().setSelectedItem(modcliente.getTipo_doc());
 
         //Cambiar Titulo
-        Border borde = BorderFactory.createTitledBorder(null, "Actualizar Usuario",
+        Border borde = BorderFactory.createTitledBorder(null, "Actualizar Cliente",
                 javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION,
                 new java.awt.Font("Yu Gothic UI", 1, 36),
                 new java.awt.Color(204, 0, 204));
@@ -128,11 +126,10 @@ public class ControladorCliente implements ActionListener {
 
     void eliminarCliente(int doc) {
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar al Cliente? \n" + doc,
-                "Eliminar Usuario", JOptionPane.YES_OPTION);
+                "Eliminar Cliente", JOptionPane.YES_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
             modcliente.setDoc(doc);
             modcliente.eliminarCliente();
         }
-
     }
 }

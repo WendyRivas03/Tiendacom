@@ -44,7 +44,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1098,'CC','Maria','27363','marialamejor','caraño',1,'2023-10-16',1),(1297,'Cédula de extranjería','Jhon','4444','jhonelsexy','cabi',2,'2023-10-16',1);
+INSERT INTO `cliente` VALUES (1098,'Cédula de ciudadanía','Maria','27363','marialamejor','caraño',1,'2023-10-16',1),(1099,'Cédula de extranjería','fernando','303009','fernandj@hoshdd','centro',2,'2023-11-05',1),(1111,'Cédula de ciudadanía','Samuel','345','dfghh','Porvenir',1,'2023-11-06',1),(1297,'Cédula de extranjería','Jhon mario','4444567','jhonelsexy','cabi',2,'2023-10-16',1),(7338,'Cédula de ciudadanía','camilo camina bien','2839','yejdkdh','cabi',1,'2023-10-10',1),(34567,'Cédula de ciudadanía','marcelo','7273','hhsgd8373','cabi',2,'2023-11-05',1),(108893,'Pasaporte','marcelino','176334','marcelino@paspi','porvenir',2,'2023-11-12',1),(112233,'Cédula de ciudadanía','carol Camila','6273','carolokhsh','medrano',1,'2023-11-07',1),(10773849,'Cédula de ciudadanía','Yari Eliza','3637474','yarieliza@hotma','medrano',1,'2023-11-07',1);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -418,7 +418,7 @@ CREATE TABLE `proveedor` (
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES (1077473,'nit','Hibi','2134','hibi.com','porvenir','Juridica',1,'2023-10-16',1),(1627363,'nit','arnol','2345','sfdf','medrano','juridica',2,'2023-10-16',1);
+INSERT INTO `proveedor` VALUES (109387,'Nit','AguaAfro','1010','aguafro@hotmajj','centro','Natural',1,'2023-11-06',1),(1077473,'Nit','Hibi','2134','hibi.com','porvenir','Juridica',1,'2023-10-16',1),(1627363,'Nit','arnol','2345','sfdf','medrano','juridica',2,'2023-10-16',1);
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,7 +481,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (2222,'Cédula de ciudadanía','ana',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','123',1),(107780,'Cédula de ciudadanía','Eliza',1,'31456','hsjshdd',2,'medranosur','2023-10-17','admin','12345',1),(134560,'Cédula de ciudadanía','Camila',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1111',1),(1077345,'Cédula de ciudadanía','marcelaaaaa',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1010',0);
+INSERT INTO `usuario` VALUES (2222,'Cédula de ciudadanía','ana maria Zalazar',1,'10101','hsjshdd',2,'medranosur','2023-10-17','admin','123',1),(18374,'Cédula de ciudadanía','marmar mar camo',1,'2323','sdsff',1,'cabi','2023-11-12','123','123',1),(107780,'Cédula de ciudadanía','Eliza',1,'31456','hsjshdd',2,'medranosur','2023-10-17','admin','12345',1),(134560,'Cédula de ciudadanía','Camila',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1111',1),(1077345,'Cédula de ciudadanía','marcelaaaaa',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1010',0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -499,7 +499,7 @@ UNLOCK TABLES;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_cliente`(in idcli int, in nom varchar(45), in tele varchar(250), in correo varchar(100),
-in dire varchar(250), in sexocli int, in fecha_naci date)
+in dire varchar(250), in sexcli int, in fecha_naci date)
 BEGIN
 update cliente set nombre= nom, telefono= tele, correo= correo, direccion= dire, sexo_cli= sexcli, fecha_nacimiento= fecha_naci where idcliente= idcli;
 END ;;
@@ -538,9 +538,9 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_proveedor`(in idprovee int, in nom varchar(45), in tele varchar(13), in correo varchar(100), 
-in dire varchar(250), in tipo_per varchar(100), in sexo_pro int, in fecha_nacimi date)
+in dire varchar(250), in tipo_per varchar(100), in sex_pro int, in fecha_nacimi date)
 BEGIN
-update proveedor set nombre_pro= nom, telefono_pro= tele, correo= correo, direccion_pro= dire, tipo_persona= tipo=per, sexo_pro= sex_pro, fecha_nacimiento= fecha_nacimi where idproveedor= idprovee;
+update proveedor set nombre_pro= nom, telefono_pro= tele, correo= correo, direccion_pro= dire, tipo_persona= tipo_per, sexo_pro= sex_pro, fecha_nacimiento= fecha_nacimi where idproveedor= idprovee;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -731,7 +731,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_cliente`(in idclien int)
 BEGIN
-update cliente set condicion= '0' where idcliente= idcli;
+update cliente set condicion= '0' where idcliente= idclien;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -769,7 +769,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_proveedor`(in idprovee int)
 BEGIN
-update proveedor set condicion= '0' where idproveedor= idprovee;
+update proveedor set condicion_pro= '0' where idproveedor= idprovee;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1105,4 +1105,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-07 12:01:54
+-- Dump completed on 2023-11-09 12:11:09

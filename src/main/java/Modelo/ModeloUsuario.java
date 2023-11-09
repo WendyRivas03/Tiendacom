@@ -162,6 +162,7 @@ public class ModeloUsuario {
             co.close();
 
         } catch (SQLException e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
         }
         conect.cerrarConexion();
