@@ -22,6 +22,7 @@ public class ControladorCliente implements ActionListener {
 
     public ControladorCliente() {
         cli.getBtnguardarcli().addActionListener(this);
+        cli.getBtncancelarcli().addActionListener(this);
         cli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         cli.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
@@ -85,6 +86,9 @@ public class ControladorCliente implements ActionListener {
                 }
             }
         }
+        if (e.getSource().equals(cli.getBtncancelarcli())) {
+            cli.dispose();
+        }
     }
 
 //Actualizar cliente
@@ -98,7 +102,7 @@ public class ControladorCliente implements ActionListener {
         cli.getTxtcorrcli().setText(modcliente.getCorreo());
         cli.getTxtdirecli().setText(modcliente.getDire());
         cli.getJdcfechacli().setDate(modcliente.getFec());
-        
+
         //llenar Sexo
         Map<String, Integer> info = modcliente.llenarCombo("sexo");
         for (String sexo : info.keySet()) {
@@ -107,7 +111,7 @@ public class ControladorCliente implements ActionListener {
         //obtener el valor de la base de datos
         String valoSexo = modcliente.obtenerSeleccion(info, modcliente.getSex());
         cli.getCmbgenecli().setSelectedItem(valoSexo);
-        
+
         //Llenar tipo de documento
         cli.getCmbtipodocu_cli().setSelectedItem(modcliente.getTipo_doc());
 

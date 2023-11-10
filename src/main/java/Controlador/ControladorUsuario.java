@@ -24,7 +24,8 @@ public class ControladorUsuario implements ActionListener {
     public ControladorUsuario() {
         usu.getBtnGuardar().addActionListener(this);
         usu.getBtnvista().addActionListener(this);
-        usu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        usu.getBtcCancelar().addActionListener(this);
+        usu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//Desactiva la x que cierra el programa para que permita abrir o volcer a la ventana principal
         usu.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
                 ControladorPrincipal princ = new ControladorPrincipal();
@@ -111,8 +112,11 @@ public class ControladorUsuario implements ActionListener {
                     modusuario.mostrarTablaUsuario(prin.getJtusuario(), "", "Usuario");
 //                    prin.getTpPrincipal().setSelectedIndex(0);
                 }
-
             }
+        }
+        
+        if(e.getSource().equals(usu.getBtcCancelar())){
+            usu.dispose();
         }
 
     }

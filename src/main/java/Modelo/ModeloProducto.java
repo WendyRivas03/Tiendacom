@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 public class ModeloProducto {
 
@@ -133,7 +133,7 @@ public class ModeloProducto {
     }
 //mostrar tabala producto
 
-    public void mostrarTablaUsuario(JTable tabla, String valor, String nompeste) throws IOException {
+    public void mostrarTablaProducto(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
 
@@ -174,22 +174,22 @@ public class ModeloProducto {
         String sqlProducto = valor.isEmpty() ? "select * from mostrar_producto" : "call consultar_producto('" + valor + "')";
 
         try {
-            String datos[] = new String[opcion];
+//            String datos[] = new String[opcion];
             Object dato[] = new Object[opcion];
 
             Statement st = co.createStatement(); //Crea una consulta
             ResultSet rs = st.executeQuery(sqlProducto);
 
             while (rs.next()) {
-                try {
-                    byte[] img = rs.getBytes(2);
-                    BufferedImage bfimg = null; //para comenzar a desencriptar la imagen
-                    InputStream inStr = new ByteArrayInputStream(img);
-                    bfimg = ImageIO.read(inStr);
-                    ImageIcon icono = new ImageIcon(bfimg.getScaledInstance(104, 104, 0));
+                try {//Al tener diferentes tipos de datos se puede hacer asi
+                    byte[] imag = rs.getBytes(2);
+                    BufferedImage bufIm = null;
+                    InputStream inSt = new ByteArrayInputStream(imag);
+                    bufIm = ImageIO.read(inSt);
+                    ImageIcon icono = new ImageIcon(bufIm.getScaledInstance(104, 104, 0));
                     dato[1] = new JLabel(icono);
 
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     dato[1] = new JLabel("No imagenes");
                 }
                 dato[0] = rs.getString(1);
@@ -197,11 +197,31 @@ public class ModeloProducto {
                 dato[3] = rs.getString(4);
                 dato[4] = rs.getInt(5);
                 dato[5] = rs.getInt(6);
+
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5]};
+                if (nompeste.equals("Producto")) {
+                    fila = Arrays.copyOf(fila, fila.length + 2);
+                    fila[fila.length - 2] = editar;
+                    fila[fila.length - 1] = eliminar;
+                } else {
+                    fila[fila.length - 1] = agregar;
+                }
+                tablaProducto.addRow(dato);
             }
+            co.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
+        tabla.setModel(tablaProducto);
+        
+        int cantColum = tabla.getColumnCount();
+        int[] ancho = {100, 200, 100, 200, 100, 100, 30, 30};
+        for (int i = 0; i < cantColum; i++) {
+            TableColumn columna = tabla.getColumnModel().getColumn(i);
+            columna.setPreferredWidth(ancho[i]);
+            
+        }
+        conect.cerrarConexion();
     }
 }

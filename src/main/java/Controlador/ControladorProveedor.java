@@ -22,6 +22,7 @@ public class ControladorProveedor implements ActionListener {
 
     public ControladorProveedor() {
         provee.getBtnguardarprovee().addActionListener(this);
+        provee.getBtncancelarprovee().addActionListener(this);
         provee.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         provee.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
@@ -85,8 +86,12 @@ public class ControladorProveedor implements ActionListener {
                 }
             }
         }
+        if (e.getSource().equals(provee.getBtncancelarprovee())) {
+            provee.dispose();
+        }
     }
-   //Actualizar proveedor
+    //Actualizar proveedor
+
     void actualizarProveedor(int doc) {
         modproveedor.buscarProveedor(doc);
         provee.getTxtdocuprovee().setEnabled(false);
@@ -98,7 +103,7 @@ public class ControladorProveedor implements ActionListener {
         provee.getTxtdireprovee().setText(modproveedor.getDire());
         provee.getCmbtipersona().setEnabled(true);
         provee.getJdcfechaprovee().setDate(modproveedor.getFec());
-        
+
         //llenar Sexo
         Map<String, Integer> info = modproveedor.llenarCombo("sexo");
         for (String sexo : info.keySet()) {
@@ -107,7 +112,7 @@ public class ControladorProveedor implements ActionListener {
         //obtener el valor de la base de datos
         String valoSexo = modproveedor.obtenerSeleccion(info, modproveedor.getSex());
         provee.getCmbgeneprovee().setSelectedItem(valoSexo);
-        
+
         //Llenar tipo de documento y de persona
         provee.getCmbtipodoc_prove().setSelectedItem(modproveedor.getTipo_docu());
         provee.getCmbtipersona().setSelectedItem(modproveedor.getTipo_per());
@@ -122,10 +127,9 @@ public class ControladorProveedor implements ActionListener {
         provee.setLocationRelativeTo(null);
         provee.getBtnguardarprovee().setText("Actualizar");
         provee.setVisible(true);
-    } 
-    
-    //Eliminar cliente
+    }
 
+    //Eliminar cliente
     void eliminarProveedor(int doc) {
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar al Proveedor? \n" + doc,
                 "Eliminar Proveedor", JOptionPane.YES_OPTION);

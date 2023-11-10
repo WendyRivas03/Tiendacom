@@ -160,7 +160,6 @@ public class ModeloProveedor {
                 ((JDateChooser) limpiar).setDate(null);
             }
         }
-
     }
 
     //Creación de la tabla Proveedor en la ventana principal 

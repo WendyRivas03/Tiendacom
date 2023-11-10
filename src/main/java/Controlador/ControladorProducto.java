@@ -50,6 +50,7 @@ public class ControladorProducto implements ActionListener {
             modproduc.setImagen(modproduc.convertirImagen(modproduc.getRuta()));
             modproduc.insertarProducto();
             modproduc.limpiar(pro.getPanelProducto().getComponents());
+            pro.dispose();
 
         }
 

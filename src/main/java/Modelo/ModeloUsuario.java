@@ -232,7 +232,7 @@ public class ModeloUsuario {
             String[] dato = new String[titulo.length];
             Statement st = co.createStatement(); //Crea una consulta
             ResultSet rs = st.executeQuery(sqlUsuario);
-            while (rs.next()) {
+            while (rs.next()) {//Como todos los datos son del mismo tipo se puede hacer el ciclo
                 for (int i = 0; i < opcion; i++) {
                     dato[i] = rs.getString(i + 1);
                 }
@@ -288,7 +288,6 @@ public class ModeloUsuario {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     //Para que al actualizar me muestre el dato que selecciono el usuario

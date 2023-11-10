@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.ModeloCliente;
+import Modelo.ModeloProducto;
 import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
 import Vista.Nueva_Factura_Compra;
@@ -24,10 +25,10 @@ import javax.swing.event.DocumentListener;
 public class ControladorPrincipal implements ActionListener, ChangeListener, DocumentListener {
 
     Principal prin = new Principal();
-    Nuevo_Usuario usu = new Nuevo_Usuario();
-    Nuevo_Cliente cli = new Nuevo_Cliente();
-    Nuevo_Proveedor provee = new Nuevo_Proveedor();
-    Nuevo_Producto produc = new Nuevo_Producto();
+//    Nuevo_Usuario usu = new Nuevo_Usuario();
+//    Nuevo_Cliente cli = new Nuevo_Cliente();
+//    Nuevo_Proveedor provee = new Nuevo_Proveedor();
+//    Nuevo_Producto produc = new Nuevo_Producto();
     Nueva_Factura_Compra factcompr = new Nueva_Factura_Compra();
     Nueva_Venta vent = new Nueva_Venta();
     ControladorUsuario controusu = new ControladorUsuario();
@@ -37,6 +38,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     ModeloUsuario modusu = new ModeloUsuario();
     ModeloCliente modcli = new ModeloCliente();
     ModeloProveedor modprovee = new ModeloProveedor();
+    ModeloProducto modproduc = new ModeloProducto();
 
     public ControladorPrincipal() {
         prin.getBtnnuevo().addActionListener(this);
@@ -45,15 +47,10 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getBtnnuevoproducto().addActionListener(this);
         prin.getBtnnuevaFactura().addActionListener(this);
         prin.getBtnnuevaVenta().addActionListener(this);
+        prin.getTpPrincipal().addChangeListener(this);//Para que escuche al table pannel y me muestre todas las tablas
         prin.getJtfusuario().getDocument().addDocumentListener(this);//Que escuche el txt para buscar
         prin.getJtfcliente().getDocument().addDocumentListener(this);
         prin.getJtfprovee().getDocument().addDocumentListener(this);
-        usu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        cli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        provee.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        produc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        factcompr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        vent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public void iniciarPrincipal(int valor) {
@@ -63,23 +60,10 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getTpPrincipal().setSelectedIndex(valor);
         prin.setVisible(true);//Se visualiza la ventana
         gestionUsuario();//llamo al metodo de Gestion usuario
-        gestionCliente();
-        gestionProveedor();
     }
-
-//    public void gestionarPestanas() {
-//    }
 
     public void gestionUsuario() {
         modusu.mostrarTablaUsuario(prin.getJtusuario(), "", "Usuario");
-
-        prin.getTpPrincipal().addChangeListener(new ChangeListener() {
-
-            @Override
-            public void stateChanged(ChangeEvent e) {
-
-            }
-        });
         prin.getJtfusuario().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -111,13 +95,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
     public void gestionCliente() {
         modcli.mostrarTablaCliente(prin.getJtcliente(), "", "Cliente");
-        prin.getTpPrincipal().addChangeListener(new ChangeListener() {
-
-            @Override
-            public void stateChanged(ChangeEvent e) {
-
-            }
-        });
         prin.getJtfcliente().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -149,13 +126,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
     public void gestionProveedor() {
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), "", "Proveedor");
-        prin.getTpPrincipal().addChangeListener(new ChangeListener() {
-
-            @Override
-            public void stateChanged(ChangeEvent e) {
-
-            }
-        });
         prin.getJtfprovee().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -186,6 +156,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     }
 
     public void gestionProducto() {
+        modproduc.mostrarTablaProducto(prin.getTablaProducto(), "", "Producto");
 
     }
 
@@ -234,7 +205,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     public void stateChanged(ChangeEvent e) {
         int seleccionar = prin.getTpPrincipal().getSelectedIndex();
         if (seleccionar == 0) {
-            gestionUsuario();
+
         }
         if (seleccionar == 1) {
             gestionCliente();
@@ -244,6 +215,12 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         }
         if (seleccionar == 3) {
             gestionProducto();
+
+//            try {
+//                gestionProducto();
+//            } catch (IOException ex) {
+//                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
         if (seleccionar == 4) {
             gestionFacturacompra();
@@ -258,7 +235,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
-        
+
     }
 
     @Override
