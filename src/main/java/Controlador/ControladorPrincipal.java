@@ -6,10 +6,6 @@ import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
 import Vista.Nueva_Factura_Compra;
 import Vista.Nueva_Venta;
-import Vista.Nuevo_Cliente;
-import Vista.Nuevo_Producto;
-import Vista.Nuevo_Proveedor;
-import Vista.Nuevo_Usuario;
 import Vista.Principal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,10 +21,6 @@ import javax.swing.event.DocumentListener;
 public class ControladorPrincipal implements ActionListener, ChangeListener, DocumentListener {
 
     Principal prin = new Principal();
-//    Nuevo_Usuario usu = new Nuevo_Usuario();
-//    Nuevo_Cliente cli = new Nuevo_Cliente();
-//    Nuevo_Proveedor provee = new Nuevo_Proveedor();
-//    Nuevo_Producto produc = new Nuevo_Producto();
     Nueva_Factura_Compra factcompr = new Nueva_Factura_Compra();
     Nueva_Venta vent = new Nueva_Venta();
     ControladorUsuario controusu = new ControladorUsuario();
@@ -51,6 +43,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getJtfusuario().getDocument().addDocumentListener(this);//Que escuche el txt para buscar
         prin.getJtfcliente().getDocument().addDocumentListener(this);
         prin.getJtfprovee().getDocument().addDocumentListener(this);
+        prin.getTxtbuscarproduct().getDocument().addDocumentListener(this);
     }
 
     public void iniciarPrincipal(int valor) {
@@ -92,7 +85,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             }
         });
     }
-
     public void gestionCliente() {
         modcli.mostrarTablaCliente(prin.getJtcliente(), "", "Cliente");
         prin.getJtfcliente().addMouseListener(new MouseAdapter() {
@@ -123,7 +115,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             }
         });
     }
-
     public void gestionProveedor() {
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), "", "Proveedor");
         prin.getJtfprovee().addMouseListener(new MouseAdapter() {
@@ -140,7 +131,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 int fila = prin.getJtprovee().rowAtPoint(e.getPoint());
                 int colum = prin.getJtprovee().columnAtPoint(e.getPoint());
                 modprovee.setDoc(Integer.parseInt(prin.getJtprovee().getValueAt(fila, 0).toString()));
-
+              
                 if (colum == 9) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -154,10 +145,35 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             }
         });
     }
-
     public void gestionProducto() {
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), "", "Producto");
+        prin.getTxtbuscarproduct().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                prin.getTxtbuscarproduct().setText("");
+                prin.getTxtbuscarproduct().setForeground(new java.awt.Color(0, 0, 0));
+            }
+        });
+        //Para darle clic al boton de editar
+        prin.getTablaProducto().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = prin.getTablaProducto().rowAtPoint(e.getPoint());
+                int colum = prin.getTablaProducto().columnAtPoint(e.getPoint());
+                modproduc.setDoc(Integer.parseInt(prin.getTablaProducto().getValueAt(fila, 0).toString()));
 
+                if (colum == 6) {
+                    prin.setVisible(false);
+                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    controproduc.actualizarProducto(modproduc.getDoc());
+                }
+                if (colum == 7) {
+                    controproduc.eliminarProducto(modproduc.getDoc());
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    modproduc.mostrarTablaProducto(prin.getTablaProducto(), "", "Producto");
+                }
+            }
+        });
     }
 
     public void gestionFacturacompra() {
@@ -205,7 +221,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     public void stateChanged(ChangeEvent e) {
         int seleccionar = prin.getTpPrincipal().getSelectedIndex();
         if (seleccionar == 0) {
-
         }
         if (seleccionar == 1) {
             gestionCliente();
@@ -215,12 +230,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         }
         if (seleccionar == 3) {
             gestionProducto();
-
-//            try {
-//                gestionProducto();
-//            } catch (IOException ex) {
-//                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
         }
         if (seleccionar == 4) {
             gestionFacturacompra();
@@ -235,7 +244,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
-
+        modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
     }
 
     @Override
@@ -243,6 +252,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
+        modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
     }
 
     @Override
@@ -250,5 +260,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modusu.mostrarTablaUsuario(prin.getJtusuario(), prin.getJtfusuario().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
+        modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
     }
 }

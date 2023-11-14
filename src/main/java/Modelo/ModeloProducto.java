@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -30,8 +31,17 @@ import javax.swing.table.TableColumn;
 
 public class ModeloProducto {
 
+    private int doc;
     private String nom, descri, ruta;
     private byte imagen[];
+
+    public int getDoc() {
+        return doc;
+    }
+
+    public void setDoc(int doc) {
+        this.doc = doc;
+    }
 
     public String getNom() {
         return nom;
@@ -131,7 +141,7 @@ public class ModeloProducto {
             }
         }
     }
-//mostrar tabala producto
+//mostrar tabla producto
 
     public void mostrarTablaProducto(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
@@ -179,14 +189,14 @@ public class ModeloProducto {
 
             Statement st = co.createStatement(); //Crea una consulta
             ResultSet rs = st.executeQuery(sqlProducto);
-
+ 
             while (rs.next()) {
                 try {//Al tener diferentes tipos de datos se puede hacer asi
                     byte[] imag = rs.getBytes(2);
                     BufferedImage bufIm = null;
                     InputStream inSt = new ByteArrayInputStream(imag);
                     bufIm = ImageIO.read(inSt);
-                    ImageIcon icono = new ImageIcon(bufIm.getScaledInstance(104, 104, 0));
+                    ImageIcon icono = new ImageIcon(bufIm.getScaledInstance(64, 64, 0));
                     dato[1] = new JLabel(icono);
 
                 } catch (Exception e) {
@@ -206,7 +216,7 @@ public class ModeloProducto {
                 } else {
                     fila[fila.length - 1] = agregar;
                 }
-                tablaProducto.addRow(dato);
+                tablaProducto.addRow(fila);
             }
             co.close();
 
@@ -219,8 +229,71 @@ public class ModeloProducto {
         int[] ancho = {100, 200, 100, 200, 100, 100, 30, 30};
         for (int i = 0; i < cantColum; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
-            columna.setPreferredWidth(ancho[i]);
-            
+            columna.setPreferredWidth(ancho[i]);   
+        }
+        conect.cerrarConexion();
+    }
+    //buscar producto
+    public void buscarProducto(int valor) {
+        Conexion conect = new Conexion();
+        Connection co = conect.iniciarConexion();
+        String sql = "call buscar_producto(" + valor + ")";
+        try {
+            Statement st = co.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                setNom(rs.getString(2));
+                setDescri(rs.getString(3));
+                setImagen(rs.getBytes(5));
+                setRuta(rs.getString(6));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    //ACTUALIZAR Producto
+    public void actualizarProducto() {
+        Conexion conect = new Conexion();
+        Connection con = conect.iniciarConexion();
+        String sql = "call actualizar_producto(?,?,?,?,?)";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, getDoc());
+            ps.setString(2, getNom());
+            ps.setString(3, getDescri());
+            ps.setBytes(4, getImagen());
+            ps.setString(5, getRuta());
+
+            ps.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Información Actualizada");
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conect.cerrarConexion();
+    }
+    
+     //ELIMINAR PRODUCTO
+    public void eliminarProducto() {
+        Conexion conect = new Conexion();
+        Connection con = conect.iniciarConexion();
+        String sql = "call eliminar_producto(?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, getDoc());
+            ps.executeUpdate();
+            Icon elimina = new ImageIcon(getClass().getResource("/img/basura.png"));
+            JOptionPane.showMessageDialog(null, "Registro Eliminado", "Eliminar Usuario", JOptionPane.PLAIN_MESSAGE, (Icon) elimina);
+//            JOptionPane.showMessageDialog(null, "¿Desea Eliminar el Registro?");
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         conect.cerrarConexion();
     }

@@ -82,7 +82,6 @@ public class ControladorProveedor implements ActionListener {
                     provee.setVisible(false);
                     provee.dispose();
                     modproveedor.mostrarTablaProveedor(prin.getJtprovee(), "", "Proveedor");
-//                    prin.getTpPrincipal().setSelectedIndex(0);
                 }
             }
         }

@@ -22,7 +22,7 @@ public class GestionCeldas extends DefaultTableCellRenderer {
             JLabel lbl = (JLabel) value;
             lbl.setFont(new java.awt.Font("Yu Gothic UI", 0, 14));
             lbl.setForeground(new java.awt.Color(204, 0, 204));
-           
+            table.setRowHeight(90);
             return lbl;
         }
         return c;
