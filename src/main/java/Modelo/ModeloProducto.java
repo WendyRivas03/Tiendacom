@@ -103,7 +103,7 @@ public class ModeloProducto {
             return null;
         }
     }
-
+//Insertar Producto
     public void insertarProducto() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();

@@ -48,6 +48,7 @@ public class ControladorProducto implements ActionListener {
             String archivo = file.getName();//obtiene solo el nombre de la ruta
             pro.getTxtimagenproduc().setText(archivo);
         }
+
         if (e.getSource().equals(pro.getBtnguardproduct())) {
             //validar campos vacios
             if ((pro.getTxtnombreproduc().getText().isEmpty()) || (pro.getTexareadescripproduct().getText().isEmpty())) {
