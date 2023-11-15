@@ -243,6 +243,7 @@ public class ModeloProducto {
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()) {
+                setDoc(rs.getInt(1));
                 setNom(rs.getString(2));
                 setDescri(rs.getString(3));
                 setImagen(rs.getBytes(5));
