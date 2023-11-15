@@ -21,12 +21,12 @@ import javax.swing.event.DocumentListener;
 public class ControladorPrincipal implements ActionListener, ChangeListener, DocumentListener {
 
     Principal prin = new Principal();
-    Nueva_Factura_Compra factcompr = new Nueva_Factura_Compra();
     Nueva_Venta vent = new Nueva_Venta();
     ControladorUsuario controusu = new ControladorUsuario();
     ControladorCliente controcli = new ControladorCliente();
     ControladorProveedor controprovee = new ControladorProveedor();
     ControladorProducto controproduc = new ControladorProducto();
+    ControladorFacturaCompra controfact = new ControladorFacturaCompra(); 
     ModeloUsuario modusu = new ModeloUsuario();
     ModeloCliente modcli = new ModeloCliente();
     ModeloProveedor modprovee = new ModeloProveedor();
@@ -205,9 +205,8 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         }
         if (e.getSource().equals(prin.getBtnnuevaFactura())) {
             prin.setVisible(false);
-            factcompr.setLocationRelativeTo(null);
-            factcompr.setTitle("Nueva Factura Compra");
-            factcompr.setVisible(true);
+            controfact.controlFacturaCompra();
+
         }
         if (e.getSource().equals(prin.getBtnnuevaVenta())) {
             prin.setVisible(false);

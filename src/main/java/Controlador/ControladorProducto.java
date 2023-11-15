@@ -27,7 +27,7 @@ public class ControladorProducto implements ActionListener {
         pro.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
                 ControladorPrincipal princ = new ControladorPrincipal();
-                princ.iniciarPrincipal(0);
+                princ.iniciarPrincipal(3);
             }
         });
     }
