@@ -242,6 +242,7 @@ public class ModeloUsuario {
                     fila[fila.length - 2] = editar;
                     fila[fila.length - 1] = eliminar;
                 } else {
+                    fila = Arrays.copyOf(fila, fila.length + 1);
                     fila[fila.length - 1] = agregar;
                 }
                 tablaUsuario.addRow(fila);

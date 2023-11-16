@@ -214,6 +214,7 @@ public class ModeloProducto {
                     fila[fila.length - 2] = editar;
                     fila[fila.length - 1] = eliminar;
                 } else {
+                    fila = Arrays.copyOf(fila, fila.length + 1);
                     fila[fila.length - 1] = agregar;
                 }
                 tablaProducto.addRow(fila);
