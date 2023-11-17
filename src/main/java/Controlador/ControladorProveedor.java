@@ -100,7 +100,6 @@ public class ControladorProveedor implements ActionListener {
         provee.getTxtteleprovee().setText(modproveedor.getTele());
         provee.getTxtcorrprovee().setText(modproveedor.getCorreo());
         provee.getTxtdireprovee().setText(modproveedor.getDire());
-        provee.getCmbtipersona().setEnabled(true);
         provee.getJdcfechaprovee().setDate(modproveedor.getFec());
 
         //llenar Sexo

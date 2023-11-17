@@ -74,6 +74,7 @@ public class ModeloProducto {
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
+    
 
     //BUSCAR IMAGEN
     public void buscarImagen() {
@@ -262,6 +263,7 @@ public class ModeloProducto {
         String sql = "call actualizar_producto(?,?,?,?,?)";
 
         try {
+            
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, getDoc());
             ps.setString(2, getNom());

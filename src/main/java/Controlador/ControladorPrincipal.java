@@ -4,7 +4,6 @@ import Modelo.ModeloCliente;
 import Modelo.ModeloProducto;
 import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
-import Vista.Nueva_Factura_Compra;
 import Vista.Nueva_Venta;
 import Vista.Principal;
 import java.awt.event.ActionEvent;
@@ -64,7 +63,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 prin.getJtfusuario().setForeground(new java.awt.Color(0, 0, 0));
             }
         });
-        //Para darle clic al boton de editar
+        //Para darle clic al boton de editar y eliminar
         prin.getJtusuario().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

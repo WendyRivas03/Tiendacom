@@ -36,27 +36,6 @@ public class ControladorFacturaCompra implements ActionListener {
                 princ.iniciarPrincipal(4);
             }
         });
-        buscausu.addWindowListener(new WindowAdapter() {
-            public void windowClosed(WindowEvent e) {
-                factnuev.setVisible(true);
-            }
-        });
-
-//        buscausu.getJTablaBuscarusuario().addMouseListener(new MouseAdapter() {
-//            public void mouseClicked(MouseEvent e) {
-//                int fila = buscausu.getJTablaBuscarusuario().rowAtPoint(e.getPoint());
-//                int colum = buscausu.getJTablaBuscarusuario().columnAtPoint(e.getPoint());
-//                modusu.setDoc(Integer.parseInt(buscausu.getJTablaBuscarusuario().getValueAt(fila, 0).toString()));
-//
-//                if (colum == 9) {
-//                    buscausu.setVisible(false);
-//                    factnuev.setVisible(true);
-//                    Object idusua = modusu.getDoc();
-//                    factnuev.getTxtidentiusufactcomp().setText(idusua.toString());
-//                    JOptionPane.showMessageDialog(null, "Usuario Agregado");
-//                }
-//            }
-//        });
     }
 
     public void controlFacturaCompra() {
@@ -64,52 +43,41 @@ public class ControladorFacturaCompra implements ActionListener {
         factnuev.setLocationRelativeTo(null);
         factnuev.setTitle("Nueva Factura Compra");
         factnuev.setVisible(true);
+        buscarUsu();
+    }
+
+    public void buscarUsu() {
+        buscausu.getJTablaBuscarusuario().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                int fila = buscausu.getJTablaBuscarusuario().rowAtPoint(e.getPoint());
+                int colum = buscausu.getJTablaBuscarusuario().columnAtPoint(e.getPoint());
+                modusu.setDoc(Integer.parseInt(buscausu.getJTablaBuscarusuario().getValueAt(fila, 0).toString()));
+
+                if (colum == 9) {
+                    buscausu.setVisible(false);
+                    factnuev.setVisible(true);
+                    Object idusua = modusu.getDoc();
+                    factnuev.getTxtidentiusufactcomp().setText(idusua.toString());
+                    JOptionPane.showMessageDialog(null, "Usuario Agregado");
+                }
+            }
+        });
+    }
+    
+    public void buscarProve(){
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(factnuev.getBtnbuscarusuario())) {
-            buscausu.getJTablaBuscarusuario().addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    int fila = buscausu.getJTablaBuscarusuario().rowAtPoint(e.getPoint());
-                    int colum = buscausu.getJTablaBuscarusuario().columnAtPoint(e.getPoint());
-                    modusu.setDoc(Integer.parseInt(buscausu.getJTablaBuscarusuario().getValueAt(fila, 0).toString()));
-
-                    if (colum == 9) {
-                        buscausu.setVisible(false);
-                        factnuev.setVisible(true);
-                        Object idusua = modusu.getDoc();
-                        factnuev.getTxtidentiusufactcomp().setText(idusua.toString());
-                        JOptionPane.showMessageDialog(null, "Usuario Agregado");
-                    }
-                }
-            });
             factnuev.setVisible(false);
             buscausu.setLocationRelativeTo(null);
             modusu.mostrarTablaUsuario(buscausu.getJTablaBuscarusuario(), "", "");
             buscausu.setVisible(true);
-//            Border borde = BorderFactory.createTitledBorder(null, "Buscar Usuario",
-//                    javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION,
-//                    new java.awt.Font("Yu Gothic UI", 1, 36),
-//                    new java.awt.Color(204, 0, 204));
-//            buscausu.getJPanelbucarusuario().setBorder(borde);
         }
+        
         if (e.getSource().equals(factnuev.getBtnbuscarproveedor())) {
-            buscausu.getJTablaBuscarusuario().addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    int fila = buscausu.getJTablaBuscarusuario().rowAtPoint(e.getPoint());
-                    int colum = buscausu.getJTablaBuscarusuario().columnAtPoint(e.getPoint());
-                    modprovee.setDoc(Integer.parseInt(buscausu.getJTablaBuscarusuario().getValueAt(fila, 0).toString()));
-
-                    if (colum == 9) {
-                        buscausu.setVisible(false);
-                        factnuev.setVisible(true);
-                        Object idusua = modprovee.getDoc();
-                        factnuev.getTxtidentiprovefact().setText(idusua.toString());
-                        JOptionPane.showMessageDialog(null, "Proveedor Agregado");
-                    }
-                }
-            });
             factnuev.setVisible(false);
             buscausu.setLocationRelativeTo(null);
             modprovee.mostrarTablaProveedor(buscausu.getJTablaBuscarusuario(), "", "");
@@ -128,4 +96,3 @@ public class ControladorFacturaCompra implements ActionListener {
     }
 
 }
-

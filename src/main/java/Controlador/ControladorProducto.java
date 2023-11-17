@@ -44,9 +44,6 @@ public class ControladorProducto implements ActionListener {
 
         if (e.getSource().equals(pro.getBtnbuscarimagen())) {
             modproduc.buscarImagen();
-            File file = new File(modproduc.getRuta());
-            String archivo = file.getName();//obtiene solo el nombre de la ruta
-            pro.getTxtimagenproduc().setText(archivo);
         }
 
         if (e.getSource().equals(pro.getBtnguardproduct())) {
@@ -80,7 +77,11 @@ public class ControladorProducto implements ActionListener {
         pro.getTxtnombreproduc().setText(modproduc.getNom());
         pro.getTexareadescripproduct().setText(modproduc.getDescri());
         pro.getTxtimagenproduc().setText(modproduc.getRuta());
-        
+
+        File file = new File(modproduc.getRuta());
+        String archivo = file.getName();//obtiene solo el nombre de la ruta
+        pro.getTxtimagenproduc().setText(archivo);
+
         //Cambiar Titulo
         Border borde = BorderFactory.createTitledBorder(null, "Actualizar Producto",
                 javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION,
@@ -92,7 +93,7 @@ public class ControladorProducto implements ActionListener {
         pro.getBtnguardproduct().setText("Actualizar");
         pro.setVisible(true);
     }
-    
+
     //Eliminar cliente
     void eliminarProducto(int doc) {
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el Producto? \n" + doc,
