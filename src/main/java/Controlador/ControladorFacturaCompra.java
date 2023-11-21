@@ -2,7 +2,7 @@ package Controlador;
 
 import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
-import Vista.Buscar_Usuario;
+import Vista.Buscar;
 import Vista.Nueva_Factura_Compra;
 import Vista.Principal;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,7 @@ public class ControladorFacturaCompra implements ActionListener {
 
     Nueva_Factura_Compra factnuev = new Nueva_Factura_Compra();
     Principal prin = new Principal();
-    Buscar_Usuario buscausu = new Buscar_Usuario();
+    Buscar buscar = new Buscar();
     ModeloUsuario modusu = new ModeloUsuario();
     ModeloProveedor modprovee = new ModeloProveedor();
 
@@ -44,50 +44,65 @@ public class ControladorFacturaCompra implements ActionListener {
         factnuev.setTitle("Nueva Factura Compra");
         factnuev.setVisible(true);
         buscarUsu();
+//        buscarProvee();
     }
 
     public void buscarUsu() {
-        buscausu.getJTablaBuscarusuario().addMouseListener(new MouseAdapter() {
+        buscar.getJTablaBuscarusuario().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                int fila = buscausu.getJTablaBuscarusuario().rowAtPoint(e.getPoint());
-                int colum = buscausu.getJTablaBuscarusuario().columnAtPoint(e.getPoint());
-                modusu.setDoc(Integer.parseInt(buscausu.getJTablaBuscarusuario().getValueAt(fila, 0).toString()));
+                int fila = buscar.getJTablaBuscarusuario().rowAtPoint(e.getPoint());
+                int colum = buscar.getJTablaBuscarusuario().columnAtPoint(e.getPoint());
+                modusu.setDoc(Integer.parseInt(buscar.getJTablaBuscarusuario().getValueAt(fila, 0).toString()));
 
-                if (colum == 9) {
-                    buscausu.setVisible(false);
-                    factnuev.setVisible(true);
-                    Object idusua = modusu.getDoc();
-                    factnuev.getTxtidentiusufactcomp().setText(idusua.toString());
-                    JOptionPane.showMessageDialog(null, "Usuario Agregado");
+                if (buscar.getLblTitulo().getText().equals("Usuario")) {
+                    if (colum == 9) {
+                        buscar.setVisible(false);
+                        factnuev.setVisible(true);
+                        Object idusua = modusu.getDoc();
+                        factnuev.getTxtidentiusufactcomp().setText(idusua.toString());
+                        JOptionPane.showMessageDialog(null, "Usuario Agregado");
+                    }
+                } else {
+                    modprovee.setDoc(Integer.parseInt(buscar.getJTablaBuscarusuario().getValueAt(fila, 0).toString()));
+
+                    if (colum == 9) {
+                        buscar.setVisible(false);
+                        factnuev.setVisible(true);
+                        Object idprovee = modprovee.getDoc();
+                        factnuev.getTxtidentiprovefact().setText(idprovee.toString());
+                        JOptionPane.showMessageDialog(null, "Proveedor Agregado");
+                    }
                 }
             }
         });
-    }
-    
-    public void buscarProve(){
-        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(factnuev.getBtnbuscarusuario())) {
+              buscar.getLblTitulo().setText("Usuario");
             factnuev.setVisible(false);
-            buscausu.setLocationRelativeTo(null);
-            modusu.mostrarTablaUsuario(buscausu.getJTablaBuscarusuario(), "", "");
-            buscausu.setVisible(true);
+            buscar.setLocationRelativeTo(null);
+            modusu.mostrarTablaUsuario(buscar.getJTablaBuscarusuario(), "", "Factura");
+            buscar.setVisible(true);
+            Border borde = BorderFactory.createTitledBorder(null, "Buscar Usuario",
+                    javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                    new java.awt.Font("Yu Gothic UI", 1, 36),
+                    new java.awt.Color(204, 0, 204));
+            buscar.getJPanelbucarusuario().setBorder(borde);
         }
-        
+
         if (e.getSource().equals(factnuev.getBtnbuscarproveedor())) {
+            buscar.getLblTitulo().setText("Proveedor");
             factnuev.setVisible(false);
-            buscausu.setLocationRelativeTo(null);
-            modprovee.mostrarTablaProveedor(buscausu.getJTablaBuscarusuario(), "", "");
-            buscausu.setVisible(true);
+            buscar.setLocationRelativeTo(null);
+            modprovee.mostrarTablaProveedor(buscar.getJTablaBuscarusuario(), "", "Factura");
+            buscar.setVisible(true);
             Border borde = BorderFactory.createTitledBorder(null, "Buscar Proveedor",
                     javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION,
                     new java.awt.Font("Yu Gothic UI", 1, 36),
                     new java.awt.Color(204, 0, 204));
-            buscausu.getJPanelbucarusuario().setBorder(borde);
-
+            buscar.getJPanelbucarusuario().setBorder(borde);
         }
 
         if (e.getSource().equals(factnuev.getBtncancelarfactcomp())) {

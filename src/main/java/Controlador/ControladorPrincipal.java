@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
@@ -25,7 +27,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     ControladorCliente controcli = new ControladorCliente();
     ControladorProveedor controprovee = new ControladorProveedor();
     ControladorProducto controproduc = new ControladorProducto();
-    ControladorFacturaCompra controfact = new ControladorFacturaCompra(); 
+    ControladorFacturaCompra controfact = new ControladorFacturaCompra();
     ModeloUsuario modusu = new ModeloUsuario();
     ModeloCliente modcli = new ModeloCliente();
     ModeloProveedor modprovee = new ModeloProveedor();
@@ -84,6 +86,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             }
         });
     }
+
     public void gestionCliente() {
         modcli.mostrarTablaCliente(prin.getJtcliente(), "", "Cliente");
         prin.getJtfcliente().addMouseListener(new MouseAdapter() {
@@ -114,6 +117,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             }
         });
     }
+
     public void gestionProveedor() {
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), "", "Proveedor");
         prin.getJtfprovee().addMouseListener(new MouseAdapter() {
@@ -130,7 +134,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 int fila = prin.getJtprovee().rowAtPoint(e.getPoint());
                 int colum = prin.getJtprovee().columnAtPoint(e.getPoint());
                 modprovee.setDoc(Integer.parseInt(prin.getJtprovee().getValueAt(fila, 0).toString()));
-              
+
                 if (colum == 9) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -144,6 +148,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             }
         });
     }
+
     public void gestionProducto() {
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), "", "Producto");
         prin.getTxtbuscarproduct().addMouseListener(new MouseAdapter() {
@@ -181,6 +186,13 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
     public void gestionVenta() {
 
+    }
+
+    public boolean modificadorAccesoCorreo(String correo) {
+        String corr = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9+_.-]+\\.[A-Z|a-z]{2,}$";
+        Pattern validar = Pattern.compile(corr);//compila y valida lo anterior
+        Matcher cor = validar.matcher(correo);//convierte el correo a caracter
+        return cor.matches();//si esta de acuerdo con la estructura el retorna verdadero o falso
     }
 
     @Override

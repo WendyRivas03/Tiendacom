@@ -18,8 +18,20 @@ public class ControladorLogin implements ActionListener {
         ini.getBtnIniciar().addActionListener(this);
         ini.getBtnMostrar().addActionListener(this);
     }
-    
-    public void iniciarVista(){
+
+    public void iniciar() {
+        modlog.setUsuario(ini.getTxtUsuar().getText());
+        String pass = new String(ini.getJpContrasena().getPassword());
+        modlog.setContrasena(pass);
+        if (modlog.validar(modlog.getUsuario(), modlog.getContrasena())) {
+            ini.setVisible(false);
+            controprin.iniciarPrincipal(0);
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecta");
+        }
+    }
+
+    public void iniciarVista() {
         ini.setLocationRelativeTo(null);//Centrando la Vista
         ini.setTitle("Iniciar Sesión");//Titulo a la vista
         ini.setVisible(true);//Visible la vista
@@ -32,21 +44,13 @@ public class ControladorLogin implements ActionListener {
             if (ini.getJpContrasena().getEchoChar() == '\u2022') {
                 ini.getJpContrasena().setEchoChar((char) 0);
                 ini.getBtnMostrar().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ojo-cruzado.png")));
-            }else{
+            } else {
                 ini.getJpContrasena().setEchoChar('\u2022');
                 ini.getBtnMostrar().setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ojo.png")));
             }
         }
-        if (e.getSource()==(ini.getBtnIniciar())){
-           modlog.setUsuario(ini.getTxtUsuar().getText());
-           String pass = new String(ini.getJpContrasena().getPassword());
-           modlog.setContrasena(pass);
-           if(modlog.validar(modlog.getUsuario(), modlog.getContrasena())){
-               ini.setVisible(false);
-               controprin.iniciarPrincipal(0);
-           }else{
-               JOptionPane.showMessageDialog(null,"Usuario o Contraseña incorrecta");
-           }
+        if (e.getSource() == (ini.getBtnIniciar())) {
+            iniciar();
         }
     }
 

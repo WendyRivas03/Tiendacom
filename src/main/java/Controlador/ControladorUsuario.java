@@ -27,6 +27,7 @@ public class ControladorUsuario implements ActionListener {
         usu.getBtcCancelar().addActionListener(this);
         usu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//Desactiva la x que cierra el programa para que permita abrir o volcer a la ventana principal
         usu.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosed(WindowEvent e) {
                 ControladorPrincipal princ = new ControladorPrincipal();
                 princ.iniciarPrincipal(0);
@@ -75,50 +76,54 @@ public class ControladorUsuario implements ActionListener {
                     || (usu.getCmbSexo().getSelectedItem().equals("Seleccione..."))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar información en todos los campos");
             } else {
-                //Convertimos el dato de los combox al que entiende sql
-                String valorSexo = usu.getCmbSexo().getSelectedItem().toString();
-                int sexo = modusuario.llenarCombo("sexo").get(valorSexo);
-                String valorRol = usu.getCmbrol().getSelectedItem().toString();
-                int rol = modusuario.llenarCombo("rol").get(valorRol);
-
-                // seleccion de fecha, cambia al formato de fecha al que entiende sql
-                java.util.Date fec = usu.getJdcfechanaci().getDate();
-                long fe = fec.getTime();
-                java.sql.Date fecha = new Date(fe);
-
-                //Contraseña
-                char[] contra = usu.getPssContrase().getPassword();
-                String contrasena = String.valueOf(contra);
-
-                modusuario.setDoc(Integer.parseInt(usu.getTxtDocumento().getText()));
-                modusuario.setTipo_doc(usu.getCmbtipodocu().getSelectedItem().toString());
-                modusuario.setNom(usu.getTxtNombre().getText());
-                modusuario.setDire(usu.getTxtDire().getText());
-                modusuario.setCorreo(usu.getTxtCorreo().getText());
-                modusuario.setTele(usu.getTxtTele().getText());
-                modusuario.setLog(usu.getTxtLogin().getText());
-                modusuario.setFec(fecha);
-                modusuario.setContra(contrasena);
-                modusuario.setSex(sexo);
-                modusuario.setRol(rol);
-
-                if (usu.getBtnGuardar().getText().equals("Guardar")) {
-                    modusuario.insertarUsuario();
-                    modusuario.limpiar(usu.getUsuarios().getComponents());
+                ControladorPrincipal controprin = new ControladorPrincipal();
+                if (!controprin.modificadorAccesoCorreo(usu.getTxtCorreo().getText())) {
+                    JOptionPane.showMessageDialog(null, "Correo Invalido");
                 } else {
-                    modusuario.actualizarUsuario();
-                    usu.setVisible(false);
-                    usu.dispose();
-                    modusuario.mostrarTablaUsuario(prin.getJtusuario(), "", "Usuario");
-//                    prin.getTpPrincipal().setSelectedIndex(0);
+                    //Convertimos el dato de los combox al que entiende sql
+                    String valorSexo = usu.getCmbSexo().getSelectedItem().toString();
+                    int sexo = modusuario.llenarCombo("sexo").get(valorSexo);
+                    String valorRol = usu.getCmbrol().getSelectedItem().toString();
+                    int rol = modusuario.llenarCombo("rol").get(valorRol);
+
+                    // seleccion de fecha, cambia al formato de fecha al que entiende sql
+                    java.util.Date fec = usu.getJdcfechanaci().getDate();
+                    long fe = fec.getTime();
+                    java.sql.Date fecha = new Date(fe);
+
+                    //Contraseña
+                    char[] contra = usu.getPssContrase().getPassword();
+                    String contrasena = String.valueOf(contra);
+
+                    modusuario.setDoc(Integer.parseInt(usu.getTxtDocumento().getText()));
+                    modusuario.setTipo_doc(usu.getCmbtipodocu().getSelectedItem().toString());
+                    modusuario.setNom(usu.getTxtNombre().getText());
+                    modusuario.setDire(usu.getTxtDire().getText());
+                    modusuario.setCorreo(usu.getTxtCorreo().getText());
+                    modusuario.setTele(usu.getTxtTele().getText());
+                    modusuario.setLog(usu.getTxtLogin().getText());
+                    modusuario.setFec(fecha);
+                    modusuario.setContra(contrasena);
+                    modusuario.setSex(sexo);
+                    modusuario.setRol(rol);
+
+                    if (usu.getBtnGuardar().getText().equals("Guardar")) {
+                        modusuario.insertarUsuario();
+                        modusuario.limpiar(usu.getUsuarios().getComponents());
+                    } else {
+                        modusuario.actualizarUsuario();
+                        usu.setVisible(false);
+                        usu.dispose();
+                        modusuario.mostrarTablaUsuario(prin.getJtusuario(), "", "Usuario");
+                    }
                 }
             }
-        }
-        
-        if(e.getSource().equals(usu.getBtcCancelar())){
-            usu.dispose();
-        }
 
+            if (e.getSource().equals(usu.getBtcCancelar())) {
+                usu.dispose();
+            }
+
+        }
     }
 //Actualizar Usuario
 
@@ -174,11 +179,11 @@ public class ControladorUsuario implements ActionListener {
 
     void eliminarUsuario(int doc) {
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar al Usuario? \n" + doc,
-                 "Eliminar Usuario", JOptionPane.YES_OPTION);
+                "Eliminar Usuario", JOptionPane.YES_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
             modusuario.setDoc(doc);
             modusuario.eliminarUsuario();
         }
-     }
+    }
 
 }

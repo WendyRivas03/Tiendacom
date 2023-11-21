@@ -56,38 +56,44 @@ public class ControladorCliente implements ActionListener {
                     || (cli.getCmbgenecli().getSelectedItem().equals("Seleccione..."))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar información en todos los campos");
             } else {
-                //Convertimos el dato de los combox al que entiende sql
-                String valorSexo = cli.getCmbgenecli().getSelectedItem().toString();
-                int sexo = modcliente.llenarCombo("sexo").get(valorSexo);
-
-                // seleccion de fecha, cambia al formato de fecha al que entiende sql
-                java.util.Date fec = cli.getJdcfechacli().getDate();
-                long fe = fec.getTime();
-                java.sql.Date fecha = new Date(fe);
-
-                modcliente.setDoc(Integer.parseInt(cli.getTxtdocucli().getText()));
-                modcliente.setTipo_doc(cli.getCmbtipodocu_cli().getSelectedItem().toString());
-                modcliente.setNom(cli.getTxtnomcli().getText());
-                modcliente.setTele(cli.getTxttelecli().getText());
-                modcliente.setCorreo(cli.getTxtcorrcli().getText());
-                modcliente.setDire(cli.getTxtdirecli().getText());
-                modcliente.setSex(sexo);
-                modcliente.setFec(fecha);
-
-                if (cli.getBtnguardarcli().getText().equals("Guardar")) {
-                    modcliente.insertarCliente();
-                    modcliente.limpiar(cli.getCliente().getComponents());
+                ControladorPrincipal controprin = new ControladorPrincipal();
+                if (controprin.modificadorAccesoCorreo(cli.getTxtcorrcli().getText()) == false) {
+                    JOptionPane.showMessageDialog(null, "Correo Invalido");
                 } else {
-                    modcliente.actualizarCliente();
-                    cli.setVisible(false);
-                    cli.dispose();
-                    modcliente.mostrarTablaCliente(prin.getJtcliente(), "", "Cliente");
+                    //Convertimos el dato de los combox al que entiende sql
+                    String valorSexo = cli.getCmbgenecli().getSelectedItem().toString();
+                    int sexo = modcliente.llenarCombo("sexo").get(valorSexo);
+
+                    // seleccion de fecha, cambia al formato de fecha al que entiende sql
+                    java.util.Date fec = cli.getJdcfechacli().getDate();
+                    long fe = fec.getTime();
+                    java.sql.Date fecha = new Date(fe);
+
+                    modcliente.setDoc(Integer.parseInt(cli.getTxtdocucli().getText()));
+                    modcliente.setTipo_doc(cli.getCmbtipodocu_cli().getSelectedItem().toString());
+                    modcliente.setNom(cli.getTxtnomcli().getText());
+                    modcliente.setTele(cli.getTxttelecli().getText());
+                    modcliente.setCorreo(cli.getTxtcorrcli().getText());
+                    modcliente.setDire(cli.getTxtdirecli().getText());
+                    modcliente.setSex(sexo);
+                    modcliente.setFec(fecha);
+
+                    if (cli.getBtnguardarcli().getText().equals("Guardar")) {
+                        modcliente.insertarCliente();
+                        modcliente.limpiar(cli.getCliente().getComponents());
+                    } else {
+                        modcliente.actualizarCliente();
+                        cli.setVisible(false);
+                        cli.dispose();
+                        modcliente.mostrarTablaCliente(prin.getJtcliente(), "", "Cliente");
 //                    prin.getTpPrincipal().setSelectedIndex(0);
+                    }
                 }
             }
-        }
-        if (e.getSource().equals(cli.getBtncancelarcli())) {
-            cli.dispose();
+
+            if (e.getSource().equals(cli.getBtncancelarcli())) {
+                cli.dispose();
+            }
         }
     }
 
