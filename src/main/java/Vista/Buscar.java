@@ -38,13 +38,14 @@ public class Buscar extends javax.swing.JFrame {
         this.JTablaBuscarusuario = JTablaBuscarusuario;
     }
 
-    public JTextField getTxtbuscarusuario2() {
-        return txtbuscarusuario2;
+    public JTextField getTxtbuscar() {
+        return txtbuscar;
     }
 
-    public void setTxtbuscarusuario2(JTextField txtbuscarusuario2) {
-        this.txtbuscarusuario2 = txtbuscarusuario2;
+    public void setTxtbuscar(JTextField txtbuscar) {
+        this.txtbuscar = txtbuscar;
     }
+
 
     public JLabel getLblTitulo() {
         return lblTitulo;
@@ -66,7 +67,7 @@ public class Buscar extends javax.swing.JFrame {
         JPanelbucarusuario = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTablaBuscarusuario = new javax.swing.JTable();
-        txtbuscarusuario2 = new javax.swing.JTextField();
+        txtbuscar = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,9 +88,9 @@ public class Buscar extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(JTablaBuscarusuario);
 
-        txtbuscarusuario2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        txtbuscarusuario2.setForeground(new java.awt.Color(204, 204, 204));
-        txtbuscarusuario2.setText("Buscar Usuario");
+        txtbuscar.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtbuscar.setForeground(new java.awt.Color(204, 204, 204));
+        txtbuscar.setText("Buscar ");
 
         lblTitulo.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 153, 153));
@@ -106,7 +107,7 @@ public class Buscar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelbucarusuarioLayout.createSequentialGroup()
                         .addComponent(lblTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtbuscarusuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         JPanelbucarusuarioLayout.setVerticalGroup(
@@ -114,7 +115,7 @@ public class Buscar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelbucarusuarioLayout.createSequentialGroup()
                 .addGap(0, 7, Short.MAX_VALUE)
                 .addGroup(JPanelbucarusuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtbuscarusuario2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,6 +145,6 @@ public class Buscar extends javax.swing.JFrame {
     private javax.swing.JTable JTablaBuscarusuario;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtbuscarusuario2;
+    private javax.swing.JTextField txtbuscar;
     // End of variables declaration//GEN-END:variables
 }

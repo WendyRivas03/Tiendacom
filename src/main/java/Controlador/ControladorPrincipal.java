@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.ModeloCliente;
+import Modelo.ModeloFacturaCompra;
 import Modelo.ModeloProducto;
 import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
@@ -32,6 +33,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     ModeloCliente modcli = new ModeloCliente();
     ModeloProveedor modprovee = new ModeloProveedor();
     ModeloProducto modproduc = new ModeloProducto();
+    ModeloFacturaCompra modfactcomp = new ModeloFacturaCompra(); 
 
     public ControladorPrincipal() {
         prin.getBtnnuevo().addActionListener(this);
@@ -45,6 +47,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getJtfcliente().getDocument().addDocumentListener(this);
         prin.getJtfprovee().getDocument().addDocumentListener(this);
         prin.getTxtbuscarproduct().getDocument().addDocumentListener(this);
+        prin.getTxtbuscarfactura().getDocument().addDocumentListener(this);
     }
 
     public void iniciarPrincipal(int valor) {
@@ -181,6 +184,29 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     }
 
     public void gestionFacturacompra() {
+        modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), "", "Factura");
+        prin.getTxtbuscarfactura().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                prin.getTxtbuscarfactura().setText("");
+                prin.getTxtbuscarfactura().setForeground(new java.awt.Color(0, 0, 0));
+            }
+        });
+        //Para darle clic al boton de editar y eliminar
+        prin.getTablafactura().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = prin.getTablafactura().rowAtPoint(e.getPoint());
+                int colum = prin.getTablafactura().columnAtPoint(e.getPoint());
+                modfactcomp.setIdfact(Integer.parseInt(prin.getTablafactura().getValueAt(fila, 0).toString()));
+
+                if (colum == 7) {
+                    prin.setVisible(false);
+                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//                    controusu.actualizarUsuario(modusu.getDoc());
+                }
+            }
+        });
 
     }
 
@@ -255,6 +281,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
+        modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), prin.getTxtbuscarfactura().getText(), "Factura");
     }
 
     @Override
@@ -263,6 +290,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
+        modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), prin.getTxtbuscarfactura().getText(), "Factura");
     }
 
     @Override
@@ -271,5 +299,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modcli.mostrarTablaCliente(prin.getJtcliente(), prin.getJtfcliente().getText(), "Cliente");
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
+        modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), prin.getTxtbuscarfactura().getText(), "Factura");
     }
 }

@@ -55,7 +55,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txtbuscarusuario2" min="-2" pref="271" max="-2" attributes="0"/>
+                          <Component id="txtbuscar" min="-2" pref="271" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -67,7 +67,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtbuscarusuario2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtbuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="txtbuscarusuario2">
+        <Component class="javax.swing.JTextField" name="txtbuscar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -104,7 +104,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Buscar Usuario"/>
+            <Property name="text" type="java.lang.String" value="Buscar "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTitulo">
