@@ -124,6 +124,7 @@ public class ModeloProducto {
         }
     }
 
+
     //Limpiar Campos 
     public void limpiar(Component[] panelproducto) {
 

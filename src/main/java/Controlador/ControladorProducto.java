@@ -44,6 +44,16 @@ public class ControladorProducto implements ActionListener {
 
         if (e.getSource().equals(pro.getBtnbuscarimagen())) {
             modproduc.buscarImagen();
+            File file= new File(modproduc.getRuta());
+            String archivo= file.getName();//obtiene solo el nombre de la ruta
+            pro.getTxtimagenproduc().setText(archivo);
+        }
+        if(e.getSource().equals(pro.getBtnguardproduct())){
+            modproduc.setNom(pro.getTxtnombreproduc().getText());
+            modproduc.setDescri(pro.getTexareadescripproduct().getText());
+            modproduc.setImagen(modproduc.convertirImagen(modproduc.getRuta()));
+            modproduc.insertarProducto();
+            modproduc.limpiar(pro.getPanelProducto().getComponents());
         }
 
         if (e.getSource().equals(pro.getBtnguardproduct())) {
