@@ -203,7 +203,8 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 if (colum == 7) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//                    controusu.actualizarUsuario(modusu.getDoc());
+                    controfact.actualizarFactcompra(modfactcomp.getIdfact());
+                    controfact.buscar();
                 }
             }
         });

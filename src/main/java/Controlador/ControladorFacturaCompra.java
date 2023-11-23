@@ -37,12 +37,14 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         factnuev.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//Desactiva la x que cierra el programa para que permita abrir o volcer a la ventana principal
         buscar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         factnuev.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosed(WindowEvent e) {
                 ControladorPrincipal princ = new ControladorPrincipal();
                 princ.iniciarPrincipal(4);
             }
         });
         buscar.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosed(WindowEvent e) {
                 factnuev.setVisible(true);
                 buscar.setVisible(false);
@@ -85,13 +87,11 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
                 }
             }
         });
-
         buscar.getTxtbuscar().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 buscar.getTxtbuscar().setText("");
                 buscar.getTxtbuscar().setForeground(new java.awt.Color(0, 0, 0));
-
             }
         });
     }
@@ -136,8 +136,8 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
                 if (factnuev.getBtnguardarfactcomp().getText().equals("Guardar")) {
                     modfactnuev.insertarFactcompra();
                     modfactnuev.limpiar(factnuev.getPanelFacturacompra().getComponents());
-                } else {
-//                    modfactnuev.actualizarProducto();
+                }else {
+                    modfactnuev.actualizarFactcompra();
                     factnuev.setVisible(false);
                     factnuev.dispose();
                     modfactnuev.mostrarTablaFactCompra(prin.getTablafactura(), "", "Factura");
@@ -148,6 +148,28 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         if (e.getSource().equals(factnuev.getBtncancelarfactcomp())) {
             factnuev.dispose();
         }
+    }
+    
+    //Actualizar Usuario
+
+    void actualizarFactcompra(int doc) {
+        modfactnuev.buscarFactcompra(doc);
+        factnuev.getTxtidentiprovefact().setText(String.valueOf(modfactnuev.getDocprovee()));
+        factnuev.getTxtidentiusufactcomp().setText(String.valueOf(modfactnuev.getDocusu()));
+        
+        //Llenar tipo de pago
+        factnuev.getCmbtipopagofactcompa().setSelectedItem(modfactnuev.getTipo_pag());
+
+        //Cambiar Titulo
+        Border borde = BorderFactory.createTitledBorder(null, "Actualizar Factura Compra",
+                javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Yu Gothic UI", 1, 36),
+                new java.awt.Color(204, 0, 204));
+        factnuev.getPanelFacturacompra().setBorder(borde);
+        prin.setVisible(false);
+        factnuev.setLocationRelativeTo(null);
+        factnuev.getBtnguardarfactcomp().setText("Actualizar");
+        factnuev.setVisible(true);
     }
 
     @Override
