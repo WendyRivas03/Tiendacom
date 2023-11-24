@@ -33,7 +33,7 @@ public class ModeloFacturaCompra {
     public void setIdfact(int idfact) {
         this.idfact = idfact;
     }
-    
+
     public int getDocprovee() {
         return docprovee;
     }
@@ -81,7 +81,7 @@ public class ModeloFacturaCompra {
     public void setDesc(int desc) {
         this.desc = desc;
     }
-    
+
     //insertar factura compra
     public void insertarFactcompra() {
         Conexion conect = new Conexion();
@@ -104,8 +104,8 @@ public class ModeloFacturaCompra {
         }
         conect.cerrarConexion();
     }
-    
-        //limpiar campos
+
+    //limpiar campos
     public void limpiar(Component[] panelfactcompra) {
         for (Object limpiar : panelfactcompra) {
             if (limpiar instanceof JTextField) {
@@ -117,7 +117,8 @@ public class ModeloFacturaCompra {
         }
     }
 //Creación de la tabla factura compra en la ventana principal 
-     public void mostrarTablaFactCompra(JTable tabla, String valor, String nompeste) {
+
+    public void mostrarTablaFactCompra(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
 
@@ -128,18 +129,28 @@ public class ModeloFacturaCompra {
 
         //Personalizar Celdas
         tabla.setDefaultRenderer(Object.class, new GestionCeldas());
+
         JButton editar = new JButton();
+        JButton agregar_producto = new JButton();
+        JButton mostrar_detalle = new JButton();
+        JButton imprimir_factuta = new JButton();
 
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
+        agregar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar-producto.png")));
+        mostrar_detalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura.png")));
+        imprimir_factuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impresora.png")));
 
         String[] titulo = {"N°Factura Compra", "Identificación Proveedor", "Identificación Usuario", "Tipo de Pago",
-            "Descuento", "Total Compra","Fecha de Compra"};
+            "Descuento", "Total Compra", "Fecha de Compra"};
         int opcion = titulo.length;//tiene el tamaño original del titulo
 
         if (nompeste.equals("Factura")) {
-            titulo = Arrays.copyOf(titulo, titulo.length + 1);
+            titulo = Arrays.copyOf(titulo, titulo.length + 4);
+            titulo[titulo.length - 4] = "";
+            titulo[titulo.length - 3] = "";
+            titulo[titulo.length - 2] = "";
             titulo[titulo.length - 1] = "";
-        } 
+        }
         DefaultTableModel tablaFactcompr = new DefaultTableModel(null, titulo) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -148,7 +159,7 @@ public class ModeloFacturaCompra {
         };
         String sqlFactura;
         if (valor.equals("")) {
-            sqlFactura= "SELECT * FROM mostrar_factura_compra";
+            sqlFactura = "SELECT * FROM mostrar_factura_compra";
         } else {
             sqlFactura = "call consultar_facturacompra('" + valor + "')";
         }
@@ -162,9 +173,12 @@ public class ModeloFacturaCompra {
                 }
                 Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6]};
                 if (nompeste.equals("Factura")) {
-                    fila = Arrays.copyOf(fila, fila.length + 1);
-                    fila[fila.length - 1] = editar;
-                } 
+                    fila = Arrays.copyOf(fila, fila.length + 4);
+                    fila[fila.length - 4] = editar;
+                    fila[fila.length - 3] = agregar_producto;
+                    fila[fila.length - 2] = mostrar_detalle;
+                    fila[fila.length - 1] = imprimir_factuta;
+                }
                 tablaFactcompr.addRow(fila);
             }
             co.close();
@@ -175,16 +189,16 @@ public class ModeloFacturaCompra {
         tabla.setModel(tablaFactcompr);
         //Darle Tamaño a cada Columna
         int cantColum = tabla.getColumnCount();
-        int[] ancho = {100, 180, 100, 150, 100, 160, 100, 30};
+        int[] ancho = {100, 180, 100, 150, 100, 160, 100, 30, 30, 30, 30};
         for (int i = 0; i < cantColum; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(ancho[i]);
         }
         conect.cerrarConexion();
     }
-     //buscar factura compra
-     
-       public void buscarFactcompra(int valor) {
+    //buscar factura compra
+
+    public void buscarFactcompra(int valor) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
         String sql = "call buscar_facturacompra(" + valor + ")";
@@ -206,6 +220,7 @@ public class ModeloFacturaCompra {
             e.printStackTrace();
         }
     }
+
     //Para que al actualizar me muestre el dato que selecciono el usuario
     public String obtenerSeleccion(Map<String, Integer> info, int valor) {
         for (Map.Entry<String, Integer> seleccion : info.entrySet()) {
@@ -215,7 +230,7 @@ public class ModeloFacturaCompra {
         }
         return null;
     }
-    
+
     //Actualizar factura compra
     public void actualizarFactcompra() {
         Conexion conect = new Conexion();

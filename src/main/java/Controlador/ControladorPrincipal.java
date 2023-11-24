@@ -5,6 +5,8 @@ import Modelo.ModeloFacturaCompra;
 import Modelo.ModeloProducto;
 import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
+import Vista.Agregar_Detalleproducto;
+import Vista.Buscar_Producto;
 import Vista.Nueva_Venta;
 import Vista.Principal;
 import java.awt.event.ActionEvent;
@@ -24,6 +26,8 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
     Principal prin = new Principal();
     Nueva_Venta vent = new Nueva_Venta();
+    Agregar_Detalleproducto agredetaproduc = new Agregar_Detalleproducto();
+    Buscar_Producto buscaproduc = new Buscar_Producto();
     ControladorUsuario controusu = new ControladorUsuario();
     ControladorCliente controcli = new ControladorCliente();
     ControladorProveedor controprovee = new ControladorProveedor();
@@ -33,7 +37,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     ModeloCliente modcli = new ModeloCliente();
     ModeloProveedor modprovee = new ModeloProveedor();
     ModeloProducto modproduc = new ModeloProducto();
-    ModeloFacturaCompra modfactcomp = new ModeloFacturaCompra(); 
+    ModeloFacturaCompra modfactcomp = new ModeloFacturaCompra();
 
     public ControladorPrincipal() {
         prin.getBtnnuevo().addActionListener(this);
@@ -42,6 +46,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getBtnnuevoproducto().addActionListener(this);
         prin.getBtnnuevaFactura().addActionListener(this);
         prin.getBtnnuevaVenta().addActionListener(this);
+        agredetaproduc.getBtnbuscarproduct().addActionListener(this);
         prin.getTpPrincipal().addChangeListener(this);//Para que escuche al table pannel y me muestre todas las tablas
         prin.getJtfusuario().getDocument().addDocumentListener(this);//Que escuche el txt para buscar
         prin.getJtfcliente().getDocument().addDocumentListener(this);
@@ -206,6 +211,28 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     controfact.actualizarFactcompra(modfactcomp.getIdfact());
                     controfact.buscar();
                 }
+                if (colum == 8) {
+                    prin.setVisible(false);
+                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    agredetaproduc.setVisible(true);
+                    agredetaproduc.setLocationRelativeTo(null);
+                    agredetaproduc.setTitle("Agregar Producto");
+                    agredetaproduc.getTxtidfactura().setText(String.valueOf(modfactcomp.getIdfact()));
+                    controproduc.modproduc.mostrarTablaProducto(agredetaproduc.getJTablaagragarproducto(), "", "Agregarpro");
+
+                }
+                if (colum == 9) {
+                    prin.setVisible(false);
+                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    controfact.actualizarFactcompra(modfactcomp.getIdfact());
+                    controfact.buscar();
+                }
+                if (colum == 10) {
+                    prin.setVisible(false);
+                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    controfact.actualizarFactcompra(modfactcomp.getIdfact());
+                    controfact.buscar();
+                }
             }
         });
 
@@ -251,6 +278,11 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             vent.setLocationRelativeTo(null);
             vent.setTitle("Nueva Venta");
             vent.setVisible(true);
+        }
+
+        if (e.getSource().equals(agredetaproduc.getBtnbuscarproduct())) {
+            prin.setVisible(false);
+            buscaproduc.setVisible(true);
         }
     }
 
