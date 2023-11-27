@@ -62,6 +62,7 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
 
     public void buscar() {
         buscar.getJTablaBuscarusuario().addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 int fila = buscar.getJTablaBuscarusuario().rowAtPoint(e.getPoint());
                 int colum = buscar.getJTablaBuscarusuario().columnAtPoint(e.getPoint());

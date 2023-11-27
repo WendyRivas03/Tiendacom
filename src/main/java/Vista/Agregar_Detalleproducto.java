@@ -112,7 +112,7 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JPanelAgregarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar Producto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 36), new java.awt.Color(0, 153, 153))); // NOI18N
+        JPanelAgregarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar Detalle Factura", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 36), new java.awt.Color(0, 153, 153))); // NOI18N
 
         JTablaagragarproducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
