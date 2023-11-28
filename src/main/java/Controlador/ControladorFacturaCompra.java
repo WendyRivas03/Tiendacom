@@ -124,8 +124,8 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
                     new java.awt.Color(204, 0, 204));
             buscar.getJPanelbucarusuario().setBorder(borde);
         }
-        
-        if (e.getSource().equals(factnuev.getBtnguardarfactcomp())){
+
+        if (e.getSource().equals(factnuev.getBtnguardarfactcomp())) {
             //validar campos vacios
             if ((factnuev.getTxtidentiprovefact().getText().isEmpty()) || (factnuev.getTxtidentiusufactcomp().getText().isEmpty()) || (factnuev.getCmbtipopagofactcompa().getSelectedItem().equals("Seleccione..."))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar información en los campos de Nombre y Descripción");
@@ -137,7 +137,9 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
                 if (factnuev.getBtnguardarfactcomp().getText().equals("Guardar")) {
                     modfactnuev.insertarFactcompra();
                     modfactnuev.limpiar(factnuev.getPanelFacturacompra().getComponents());
-                }else {
+                    factnuev.setVisible(false);
+                    factnuev.dispose();
+                } else {
                     modfactnuev.actualizarFactcompra();
                     factnuev.setVisible(false);
                     factnuev.dispose();
@@ -150,14 +152,13 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
             factnuev.dispose();
         }
     }
-    
-    //Actualizar Usuario
 
+    //Actualizar Usuario
     void actualizarFactcompra(int doc) {
         modfactnuev.buscarFactcompra(doc);
         factnuev.getTxtidentiprovefact().setText(String.valueOf(modfactnuev.getDocprovee()));
         factnuev.getTxtidentiusufactcomp().setText(String.valueOf(modfactnuev.getDocusu()));
-        
+
         //Llenar tipo de pago
         factnuev.getCmbtipopagofactcompa().setSelectedItem(modfactnuev.getTipo_pag());
 

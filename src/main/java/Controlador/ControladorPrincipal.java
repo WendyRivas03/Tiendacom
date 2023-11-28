@@ -5,6 +5,7 @@ import Modelo.ModeloFacturaCompra;
 import Modelo.ModeloProducto;
 import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
+import Modelo.ModeloVentas;
 import Vista.Agregar_Detalleproducto;
 import Vista.Buscar_Producto;
 import Vista.Mostrar_Detalle_Factura_Compra;
@@ -35,11 +36,13 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     ControladorProveedor controprovee = new ControladorProveedor();
     ControladorProducto controproduc = new ControladorProducto();
     ControladorFacturaCompra controfact = new ControladorFacturaCompra();
+    ControladorVenta controventa = new ControladorVenta();
     ModeloUsuario modusu = new ModeloUsuario();
     ModeloCliente modcli = new ModeloCliente();
     ModeloProveedor modprovee = new ModeloProveedor();
     ModeloProducto modproduc = new ModeloProducto();
     ModeloFacturaCompra modfactcomp = new ModeloFacturaCompra();
+    ModeloVentas modventas = new ModeloVentas();
 
     public ControladorPrincipal() {
         prin.getBtnnuevo().addActionListener(this);
@@ -260,7 +263,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         Matcher cor = validar.matcher(correo);//convierte el correo a caracter
         return cor.matches();//si esta de acuerdo con la estructura el retorna verdadero o falso
     }
-
+//******************************************************************************************************
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -287,9 +290,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         }
         if (e.getSource().equals(prin.getBtnnuevaVenta())) {
             prin.setVisible(false);
-            vent.setLocationRelativeTo(null);
-            vent.setTitle("Nueva Venta");
-            vent.setVisible(true);
+            controventa.controlVenta();
         }
 
         if (e.getSource().equals(agredetaproduc.getBtnbuscarproduct())) {

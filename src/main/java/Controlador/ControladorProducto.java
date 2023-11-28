@@ -44,16 +44,14 @@ public class ControladorProducto implements ActionListener {
 
         if (e.getSource().equals(pro.getBtnbuscarimagen())) {
             modproduc.buscarImagen();
-            File file= new File(modproduc.getRuta());
-            String archivo= file.getName();//obtiene solo el nombre de la ruta
+            File file = new File(modproduc.getRuta());
+            String archivo = file.getName();//obtiene solo el nombre de la ruta
             pro.getTxtimagenproduc().setText(archivo);
         }
-        if(e.getSource().equals(pro.getBtnguardproduct())){
+        if (e.getSource().equals(pro.getBtnguardproduct())) {
             modproduc.setNom(pro.getTxtnombreproduc().getText());
             modproduc.setDescri(pro.getTexareadescripproduct().getText());
             modproduc.setImagen(modproduc.convertirImagen(modproduc.getRuta()));
-            modproduc.insertarProducto();
-            modproduc.limpiar(pro.getPanelProducto().getComponents());
         }
 
         if (e.getSource().equals(pro.getBtnguardproduct())) {
@@ -68,6 +66,8 @@ public class ControladorProducto implements ActionListener {
                 if (pro.getBtnguardproduct().getText().equals("Guardar")) {
                     modproduc.insertarProducto();
                     modproduc.limpiar(pro.getPanelProducto().getComponents());
+                    pro.setVisible(false);//para que cuando guarde se cierre de inmediato la ventana
+                    pro.dispose();
                 } else {
                     modproduc.actualizarProducto();
                     pro.setVisible(false);
