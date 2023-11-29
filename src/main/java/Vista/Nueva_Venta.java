@@ -6,6 +6,7 @@ package Vista;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -75,6 +76,14 @@ public class Nueva_Venta extends javax.swing.JFrame {
 
     public void setBtnbuscarusuarioventa(JButton btnbuscarusuarioventa) {
         this.btnbuscarusuarioventa = btnbuscarusuarioventa;
+    }
+
+    public JPanel getPanelnuevaventa() {
+        return panelnuevaventa;
+    }
+
+    public void setPanelnuevaventa(JPanel panelnuevaventa) {
+        this.panelnuevaventa = panelnuevaventa;
     }
     
     

@@ -81,6 +81,7 @@ public class ControladorProveedor implements ActionListener {
                     if (provee.getBtnguardarprovee().getText().equals("Guardar")) {
                         modproveedor.insertarProveedor();
                         modproveedor.limpiar(provee.getJpProvee().getComponents());
+                        provee.dispose();
                     } else {
                         modproveedor.actualizarProveedor();
                         provee.setVisible(false);

@@ -132,24 +132,24 @@ public class ModeloVentas {
         tabla.setDefaultRenderer(Object.class, new GestionCeldas());
 
         JButton editar = new JButton();
-//        JButton agregar_producto = new JButton();
-//        JButton mostrar_detalle = new JButton();
-//        JButton imprimir_factuta = new JButton();
+        JButton agregar_producto = new JButton();
+        JButton mostrar_detalle = new JButton();
+        JButton imprimir_factuta = new JButton();
 
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
-//        agregar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar-producto.png")));
-//        mostrar_detalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura.png")));
-//        imprimir_factuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png")));
+        agregar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar-producto.png")));
+        mostrar_detalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura.png")));
+        imprimir_factuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png")));
 
         String[] titulo = {"N°Factura", "Empleado", "Cliente", "Fecha de Compra", "Tipo de Pago",
             "Impuesto", "Total"};
         int opcion = titulo.length;//tiene el tamaño original del titulo
 
-        if (nompeste.equals("Factura")) {
-            titulo = Arrays.copyOf(titulo, titulo.length + 1);
-//            titulo[titulo.length - 4] = "";
-//            titulo[titulo.length - 3] = "";
-//            titulo[titulo.length - 2] = "";
+        if (nompeste.equals("Venta")) {
+            titulo = Arrays.copyOf(titulo, titulo.length + 4);
+            titulo[titulo.length - 4] = "";
+            titulo[titulo.length - 3] = "";
+            titulo[titulo.length - 2] = "";
             titulo[titulo.length - 1] = "";
         }
         DefaultTableModel tablaFact = new DefaultTableModel(null, titulo) {
@@ -173,12 +173,12 @@ public class ModeloVentas {
                     dato[i] = rs.getString(i + 1);
                 }
                 Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6]};
-                if (nompeste.equals("Factura")) {
+                if (nompeste.equals("Venta")) {
                     fila = Arrays.copyOf(fila, fila.length + 4);
                     fila[fila.length - 4] = editar;
-//                    fila[fila.length - 3] = agregar_producto;
-//                    fila[fila.length - 2] = mostrar_detalle;
-//                    fila[fila.length - 1] = imprimir_factuta;
+                    fila[fila.length - 3] = agregar_producto;
+                    fila[fila.length - 2] = mostrar_detalle;
+                    fila[fila.length - 1] = imprimir_factuta;
                 }
                 tablaFact.addRow(fila);
             }
@@ -190,7 +190,7 @@ public class ModeloVentas {
         tabla.setModel(tablaFact);
         //Darle Tamaño a cada Columna
         int cantColum = tabla.getColumnCount();
-        int[] ancho = {100, 180, 100, 150, 100, 160, 100, 30};
+        int[] ancho = {100, 180, 100, 150, 100, 160, 100, 30, 30, 30, 30};
         for (int i = 0; i < cantColum; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(ancho[i]);

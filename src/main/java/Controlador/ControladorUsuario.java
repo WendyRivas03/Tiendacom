@@ -110,6 +110,7 @@ public class ControladorUsuario implements ActionListener {
                     if (usu.getBtnGuardar().getText().equals("Guardar")) {
                         modusuario.insertarUsuario();
                         modusuario.limpiar(usu.getUsuarios().getComponents());
+                        usu.dispose();
                     } else {
                         modusuario.actualizarUsuario();
                         usu.setVisible(false);

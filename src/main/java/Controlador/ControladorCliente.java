@@ -81,6 +81,7 @@ public class ControladorCliente implements ActionListener {
                     if (cli.getBtnguardarcli().getText().equals("Guardar")) {
                         modcliente.insertarCliente();
                         modcliente.limpiar(cli.getCliente().getComponents());
+                        cli.dispose();
                     } else {
                         modcliente.actualizarCliente();
                         cli.setVisible(false);

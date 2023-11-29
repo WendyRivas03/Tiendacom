@@ -53,15 +53,7 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
     public void setTxtcantidadcompra(JTextField txtcantidadcompra) {
         this.txtcantidadcompra = txtcantidadcompra;
     }
-
-    public JTextField getTxtidfactura() {
-        return txtidfactura;
-    }
-
-    public void setTxtidfactura(JTextField txtidfactura) {
-        this.txtidfactura = txtidfactura;
-    }
-
+    
     public JTextField getTxtnomproduc() {
         return txtnomproduc;
     }
@@ -99,9 +91,7 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         JPanelAgregarProducto = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTablaagragarproducto = new javax.swing.JTable();
-        lblidfactura = new javax.swing.JLabel();
         lblidproducto = new javax.swing.JLabel();
-        txtidfactura = new javax.swing.JTextField();
         txtnomproduc = new javax.swing.JTextField();
         lblcantidadcompra = new javax.swing.JLabel();
         txtcantidadcompra = new javax.swing.JTextField();
@@ -127,16 +117,9 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(JTablaagragarproducto);
 
-        lblidfactura.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblidfactura.setForeground(new java.awt.Color(0, 153, 153));
-        lblidfactura.setText("N° Factura");
-
         lblidproducto.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         lblidproducto.setForeground(new java.awt.Color(0, 153, 153));
         lblidproducto.setText("Producto");
-
-        txtidfactura.setEditable(false);
-        txtidfactura.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
         txtnomproduc.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
@@ -165,11 +148,6 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
             .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
-                        .addComponent(lblidfactura)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtidfactura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
                         .addComponent(lblidproducto)
@@ -195,11 +173,7 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         JPanelAgregarProductoLayout.setVerticalGroup(
             JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelAgregarProductoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblidfactura)
-                    .addComponent(txtidfactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addContainerGap(79, Short.MAX_VALUE)
                 .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblidproducto)
@@ -241,11 +215,9 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
     private javax.swing.JButton btnbuscarproduct;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblcantidadcompra;
-    private javax.swing.JLabel lblidfactura;
     private javax.swing.JLabel lblidproducto;
     private javax.swing.JLabel lblpreciounitario;
     private javax.swing.JTextField txtcantidadcompra;
-    private javax.swing.JTextField txtidfactura;
     private javax.swing.JTextField txtnomproduc;
     private javax.swing.JTextField txtpreciounita;
     // End of variables declaration//GEN-END:variables

@@ -153,7 +153,7 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         }
     }
 
-    //Actualizar Usuario
+    //Actualizar factura compra
     void actualizarFactcompra(int doc) {
         modfactnuev.buscarFactcompra(doc);
         factnuev.getTxtidentiprovefact().setText(String.valueOf(modfactnuev.getDocprovee()));

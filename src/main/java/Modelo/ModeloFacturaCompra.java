@@ -21,7 +21,7 @@ import javax.swing.table.TableColumn;
 
 public class ModeloFacturaCompra {
 
-    private int docprovee, docusu, idfact, desc;
+    private int docprovee, docusu, idfact, desc, compro;
     private float total_compr;
     private String tipo_pag;
     private Date fec;
@@ -48,6 +48,14 @@ public class ModeloFacturaCompra {
 
     public void setDocusu(int docusu) {
         this.docusu = docusu;
+    }
+
+    public int getCompro() {
+        return compro;
+    }
+
+    public void setCompro(int compro) {
+        this.compro = compro;
     }
 
     public String getTipo_pag() {
@@ -86,13 +94,14 @@ public class ModeloFacturaCompra {
     public void insertarFactcompra() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
-        String sql = "call inst_factura_compra(?,?,?)";
+        String sql = "call inst_factura_compra(?,?,?,?)";
 
         try {
             PreparedStatement ps = co.prepareStatement(sql);
             ps.setInt(1, getDocprovee());
             ps.setInt(2, getDocusu());
-            ps.setString(3, getTipo_pag());
+            ps.setInt(3, getCompro());
+            ps.setString(5, getTipo_pag());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Información Guardada");
 
@@ -141,7 +150,7 @@ public class ModeloFacturaCompra {
         imprimir_factuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png")));
 
         String[] titulo = {"N°Factura Compra", "Identificación Proveedor", "Identificación Usuario", "Tipo de Pago",
-            "Descuento", "Total Compra", "Fecha de Compra"};
+            "Descuento", "Total Compra","N° Comprobante", "Fecha de Compra"};
         int opcion = titulo.length;//tiene el tamaño original del titulo
 
         if (nompeste.equals("Factura")) {
@@ -171,7 +180,7 @@ public class ModeloFacturaCompra {
                 for (int i = 0; i < opcion; i++) {
                     dato[i] = rs.getString(i + 1);
                 }
-                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6]};
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7]};
                 if (nompeste.equals("Factura")) {
                     fila = Arrays.copyOf(fila, fila.length + 4);
                     fila[fila.length - 4] = editar;
@@ -189,7 +198,7 @@ public class ModeloFacturaCompra {
         tabla.setModel(tablaFactcompr);
         //Darle Tamaño a cada Columna
         int cantColum = tabla.getColumnCount();
-        int[] ancho = {100, 180, 100, 150, 100, 160, 100, 30, 30, 30, 30};
+        int[] ancho = {100, 180, 180, 150, 100, 160, 180, 170, 30, 30, 30, 30};
         for (int i = 0; i < cantColum; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(ancho[i]);
@@ -197,7 +206,7 @@ public class ModeloFacturaCompra {
         conect.cerrarConexion();
     }
     
-    //TABLA DE DETALLE FACTURA COMPRA************************************************************************************
+//TABLA DE DETALLE FACTURA COMPRA************************************************************************************
     
      public void mostrarTablaDetalleFactCompra(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
@@ -221,7 +230,7 @@ public class ModeloFacturaCompra {
 
 
         String[] titulo = {"N°Factura Detalle Compra", "N°Factura Compra", "Producto", "Cantidad",
-            "Precio Unitario", "Precio Total"};
+            "Precio Unitario", "Descripción"};
         int opcion = titulo.length;//tiene el tamaño original del titulo
 
         if (nompeste.equals("Detalle Factura")) {
@@ -276,6 +285,7 @@ public class ModeloFacturaCompra {
         }
         conect.cerrarConexion();
     }
+//*************************************************************************************************************************
     //buscar factura compra
 
     public void buscarFactcompra(int valor) {
@@ -293,7 +303,8 @@ public class ModeloFacturaCompra {
                 setTipo_pag(rs.getString(4));
                 setDesc(rs.getInt(5));
                 setTotal_compr(rs.getFloat(6));
-                setFec(rs.getDate(7));
+                setCompro(rs.getInt(7));
+                setFec(rs.getDate(8));
             }
 
         } catch (SQLException e) {
@@ -315,14 +326,15 @@ public class ModeloFacturaCompra {
     public void actualizarFactcompra() {
         Conexion conect = new Conexion();
         Connection con = conect.iniciarConexion();
-        String sql = "call actualizar_facturacompra(?,?,?,?)";
+        String sql = "call actualizar_facturacompra(?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, getIdfact());
             ps.setInt(2, getDocprovee());
             ps.setInt(3, getDocusu());
-            ps.setString(4, getTipo_pag());
+            ps.setInt(4, getCompro());
+            ps.setString(5, getTipo_pag());
             ps.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Información Actualizada");

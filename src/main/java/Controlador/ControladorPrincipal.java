@@ -58,6 +58,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getJtfprovee().getDocument().addDocumentListener(this);
         prin.getTxtbuscarproduct().getDocument().addDocumentListener(this);
         prin.getTxtbuscarfactura().getDocument().addDocumentListener(this);
+        prin.getTxtbuscarventa().getDocument().addDocumentListener(this);
         buscaproduc.getTxtbuscarproducto().getDocument().addDocumentListener(this);
     }
 
@@ -172,7 +173,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 prin.getTxtbuscarproduct().setForeground(new java.awt.Color(0, 0, 0));
             }
         });
-        //Para darle clic al boton de editar
+        //Para darle clic al boton de editar y eliminar
         prin.getTablaProducto().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -203,7 +204,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 prin.getTxtbuscarfactura().setForeground(new java.awt.Color(0, 0, 0));
             }
         });
-        //Para darle clic al boton de editar y eliminar
+        //Para darle clic al boton de editar
         prin.getTablafactura().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -223,7 +224,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     agredetaproduc.setVisible(true);
                     agredetaproduc.setLocationRelativeTo(null);
                     agredetaproduc.setTitle("Agregar Detalle");
-                    agredetaproduc.getTxtidfactura().setText(String.valueOf(modfactcomp.getIdfact()));
                     controfact.modfactnuev.mostrarTablaDetalleFactCompra(agredetaproduc.getJTablaagragarproducto(), "", "Agregarfact");
                 }
                 if (colum == 9) {
@@ -240,19 +240,39 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                             mostradetalle.getTxtbuscardetalle().setForeground(new java.awt.Color(0, 0, 0));
                         }
                     });
-
                 }
                 if (colum == 10) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
                 }
             }
         });
-
     }
 
     public void gestionVenta() {
+        modventas.mostrarTablaVenta(prin.getTablaventa(), "", "Venta");
+        prin.getTxtbuscarventa().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                prin.getTxtbuscarventa().setText("");
+                prin.getTxtbuscarventa().setForeground(new java.awt.Color(0, 0, 0));
+            }
+        });
+        //Para darle clic al boton de editar
+        prin.getTablaventa().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = prin.getTablaventa().rowAtPoint(e.getPoint());
+                int colum = prin.getTablaventa().columnAtPoint(e.getPoint());
+                modventas.setIdfactu(Integer.parseInt(prin.getTablaventa().getValueAt(fila, 0).toString()));
+
+                if (colum == 7) {
+                    prin.setVisible(false);
+                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    controventa.actualizarVenta(modproduc.getDoc());
+                }
+            }
+        });
 
     }
 //MODIFICADOR DE CORREO*******************************************************************************
@@ -264,6 +284,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         return cor.matches();//si esta de acuerdo con la estructura el retorna verdadero o falso
     }
 //******************************************************************************************************
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -312,7 +333,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 public void mouseClicked(MouseEvent e) {
                     int fila = buscaproduc.getJTablaBuscarproducto().rowAtPoint(e.getPoint());
                     int colum = buscaproduc.getJTablaBuscarproducto().columnAtPoint(e.getPoint());
-                    
+
 //Activar el boton de agregar producto
                     modproduc.setDoc(Integer.parseInt(buscaproduc.getJTablaBuscarproducto().getValueAt(fila, 0).toString()));
                     if (colum == 6) {
@@ -357,6 +378,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
         modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), prin.getTxtbuscarfactura().getText(), "Factura");
+        modventas.mostrarTablaVenta(prin.getTablaventa(), prin.getTxtbuscarventa().getText(), "Venta");
         modproduc.mostrarTablaProducto(buscaproduc.getJTablaBuscarproducto(), buscaproduc.getTxtbuscarproducto().getText(), "");
     }
 
@@ -367,6 +389,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
         modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), prin.getTxtbuscarfactura().getText(), "Factura");
+        modventas.mostrarTablaVenta(prin.getTablaventa(), prin.getTxtbuscarventa().getText(), "Venta");
         modproduc.mostrarTablaProducto(buscaproduc.getJTablaBuscarproducto(), buscaproduc.getTxtbuscarproducto().getText(), "");
     }
 
@@ -377,6 +400,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modprovee.mostrarTablaProveedor(prin.getJtprovee(), prin.getJtfprovee().getText(), "Proveedor");
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
         modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), prin.getTxtbuscarfactura().getText(), "Factura");
+        modventas.mostrarTablaVenta(prin.getTablaventa(), prin.getTxtbuscarventa().getText(), "Venta");
         modproduc.mostrarTablaProducto(buscaproduc.getJTablaBuscarproducto(), buscaproduc.getTxtbuscarproducto().getText(), "");
     }
 }
