@@ -163,6 +163,7 @@ CREATE TABLE `factura` (
   `usuario` int NOT NULL,
   `tipo_pago` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
+  `comprobante` int NOT NULL,
   `impuesto` float NOT NULL,
   `total_factura` float NOT NULL,
   PRIMARY KEY (`idfactura`),
@@ -179,7 +180,7 @@ CREATE TABLE `factura` (
 
 LOCK TABLES `factura` WRITE;
 /*!40000 ALTER TABLE `factura` DISABLE KEYS */;
-INSERT INTO `factura` VALUES (7,1099,18374,'Tarjete de Débito','2023-11-29',0.19,0);
+INSERT INTO `factura` VALUES (7,1099,18374,'Tarjete de Débito','2023-11-29',3,0.19,0);
 /*!40000 ALTER TABLE `factura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +214,7 @@ CREATE TABLE `factura_compra` (
 
 LOCK TABLES `factura_compra` WRITE;
 /*!40000 ALTER TABLE `factura_compra` DISABLE KEYS */;
-INSERT INTO `factura_compra` VALUES (9,109387,107780,'Tarjeta de Crédito',19,200000000,0,'2023-10-23'),(10,1627363,2222,'Efectivo',0.19,0,0,'2023-11-23'),(11,19293,134560,'Tarjeta de Débito',0.19,0,0,'2023-11-23'),(12,1077473,18374,'PSE',0.19,0,0,'2023-11-23');
+INSERT INTO `factura_compra` VALUES (9,109387,107780,'Tarjeta de Crédito',19,200000000,2222,'2023-10-23'),(10,1627363,2222,'Efectivo',0.19,0,3333,'2023-11-23'),(11,19293,134560,'Tarjeta de Débito',0.19,0,4444,'2023-11-23'),(12,1077473,18374,'PSE',0.19,0,5555,'2023-11-23');
 /*!40000 ALTER TABLE `factura_compra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +276,7 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `Producto`,
  1 AS `Cantidad`,
  1 AS `Precio_Unitario`,
- 1 AS `Descripción`*/;
+ 1 AS `Precio_Total`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -292,6 +293,7 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `Empleado`,
  1 AS `Fecha_Compra`,
  1 AS `Tipo_Pago`,
+ 1 AS `comprobante`,
  1 AS `Impuesto`,
  1 AS `Total_Venta`*/;
 SET character_set_client = @saved_cs_client;
@@ -521,7 +523,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (2222,'Cédula de ciudadanía','ana maria wENDY',1,'10101','hsjshdd@hiot.com',2,'medranosur','2023-10-17','admin','123',1),(18374,'Cédula de ciudadanía','marmar mar camo',1,'2323','sdsff',1,'cabi llll','2023-11-12','123','123',1),(107780,'Cédula de ciudadanía','Yara Eliza',1,'31456','yara@hotamil.com',2,'medranosur','2023-10-17','admin','12345',1),(134560,'Cédula de ciudadanía','Camila',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1111',1),(1077345,'Cédula de ciudadanía','marcelaaaaa',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1010',0);
+INSERT INTO `usuario` VALUES (44,'Cédula de ciudadanía','4',1,'4','4@gmail.com',2,'2','2023-11-01','1','',1),(2222,'Cédula de ciudadanía','ana maria wENDY',1,'10101','hsjshdd@hiot.com',2,'medranosur','2023-10-17','admin','123',1),(18374,'Cédula de ciudadanía','marmar mar camo',1,'2323','sdsff',1,'cabi llll','2023-11-12','123','123',1),(107780,'Cédula de ciudadanía','Yara Eliza',1,'31456','yara@hotamil.com',2,'medranosur','2023-10-17','admin','12345',1),(134560,'Cédula de ciudadanía','Camila',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1111',1),(1077345,'Cédula de ciudadanía','marcelaaaaa',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1010',0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -577,9 +579,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_facturacompra`(in idfactucomp int, in idprovee int, in idusuar int, in compro int, in tipo_pag varchar(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_facturacompra`(in idfactucomp int, in idprovee int, in idusuar int, in tipo_pag varchar(100))
 BEGIN
-update factura_compra set id_proveedor= idprovee, id_usuario= idusuar, comprobante = compro, tipo_pago= tipo_pag where idfactura_compra= idfactucomp;
+update factura_compra set id_proveedor= idprovee, id_usuario= idusuar, tipo_pago= tipo_pag where idfactura_compra= idfactucomp;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -790,7 +792,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_detalle_factura_compra`(in valor varchar(45))
 BEGIN
-select * from mostrar_detalle_factura_compra where N°_Detalle_Factura_Compra like concat('%',valor,'%') || N°_Factura_Compra like concat('%',valor,'%') || Producto like concat('%',valor,'%') || Cantidad like concat('%',valor,'%') || Precio_Unitario like concat('%',valor,'%') || Descripción like concat('%',valor,'%') ;
+select * from mostrar_detalle_factura_compra where N°_Detalle_Factura_Compra like concat('%',valor,'%') || N°_Factura_Compra like concat('%',valor,'%') || Producto like concat('%',valor,'%') || Cantidad like concat('%',valor,'%') || Precio_Unitario like concat('%',valor,'%') || Precio_Total like concat('%',valor,'%');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -809,7 +811,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultar_factura`(in valor varchar(45))
 BEGIN
-select * from mostrar_factura where N°Factura like concat('%',valor,'%') || Cliente like concat('%',valor,'%') || Empleado like concat('%',valor,'%') ||  Fecha_Compra like concat('%',valor,'%') || Tipo_Pago like concat('%',valor,'%') || Impuesto like concat('%',valor,'%') || Total_Venta like concat('%',valor,'%');
+select * from mostrar_factura where N°Factura like concat('%',valor,'%') || Cliente like concat('%',valor,'%') || Empleado like concat('%',valor,'%') || Fecha_Compra like concat('%',valor,'%') || Tipo_Pago like concat('%',valor,'%') ||comprobante like concat('%',valor,'%') || Impuesto like concat('%',valor,'%') || Total_Venta like concat('%',valor,'%');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1036,9 +1038,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_factura`(in id_cli int, in id_usu int, in tip_pago varchar (100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inst_factura`(in id_cli int, in id_usu int, in comproba int, in tip_pago varchar (100))
 BEGIN
-insert into factura(fecha, cliente, usuario, tipo_pago, impuesto, total_factura) values (current_date(), id_cli, id_usu, tip_pago, '0.19', '0');
+insert into factura (cliente, usuario, tipo_pago, fecha, comprobante, impuesto, total_factura) values (id_cli, id_usu, tip_pago, current_date(), comproba, '0.19', '0');
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1174,7 +1176,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `mostrar_detalle_factura_compra` AS select `detalle_factura_compra`.`iddetalle_factura_compra` AS `N°_Detalle_Factura_Compra`,`detalle_factura_compra`.`id_factcompra` AS `N°_Factura_Compra`,`producto`.`nombre` AS `Producto`,`detalle_factura_compra`.`cantidad_comprada` AS `Cantidad`,`detalle_factura_compra`.`precio_unitario_compra` AS `Precio_Unitario`,`producto`.`descripcion` AS `Descripción` from (`detalle_factura_compra` join `producto` on((`producto`.`idproducto` = `detalle_factura_compra`.`id_producto`))) */;
+/*!50001 VIEW `mostrar_detalle_factura_compra` AS select `detalle_factura_compra`.`iddetalle_factura_compra` AS `N°_Detalle_Factura_Compra`,`detalle_factura_compra`.`id_factcompra` AS `N°_Factura_Compra`,`producto`.`nombre` AS `Producto`,`detalle_factura_compra`.`cantidad_comprada` AS `Cantidad`,`detalle_factura_compra`.`precio_unitario_compra` AS `Precio_Unitario`,`detalle_factura_compra`.`precio_total_compra` AS `Precio_Total` from (`detalle_factura_compra` join `producto` on((`producto`.`idproducto` = `detalle_factura_compra`.`id_producto`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1192,7 +1194,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `mostrar_factura` AS select `factura`.`idfactura` AS `N°Factura`,`cliente`.`nombre` AS `Cliente`,`usuario`.`nombre` AS `Empleado`,`factura`.`fecha` AS `Fecha_Compra`,`factura`.`tipo_pago` AS `Tipo_Pago`,`factura`.`impuesto` AS `Impuesto`,`factura`.`total_factura` AS `Total_Venta` from ((`factura` join `cliente` on((`cliente`.`idcliente` = `factura`.`cliente`))) join `usuario` on((`usuario`.`idusuario` = `factura`.`usuario`))) */;
+/*!50001 VIEW `mostrar_factura` AS select `factura`.`idfactura` AS `N°Factura`,`cliente`.`nombre` AS `Cliente`,`usuario`.`nombre` AS `Empleado`,`factura`.`fecha` AS `Fecha_Compra`,`factura`.`tipo_pago` AS `Tipo_Pago`,`factura`.`comprobante` AS `comprobante`,`factura`.`impuesto` AS `Impuesto`,`factura`.`total_factura` AS `Total_Venta` from ((`factura` join `cliente` on((`cliente`.`idcliente` = `factura`.`cliente`))) join `usuario` on((`usuario`.`idusuario` = `factura`.`usuario`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1314,4 +1316,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-29 11:51:29
+-- Dump completed on 2023-11-30 12:03:12
