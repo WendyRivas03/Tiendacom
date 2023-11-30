@@ -85,8 +85,14 @@ public class Nueva_Factura_Compra extends javax.swing.JFrame {
     public void setBtnbuscarusuario(JButton btnbuscarusuario) {
         this.btnbuscarusuario = btnbuscarusuario;
     }
-    
-    
+
+    public JTextField getTxtnumerodecomprobante() {
+        return txtnumerodecomprobante;
+    }
+
+    public void setTxtnumerodecomprobante(JTextField txtnumerodecomprobante) {
+        this.txtnumerodecomprobante = txtnumerodecomprobante;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,6 +114,8 @@ public class Nueva_Factura_Compra extends javax.swing.JFrame {
         cmbtipopagofactcompa = new javax.swing.JComboBox<>();
         btnbuscarproveedor = new javax.swing.JButton();
         btnbuscarusuario = new javax.swing.JButton();
+        lblidentiusu1 = new javax.swing.JLabel();
+        txtnumerodecomprobante = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,33 +154,39 @@ public class Nueva_Factura_Compra extends javax.swing.JFrame {
         btnbuscarusuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         btnbuscarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar1.png"))); // NOI18N
 
+        lblidentiusu1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        lblidentiusu1.setForeground(new java.awt.Color(0, 153, 153));
+        lblidentiusu1.setText("N° Comprobante");
+
+        txtnumerodecomprobante.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout panelFacturacompraLayout = new javax.swing.GroupLayout(panelFacturacompra);
         panelFacturacompra.setLayout(panelFacturacompraLayout);
         panelFacturacompraLayout.setHorizontalGroup(
             panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFacturacompraLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnguardarfactcomp)
+                .addGap(52, 52, 52)
+                .addComponent(btncancelarfactcomp)
+                .addGap(124, 124, 124))
             .addGroup(panelFacturacompraLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFacturacompraLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblidentiproveedor)
-                            .addComponent(lblidentiusu)
-                            .addComponent(lbltipopagofactcomp))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtidentiusufactcomp)
-                                .addComponent(txtidentiprovefact, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cmbtipopagofactcompa, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnbuscarproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnbuscarusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelFacturacompraLayout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(btnguardarfactcomp)
-                        .addGap(52, 52, 52)
-                        .addComponent(btncancelarfactcomp)))
+                    .addComponent(lblidentiproveedor)
+                    .addComponent(lblidentiusu)
+                    .addComponent(lbltipopagofactcomp)
+                    .addComponent(lblidentiusu1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtidentiusufactcomp, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtidentiprovefact, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                    .addComponent(cmbtipopagofactcompa, 0, 239, Short.MAX_VALUE)
+                    .addComponent(txtnumerodecomprobante))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnbuscarproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscarusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelFacturacompraLayout.setVerticalGroup(
@@ -188,15 +202,19 @@ public class Nueva_Factura_Compra extends javax.swing.JFrame {
                     .addComponent(lblidentiusu)
                     .addComponent(txtidentiusufactcomp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscarusuario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblidentiusu1)
+                    .addComponent(txtnumerodecomprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbltipopagofactcomp)
                     .addComponent(cmbtipopagofactcompa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(28, 28, 28)
                 .addGroup(panelFacturacompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnguardarfactcomp)
                     .addComponent(btncancelarfactcomp))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,9 +249,11 @@ public class Nueva_Factura_Compra extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbtipopagofactcompa;
     private javax.swing.JLabel lblidentiproveedor;
     private javax.swing.JLabel lblidentiusu;
+    private javax.swing.JLabel lblidentiusu1;
     private javax.swing.JLabel lbltipopagofactcomp;
     private javax.swing.JPanel panelFacturacompra;
     private javax.swing.JTextField txtidentiprovefact;
     private javax.swing.JTextField txtidentiusufactcomp;
+    private javax.swing.JTextField txtnumerodecomprobante;
     // End of variables declaration//GEN-END:variables
 }

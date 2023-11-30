@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
@@ -60,6 +62,25 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getTxtbuscarfactura().getDocument().addDocumentListener(this);
         prin.getTxtbuscarventa().getDocument().addDocumentListener(this);
         buscaproduc.getTxtbuscarproducto().getDocument().addDocumentListener(this);
+        agredetaproduc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// para que cuando se cierre se quede en la principal
+        mostradetalle.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        agredetaproduc.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                prin.setVisible(true);
+                agredetaproduc.setVisible(false);
+            }
+        });
+
+        mostradetalle.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                prin.setVisible(true);
+                mostradetalle.setVisible(false);
+            }
+        });
+
     }
 
     public void iniciarPrincipal(int valor) {
@@ -212,21 +233,23 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 int colum = prin.getTablafactura().columnAtPoint(e.getPoint());
                 modfactcomp.setIdfact(Integer.parseInt(prin.getTablafactura().getValueAt(fila, 0).toString()));
 
-                if (colum == 7) {
+                if (colum == 8) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     controfact.actualizarFactcompra(modfactcomp.getIdfact());
                     controfact.buscar();
                 }
-                if (colum == 8) {
+                if (colum == 9) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     agredetaproduc.setVisible(true);
                     agredetaproduc.setLocationRelativeTo(null);
                     agredetaproduc.setTitle("Agregar Detalle");
-                    controfact.modfactnuev.mostrarTablaDetalleFactCompra(agredetaproduc.getJTablaagragarproducto(), "", "Agregarfact");
+                    controproduc.modproduc.mostrarTablaProducto(agredetaproduc.getJTablaagragarproducto(), "", "Agregarfact");
+
+//                    controfact.modfactnuev.mostrarTablaDetalleFactCompra(agredetaproduc.getJTablaagragarproducto(), "", "Agregarfact");
                 }
-                if (colum == 9) {
+                if (colum == 10) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     mostradetalle.setVisible(true);
@@ -241,7 +264,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                         }
                     });
                 }
-                if (colum == 10) {
+                if (colum == 11) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 }

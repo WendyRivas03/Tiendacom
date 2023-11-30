@@ -85,6 +85,14 @@ public class Nueva_Venta extends javax.swing.JFrame {
     public void setPanelnuevaventa(JPanel panelnuevaventa) {
         this.panelnuevaventa = panelnuevaventa;
     }
+
+    public JTextField getTxtnumerocomprobanteventa() {
+        return txtnumerocomprobanteventa;
+    }
+
+    public void setTxtnumerocomprobanteventa(JTextField txtnumerocomprobanteventa) {
+        this.txtnumerocomprobanteventa = txtnumerocomprobanteventa;
+    }
     
     
     /**
@@ -107,6 +115,8 @@ public class Nueva_Venta extends javax.swing.JFrame {
         cmbtipopagoventa = new javax.swing.JComboBox<>();
         btnbuscarcliente = new javax.swing.JButton();
         btnbuscarusuarioventa = new javax.swing.JButton();
+        lblidentiusuventa1 = new javax.swing.JLabel();
+        txtnumerocomprobanteventa = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,33 +155,47 @@ public class Nueva_Venta extends javax.swing.JFrame {
         btnbuscarusuarioventa.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         btnbuscarusuarioventa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar1.png"))); // NOI18N
 
+        lblidentiusuventa1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        lblidentiusuventa1.setForeground(new java.awt.Color(0, 153, 153));
+        lblidentiusuventa1.setText("N° Comprobante");
+
+        txtnumerocomprobanteventa.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout panelnuevaventaLayout = new javax.swing.GroupLayout(panelnuevaventa);
         panelnuevaventa.setLayout(panelnuevaventaLayout);
         panelnuevaventaLayout.setHorizontalGroup(
             panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelnuevaventaLayout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(123, 123, 123)
                 .addComponent(btnguardarventa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbtipopagoventa, 0, 244, Short.MAX_VALUE)
-                    .addComponent(txtidentusuaventa)
-                    .addComponent(txtidenticliventa)
-                    .addGroup(panelnuevaventaLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(btncancelarventa)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(80, 80, 80)
+                .addComponent(btncancelarventa)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelnuevaventaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscarusuarioventa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(lblidentiusuventa1)
+                    .addComponent(lbltipopagoventa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbtipopagoventa, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelnuevaventaLayout.createSequentialGroup()
+                        .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtnumerocomprobanteventa, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtidentusuaventa)
+                                .addComponent(txtidenticliventa, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnbuscarusuarioventa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(31, 31, 31))
             .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelnuevaventaLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lblidenticlienventa, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblidentiusuventa, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lbltipopagoventa, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(lblidentiusuventa, javax.swing.GroupLayout.Alignment.LEADING))
                     .addContainerGap(339, Short.MAX_VALUE)))
         );
         panelnuevaventaLayout.setVerticalGroup(
@@ -186,21 +210,25 @@ public class Nueva_Venta extends javax.swing.JFrame {
                     .addComponent(txtidentusuaventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscarusuarioventa))
                 .addGap(18, 18, 18)
-                .addComponent(cmbtipopagoventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnguardarventa)
-                    .addComponent(btncancelarventa))
-                .addGap(34, 34, 34))
+                    .addComponent(txtnumerocomprobanteventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblidentiusuventa1))
+                .addGap(18, 18, 18)
+                .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltipopagoventa)
+                    .addComponent(cmbtipopagoventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btncancelarventa)
+                    .addComponent(btnguardarventa))
+                .addGap(19, 19, 19))
             .addGroup(panelnuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelnuevaventaLayout.createSequentialGroup()
                     .addGap(36, 36, 36)
                     .addComponent(lblidenticlienventa)
                     .addGap(18, 18, 18)
                     .addComponent(lblidentiusuventa)
-                    .addGap(18, 18, 18)
-                    .addComponent(lbltipopagoventa)
-                    .addContainerGap(102, Short.MAX_VALUE)))
+                    .addContainerGap(176, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -230,9 +258,11 @@ public class Nueva_Venta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbtipopagoventa;
     private javax.swing.JLabel lblidenticlienventa;
     private javax.swing.JLabel lblidentiusuventa;
+    private javax.swing.JLabel lblidentiusuventa1;
     private javax.swing.JLabel lbltipopagoventa;
     private javax.swing.JPanel panelnuevaventa;
     private javax.swing.JTextField txtidenticliventa;
     private javax.swing.JTextField txtidentusuaventa;
+    private javax.swing.JTextField txtnumerocomprobanteventa;
     // End of variables declaration//GEN-END:variables
 }

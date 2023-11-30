@@ -22,7 +22,7 @@ import javax.swing.table.TableColumn;
 
 
 public class ModeloVentas {
-    private int idfactu, docuclient, docusu;
+    private int idfactu, docuclient, docusu, comprove;
     private float total_factu, impuest;
     private String tipo_pag;
     private Date fecha;
@@ -82,18 +82,27 @@ public class ModeloVentas {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public int getComprove() {
+        return comprove;
+    }
+
+    public void setComprove(int comprove) {
+        this.comprove = comprove;
+    }
     
     //insertar venta
     public void insertarVenta() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
-        String sql = "call inst_factura(?,?,?)";
+        String sql = "call inst_factura(?,?,?,?)";
 
         try {
             PreparedStatement ps = co.prepareStatement(sql);
             ps.setInt(1, getDocuclient());
             ps.setInt(2, getDocusu());
-            ps.setString(3, getTipo_pag());
+            ps.setInt(3, getComprove());
+            ps.setString(4, getTipo_pag());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Información Guardada");
 
@@ -214,8 +223,9 @@ public class ModeloVentas {
                 setDocusu(rs.getInt(3));
                 setTipo_pag(rs.getString(4));
                 setFecha(rs.getDate(5));
-                setImpuest(rs.getInt(6));
-                setTotal_factu(rs.getFloat(7));                
+                setComprove(rs.getInt(6));
+                setImpuest(rs.getInt(7));
+                setTotal_factu(rs.getFloat(8));                
             }
 
         } catch (SQLException e) {

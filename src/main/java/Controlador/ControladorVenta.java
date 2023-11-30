@@ -112,7 +112,7 @@ public class ControladorVenta implements ActionListener, DocumentListener {
             buscarusu.getJTablaBuscarusuario().addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    int fila =buscarusu.getJTablaBuscarusuario().rowAtPoint(e.getPoint());
+                    int fila = buscarusu.getJTablaBuscarusuario().rowAtPoint(e.getPoint());
                     int colum = buscarusu.getJTablaBuscarusuario().columnAtPoint(e.getPoint());
 
 //Activar el boton de agregar usuario
@@ -129,11 +129,13 @@ public class ControladorVenta implements ActionListener, DocumentListener {
         }
         if (e.getSource().equals(factventa.getBtnguardarventa())) {
             //validar campos vacios
-            if ((factventa.getTxtidenticliventa().getText().isEmpty()) || (factventa.getTxtidentusuaventa().getText().isEmpty()) || (factventa.getCmbtipopagoventa().getSelectedItem().equals("Seleccione..."))) {
+            if ((factventa.getTxtidenticliventa().getText().isEmpty()) || (factventa.getTxtidentusuaventa().getText().isEmpty()) || (factventa.getTxtnumerocomprobanteventa().getText().isEmpty())
+                    || (factventa.getCmbtipopagoventa().getSelectedItem().equals("Seleccione..."))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar información en los campos de Nombre y Descripción");
             } else {
                 modventas.setDocuclient(Integer.parseInt(factventa.getTxtidenticliventa().getText()));
                 modventas.setDocusu((Integer.parseInt(factventa.getTxtidentusuaventa().getText())));
+                modventas.setComprove(Integer.parseInt(factventa.getTxtnumerocomprobanteventa().getText()));
                 modventas.setTipo_pag(factventa.getCmbtipopagoventa().getSelectedItem().toString());
 
                 if (factventa.getBtnguardarventa().getText().equals("Guardar")) {
@@ -154,11 +156,14 @@ public class ControladorVenta implements ActionListener, DocumentListener {
             factventa.dispose();
         }
     }
-        //Actualizar venta
+    //Actualizar venta
+
     void actualizarVenta(int doc) {
         modventas.buscarVenta(doc);
+        factventa.getTxtnumerocomprobanteventa().setEnabled(false);
         factventa.getTxtidenticliventa().setText(String.valueOf(modventas.getDocuclient()));
         factventa.getTxtidentusuaventa().setText(String.valueOf(modventas.getDocusu()));
+        factventa.getTxtnumerocomprobanteventa().setText(String.valueOf(modventas.getComprove()));
 
         //Llenar tipo de pago
         factventa.getCmbtipopagoventa().setSelectedItem(modventas.getTipo_pag());

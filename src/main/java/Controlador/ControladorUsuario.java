@@ -72,7 +72,7 @@ public class ControladorUsuario implements ActionListener {
             //validar campos vacios
             if ((usu.getTxtDocumento().getText().isEmpty()) || (usu.getCmbtipodocu().getSelectedItem().equals("Seleccione...")) || (usu.getTxtNombre().getText().isEmpty()) || (usu.getTxtDire().getText().isEmpty())
                     || (usu.getTxtCorreo().getText().isEmpty()) || (usu.getTxtLogin().getText().isEmpty()) || (usu.getTxtTele().getText().isEmpty())
-                    || (usu.getPssContrase().getPassword() == null) || (usu.getJdcfechanaci().getDate() == null) || (usu.getCmbrol().getSelectedItem().equals("Seleccione..."))
+                    || (usu.getPssContrase().getText().isEmpty())|| (usu.getJdcfechanaci().getDate() == null) || (usu.getCmbrol().getSelectedItem().equals("Seleccione..."))
                     || (usu.getCmbSexo().getSelectedItem().equals("Seleccione..."))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar información en todos los campos");
             } else {

@@ -127,11 +127,13 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
 
         if (e.getSource().equals(factnuev.getBtnguardarfactcomp())) {
             //validar campos vacios
-            if ((factnuev.getTxtidentiprovefact().getText().isEmpty()) || (factnuev.getTxtidentiusufactcomp().getText().isEmpty()) || (factnuev.getCmbtipopagofactcompa().getSelectedItem().equals("Seleccione..."))) {
+            if ((factnuev.getTxtidentiprovefact().getText().isEmpty()) || (factnuev.getTxtidentiusufactcomp().getText().isEmpty()) || (factnuev.getTxtnumerodecomprobante().getText().isEmpty())
+                    ||(factnuev.getCmbtipopagofactcompa().getSelectedItem().equals("Seleccione..."))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar información en los campos de Nombre y Descripción");
             } else {
                 modfactnuev.setDocprovee(Integer.parseInt(factnuev.getTxtidentiprovefact().getText()));
                 modfactnuev.setDocusu((Integer.parseInt(factnuev.getTxtidentiusufactcomp().getText())));
+                modfactnuev.setCompro(Integer.parseInt(factnuev.getTxtnumerodecomprobante().getText()));
                 modfactnuev.setTipo_pag(factnuev.getCmbtipopagofactcompa().getSelectedItem().toString());
 
                 if (factnuev.getBtnguardarfactcomp().getText().equals("Guardar")) {
@@ -156,8 +158,10 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
     //Actualizar factura compra
     void actualizarFactcompra(int doc) {
         modfactnuev.buscarFactcompra(doc);
+        factnuev.getTxtnumerodecomprobante().setEnabled(false);
         factnuev.getTxtidentiprovefact().setText(String.valueOf(modfactnuev.getDocprovee()));
-        factnuev.getTxtidentiusufactcomp().setText(String.valueOf(modfactnuev.getDocusu()));
+        factnuev.getTxtidentiusufactcomp().setText(String.valueOf( modfactnuev.getDocusu()));
+        factnuev.getTxtnumerodecomprobante().setText(String.valueOf(modfactnuev.getCompro()));
 
         //Llenar tipo de pago
         factnuev.getCmbtipopagofactcompa().setSelectedItem(modfactnuev.getTipo_pag());

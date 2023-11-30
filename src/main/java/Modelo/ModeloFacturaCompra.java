@@ -230,7 +230,7 @@ public class ModeloFacturaCompra {
 
 
         String[] titulo = {"N°Factura Detalle Compra", "N°Factura Compra", "Producto", "Cantidad",
-            "Precio Unitario", "Descripción"};
+            "Precio Unitario", "Precio Total"};
         int opcion = titulo.length;//tiene el tamaño original del titulo
 
         if (nompeste.equals("Detalle Factura")) {
@@ -326,15 +326,14 @@ public class ModeloFacturaCompra {
     public void actualizarFactcompra() {
         Conexion conect = new Conexion();
         Connection con = conect.iniciarConexion();
-        String sql = "call actualizar_facturacompra(?,?,?,?,?)";
+        String sql = "call actualizar_facturacompra(?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, getIdfact());
             ps.setInt(2, getDocprovee());
             ps.setInt(3, getDocusu());
-            ps.setInt(4, getCompro());
-            ps.setString(5, getTipo_pag());
+            ps.setString(4, getTipo_pag());
             ps.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Información Actualizada");
