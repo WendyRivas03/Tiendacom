@@ -223,6 +223,7 @@ public class Principal extends javax.swing.JFrame {
 
         lbltienda.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lbltienda.setForeground(new java.awt.Color(0, 153, 153));
+        lbltienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbltienda.setText("TIENDA.COM");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -74,7 +74,6 @@ public class ModeloProducto {
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
-    
 
     //BUSCAR IMAGEN
     public void buscarImagen() {
@@ -105,6 +104,7 @@ public class ModeloProducto {
         }
     }
 //Insertar Producto
+
     public void insertarProducto() {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
@@ -123,7 +123,6 @@ public class ModeloProducto {
             e.printStackTrace();
         }
     }
-
 
     //Limpiar Campos 
     public void limpiar(Component[] panelproducto) {
@@ -178,7 +177,18 @@ public class ModeloProducto {
         }
 
         DefaultTableModel tablaProducto = new DefaultTableModel(null, titulo) {
+            @Override
             public boolean isCellEditable(int row, int column) {
+//               if (nompeste.equals("Produ")) {
+//                    return column == 6;
+//                } else {
+//                    return false;
+//                }
+                if (nompeste.equals("Produ")) {
+                    if (column == 6) {
+                        return true;
+                    }
+                }
                 return false;
             }
         };
@@ -191,7 +201,7 @@ public class ModeloProducto {
 
             Statement st = co.createStatement(); //Crea una consulta
             ResultSet rs = st.executeQuery(sqlProducto);
- 
+
             while (rs.next()) {
                 try {//Al tener diferentes tipos de datos se puede hacer asi
                     byte[] imag = rs.getBytes(2);
@@ -217,7 +227,7 @@ public class ModeloProducto {
                     fila[fila.length - 1] = eliminar;
                 } else {
                     fila = Arrays.copyOf(fila, fila.length + 1);
-                    fila[fila.length - 1] = agregar;
+                    fila[fila.length - 1] = false;//para trabajar con chekbox1
                 }
                 tablaProducto.addRow(fila);
             }
@@ -227,15 +237,16 @@ public class ModeloProducto {
             ex.printStackTrace();
         }
         tabla.setModel(tablaProducto);
-        
+
         int cantColum = tabla.getColumnCount();
         int[] ancho = {100, 200, 100, 200, 100, 100, 30, 30};
         for (int i = 0; i < cantColum; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
-            columna.setPreferredWidth(ancho[i]);   
+            columna.setPreferredWidth(ancho[i]);
         }
         conect.cerrarConexion();
     }
+
     //buscar producto
     public void buscarProducto(int valor) {
         Conexion conect = new Conexion();
@@ -256,7 +267,7 @@ public class ModeloProducto {
             e.printStackTrace();
         }
     }
-    
+
     //ACTUALIZAR Producto
     public void actualizarProducto() {
         Conexion conect = new Conexion();
@@ -264,7 +275,7 @@ public class ModeloProducto {
         String sql = "call actualizar_producto(?,?,?,?,?)";
 
         try {
-            
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, getDoc());
             ps.setString(2, getNom());
@@ -282,8 +293,8 @@ public class ModeloProducto {
         }
         conect.cerrarConexion();
     }
-    
-     //ELIMINAR PRODUCTO
+
+    //ELIMINAR PRODUCTO
     public void eliminarProducto() {
         Conexion conect = new Conexion();
         Connection con = conect.iniciarConexion();

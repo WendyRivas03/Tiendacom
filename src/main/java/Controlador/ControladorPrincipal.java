@@ -245,7 +245,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     agredetaproduc.setVisible(true);
                     agredetaproduc.setLocationRelativeTo(null);
                     agredetaproduc.setTitle("Agregar Detalle");
-                    controproduc.modproduc.mostrarTablaProducto(agredetaproduc.getJTablaagragarproducto(), "", "Agregarfact");
+                    controproduc.modproduc.mostrarTablaProducto(agredetaproduc.getJTablaagragarproducto(), "", "Producto");
 
 //                    controfact.modfactnuev.mostrarTablaDetalleFactCompra(agredetaproduc.getJTablaagragarproducto(), "", "Agregarfact");
                 }
@@ -360,12 +360,12 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 //Activar el boton de agregar producto
                     modproduc.setDoc(Integer.parseInt(buscaproduc.getJTablaBuscarproducto().getValueAt(fila, 0).toString()));
                     if (colum == 6) {
-                        buscaproduc.setVisible(false);
-                        agredetaproduc.setVisible(true);
+//                        buscaproduc.setVisible(false);
+//                        agredetaproduc.setVisible(true);
                         int nom = modproduc.getDoc();
                         modproduc.buscarProducto(nom);
                         agredetaproduc.getTxtnomproduc().setText(modproduc.getNom());
-                        JOptionPane.showMessageDialog(null, "Producto Agregado");
+//                        JOptionPane.showMessageDialog(null, "Producto Agregado");
                     }
                 }
             });
