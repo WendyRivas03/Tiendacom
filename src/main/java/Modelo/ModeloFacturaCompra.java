@@ -150,7 +150,7 @@ public class ModeloFacturaCompra {
         imprimir_factuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imprimir.png")));
 
         String[] titulo = {"N°Factura Compra", "Identificación Proveedor", "Identificación Usuario", "Tipo de Pago",
-            "Descuento", "Total Compra","N° Comprobante", "Fecha de Compra"};
+            "Descuento", "Total Compra", "N° Comprobante", "Fecha de Compra"};
         int opcion = titulo.length;//tiene el tamaño original del titulo
 
         if (nompeste.equals("Factura")) {
@@ -205,10 +205,54 @@ public class ModeloFacturaCompra {
         }
         conect.cerrarConexion();
     }
-    
+
+    public boolean seleccionCheck(JTable tabla) {
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            Boolean seleccionar = (Boolean) tabla.getValueAt(i, 6);
+            if (seleccionar != null && seleccionar) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void agregarProductos(JTable tablaProduc, JTable tablaDetalle) {
+        //Personalizar Encabezado
+        JTableHeader encabeza = tablaDetalle.getTableHeader();
+        encabeza.setDefaultRenderer(new GestionEncabezado());
+        tablaDetalle.setTableHeader(encabeza);
+        //Personalizar Celdas
+        tablaDetalle.setDefaultRenderer(Object.class, new GestionCeldas());
+
+        Object[] titulo = {"N° Factura", "Producto", "Decripción", "Cantidad", "Precio"};
+
+        DefaultTableModel tabla_addProductos = new DefaultTableModel(null, titulo) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 3 || column == 4;
+            }
+        };
+
+        if (seleccionCheck(tablaProduc)) {
+            for (int i = 0; i < tablaProduc.getRowCount(); i++) {
+                Boolean seleccionar = (Boolean) tablaProduc.getValueAt(i, 6);
+                if (seleccionar != null && seleccionar) {
+                    Object dato[]= new Object[titulo.length];
+                    dato[0]= tablaProduc.getValueAt(i, 0);
+                    dato[1]= tablaProduc.getValueAt(i, 2);
+                    dato[2]= tablaProduc.getValueAt(i, 3);
+                    Object fila[]={dato[0], dato[1], dato[2]};
+                    tabla_addProductos.addRow(fila);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos un producto");
+        }
+        tablaDetalle.setModel(tabla_addProductos);
+    }
+
 //TABLA DE DETALLE FACTURA COMPRA************************************************************************************
-    
-     public void mostrarTablaDetalleFactCompra(JTable tabla, String valor, String nompeste) {
+    public void mostrarTablaDetalleFactCompra(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
 
@@ -227,7 +271,6 @@ public class ModeloFacturaCompra {
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
         agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png")));
-
 
         String[] titulo = {"N°Factura Detalle Compra", "N°Factura Compra", "Producto", "Cantidad",
             "Precio Unitario", "Precio Total"};

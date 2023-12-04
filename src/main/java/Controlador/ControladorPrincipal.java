@@ -30,8 +30,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
     Principal prin = new Principal();
     Nueva_Venta vent = new Nueva_Venta();
-    Agregar_Detalleproducto agredetaproduc = new Agregar_Detalleproducto();
-    Buscar_Producto buscaproduc = new Buscar_Producto();
     Mostrar_Detalle_Factura_Compra mostradetalle = new Mostrar_Detalle_Factura_Compra();
     ControladorUsuario controusu = new ControladorUsuario();
     ControladorCliente controcli = new ControladorCliente();
@@ -53,7 +51,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getBtnnuevoproducto().addActionListener(this);
         prin.getBtnnuevaFactura().addActionListener(this);
         prin.getBtnnuevaVenta().addActionListener(this);
-        agredetaproduc.getBtnbuscarproduct().addActionListener(this);
         prin.getTpPrincipal().addChangeListener(this);//Para que escuche al table pannel y me muestre todas las tablas
         prin.getJtfusuario().getDocument().addDocumentListener(this);//Que escuche el txt para buscar
         prin.getJtfcliente().getDocument().addDocumentListener(this);
@@ -61,17 +58,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getTxtbuscarproduct().getDocument().addDocumentListener(this);
         prin.getTxtbuscarfactura().getDocument().addDocumentListener(this);
         prin.getTxtbuscarventa().getDocument().addDocumentListener(this);
-        buscaproduc.getTxtbuscarproducto().getDocument().addDocumentListener(this);
-        agredetaproduc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// para que cuando se cierre se quede en la principal
         mostradetalle.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        agredetaproduc.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                prin.setVisible(true);
-                agredetaproduc.setVisible(false);
-            }
-        });
 
         mostradetalle.addWindowListener(new WindowAdapter() {
             @Override
@@ -241,12 +228,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 }
                 if (colum == 9) {
                     prin.setVisible(false);
-                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    agredetaproduc.setVisible(true);
-                    agredetaproduc.setLocationRelativeTo(null);
-                    agredetaproduc.setTitle("Agregar Detalle");
-                    controproduc.modproduc.mostrarTablaProducto(agredetaproduc.getJTablaagragarproducto(), "", "Producto");
-
+                    controfact.agregarDetalle();
 //                    controfact.modfactnuev.mostrarTablaDetalleFactCompra(agredetaproduc.getJTablaagragarproducto(), "", "Agregarfact");
                 }
                 if (colum == 10) {
@@ -292,7 +274,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 if (colum == 7) {
                     prin.setVisible(false);
                     prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    controventa.actualizarVenta(modproduc.getDoc());
+                    controventa.actualizarVenta(modventas.getIdfactu());
                 }
             }
         });
@@ -336,40 +318,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             prin.setVisible(false);
             controventa.controlVenta();
         }
-
-        if (e.getSource().equals(agredetaproduc.getBtnbuscarproduct())) {
-            prin.setVisible(false);
-            buscaproduc.setVisible(true);
-            buscaproduc.setLocationRelativeTo(null);
-            modproduc.mostrarTablaProducto(buscaproduc.getJTablaBuscarproducto(), "", "Produ");
-//Activar el TXTbuscar producto
-            buscaproduc.getTxtbuscarproducto().addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buscaproduc.getTxtbuscarproducto().setText("");
-                    buscaproduc.getTxtbuscarproducto().setForeground(new java.awt.Color(0, 0, 0));
-                }
-            });
-//boton agregar en la caja de texto el producto             
-            buscaproduc.getJTablaBuscarproducto().addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    int fila = buscaproduc.getJTablaBuscarproducto().rowAtPoint(e.getPoint());
-                    int colum = buscaproduc.getJTablaBuscarproducto().columnAtPoint(e.getPoint());
-
-//Activar el boton de agregar producto
-                    modproduc.setDoc(Integer.parseInt(buscaproduc.getJTablaBuscarproducto().getValueAt(fila, 0).toString()));
-                    if (colum == 6) {
-//                        buscaproduc.setVisible(false);
-//                        agredetaproduc.setVisible(true);
-                        int nom = modproduc.getDoc();
-                        modproduc.buscarProducto(nom);
-                        agredetaproduc.getTxtnomproduc().setText(modproduc.getNom());
-//                        JOptionPane.showMessageDialog(null, "Producto Agregado");
-                    }
-                }
-            });
-        }
     }
 
     @Override
@@ -402,7 +350,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
         modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), prin.getTxtbuscarfactura().getText(), "Factura");
         modventas.mostrarTablaVenta(prin.getTablaventa(), prin.getTxtbuscarventa().getText(), "Venta");
-        modproduc.mostrarTablaProducto(buscaproduc.getJTablaBuscarproducto(), buscaproduc.getTxtbuscarproducto().getText(), "");
     }
 
     @Override
@@ -413,7 +360,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
         modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), prin.getTxtbuscarfactura().getText(), "Factura");
         modventas.mostrarTablaVenta(prin.getTablaventa(), prin.getTxtbuscarventa().getText(), "Venta");
-        modproduc.mostrarTablaProducto(buscaproduc.getJTablaBuscarproducto(), buscaproduc.getTxtbuscarproducto().getText(), "");
     }
 
     @Override
@@ -424,6 +370,5 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modproduc.mostrarTablaProducto(prin.getTablaProducto(), prin.getTxtbuscarproduct().getText(), "Producto");
         modfactcomp.mostrarTablaFactCompra(prin.getTablafactura(), prin.getTxtbuscarfactura().getText(), "Factura");
         modventas.mostrarTablaVenta(prin.getTablaventa(), prin.getTxtbuscarventa().getText(), "Venta");
-        modproduc.mostrarTablaProducto(buscaproduc.getJTablaBuscarproducto(), buscaproduc.getTxtbuscarproducto().getText(), "");
     }
 }

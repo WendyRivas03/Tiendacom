@@ -53,14 +53,6 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
     public void setTxtcantidadcompra(JTextField txtcantidadcompra) {
         this.txtcantidadcompra = txtcantidadcompra;
     }
-    
-    public JTextField getTxtnomproduc() {
-        return txtnomproduc;
-    }
-
-    public void setTxtnomproduc(JTextField txtnomproduc) {
-        this.txtnomproduc = txtnomproduc;
-    }
 
     public JTextField getTxtpreciounita() {
         return txtpreciounita;
@@ -77,7 +69,16 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
     public void setBtnbuscarproduct(JButton btnbuscarproduct) {
         this.btnbuscarproduct = btnbuscarproduct;
     }
+
+    public JTextField getTxtnumerofactura() {
+        return txtnumerofactura;
+    }
+
+    public void setTxtnumerofactura(JTextField txtnumerofactura) {
+        this.txtnumerofactura = txtnumerofactura;
+    }
     
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,13 +93,14 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTablaagragarproducto = new javax.swing.JTable();
         lblidproducto = new javax.swing.JLabel();
-        txtnomproduc = new javax.swing.JTextField();
         lblcantidadcompra = new javax.swing.JLabel();
         txtcantidadcompra = new javax.swing.JTextField();
         lblpreciounitario = new javax.swing.JLabel();
         txtpreciounita = new javax.swing.JTextField();
         btnagregar = new javax.swing.JButton();
         btnbuscarproduct = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtnumerofactura = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,8 +123,6 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         lblidproducto.setForeground(new java.awt.Color(0, 153, 153));
         lblidproducto.setText("Producto");
 
-        txtnomproduc.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-
         lblcantidadcompra.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         lblcantidadcompra.setForeground(new java.awt.Color(0, 153, 153));
         lblcantidadcompra.setText("Cantidad Comprada");
@@ -140,6 +140,18 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         btnagregar.setText("Agregar");
 
         btnbuscarproduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar1.png"))); // NOI18N
+        btnbuscarproduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarproductActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel1.setText("N° Factura");
+
+        txtnumerofactura.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        txtnumerofactura.setToolTipText("");
 
         javax.swing.GroupLayout JPanelAgregarProductoLayout = new javax.swing.GroupLayout(JPanelAgregarProducto);
         JPanelAgregarProducto.setLayout(JPanelAgregarProductoLayout);
@@ -148,16 +160,16 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
             .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
                         .addComponent(lblidproducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtnomproduc, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnagregar))
+                            .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnbuscarproduct)
-                                .addGap(55, 55, 55)
+                                .addGap(69, 69, 69)
                                 .addComponent(lblcantidadcompra)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtcantidadcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,19 +177,27 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
                                 .addComponent(lblpreciounitario)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtpreciounita, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addContainerGap())))
+                    .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
+                        .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnagregar))))))
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtnumerofactura, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         JPanelAgregarProductoLayout.setVerticalGroup(
             JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelAgregarProductoLayout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtnumerofactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblidproducto)
-                        .addComponent(txtnomproduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblcantidadcompra)
                         .addComponent(txtcantidadcompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblpreciounitario)
@@ -204,6 +224,10 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnbuscarproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarproductActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnbuscarproductActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,12 +237,13 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
     private javax.swing.JTable JTablaagragarproducto;
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btnbuscarproduct;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblcantidadcompra;
     private javax.swing.JLabel lblidproducto;
     private javax.swing.JLabel lblpreciounitario;
     private javax.swing.JTextField txtcantidadcompra;
-    private javax.swing.JTextField txtnomproduc;
+    private javax.swing.JTextField txtnumerofactura;
     private javax.swing.JTextField txtpreciounita;
     // End of variables declaration//GEN-END:variables
 }

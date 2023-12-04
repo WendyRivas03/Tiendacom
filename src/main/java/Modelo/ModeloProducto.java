@@ -237,8 +237,17 @@ public class ModeloProducto {
             ex.printStackTrace();
         }
         tabla.setModel(tablaProducto);
-
         int cantColum = tabla.getColumnCount();
+
+        //Renderizar la columna para que muestre el checkbox
+        if (nompeste.equals("Produ")) {
+            int col= cantColum-1; //podemos borrarla y colocar el numero de columna que correponde a la pestaña
+            TableColumn tc = tabla.getColumnModel().getColumn(col);
+            tc.setCellEditor(tabla.getDefaultEditor(Boolean.class));
+            tc.setCellRenderer(tabla.getDefaultRenderer(Boolean.class));//si da click aparezca el chulo
+        }
+        
+        //Darle tamaño a cada Columna
         int[] ancho = {100, 200, 100, 200, 100, 100, 30, 30};
         for (int i = 0; i < cantColum; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);

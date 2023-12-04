@@ -1,9 +1,13 @@
 package Controlador;
 
 import Modelo.ModeloFacturaCompra;
+import Modelo.ModeloProducto;
 import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
+import Vista.Agregar_Detalleproducto;
 import Vista.Buscar;
+import Vista.Buscar_Producto;
+import Vista.Mostrar_Detalle_Factura_Compra;
 import Vista.Nueva_Factura_Compra;
 import Vista.Principal;
 import java.awt.event.ActionEvent;
@@ -13,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -24,7 +29,11 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
     Nueva_Factura_Compra factnuev = new Nueva_Factura_Compra();
     Principal prin = new Principal();
     Buscar buscar = new Buscar();
+    Buscar_Producto buscapro = new Buscar_Producto();
+    Agregar_Detalleproducto detallefact = new Agregar_Detalleproducto();
+    Mostrar_Detalle_Factura_Compra mostradetalle = new Mostrar_Detalle_Factura_Compra();
     ModeloUsuario modusu = new ModeloUsuario();
+    ModeloProducto modproduc = new ModeloProducto();
     ModeloProveedor modprovee = new ModeloProveedor();
     ModeloFacturaCompra modfactnuev = new ModeloFacturaCompra();
 
@@ -34,6 +43,10 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         factnuev.getBtnbuscarproveedor().addActionListener(this);
         factnuev.getBtnbuscarusuario().addActionListener(this);
         buscar.getTxtbuscar().getDocument().addDocumentListener(this);
+        detallefact.getBtnbuscarproduct().addActionListener(this);
+        buscapro.getTxtbuscarproducto().getDocument().addDocumentListener(this);
+        detallefact.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// para que cuando se cierre se quede en la principal
+        mostradetalle.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         factnuev.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//Desactiva la x que cierra el programa para que permita abrir o volcer a la ventana principal
         buscar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         factnuev.addWindowListener(new WindowAdapter() {
@@ -50,6 +63,22 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
                 buscar.setVisible(false);
             }
         });
+
+        detallefact.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                factnuev.setVisible(true);
+                detallefact.setVisible(false);
+            }
+        });
+    }
+
+    public void agregarDetalle() {
+        prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        detallefact.setVisible(true);
+        detallefact.setLocationRelativeTo(null);
+        detallefact.setTitle("Agregar Detalle");
+//        modproduc.mostrarTablaProducto(detallefact.getJTablaagragarproducto(), "", "Producto");
     }
 
     public void controlFacturaCompra() {
@@ -99,6 +128,44 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(detallefact.getBtnbuscarproduct())) {
+            JButton agregar = new JButton("Añadir");
+//            agregar.setIcon(new javax.swing.ImageIcon(location)); para agregar icono
+            agregar.setForeground(new java.awt.Color(0, 153, 153));
+            agregar.setFont(new java.awt.Font("Yu Gothic UI", 1, 18));
+            agregar.setBounds(800, 100, 110, 35);
+            buscapro.getJPanelbucarproducto().add(agregar);
+            agregar.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    modfactnuev.agregarProductos(buscapro.getJTablaBuscarproducto(), detallefact.getJTablaagragarproducto());
+                    buscapro.setVisible(false);
+                }      
+            });
+            prin.setVisible(false);
+            buscapro.setVisible(true);
+            buscapro.setLocationRelativeTo(null);
+            modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), "", "Produ");
+//Activar el TXTbuscar producto
+            buscapro.getTxtbuscarproducto().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buscapro.getTxtbuscarproducto().setText("");
+                    buscapro.getTxtbuscarproducto().setForeground(new java.awt.Color(0, 0, 0));
+                }
+            });
+//boton agregar en la caja de texto el producto             
+            buscapro.getJTablaBuscarproducto().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    int fila = buscapro.getJTablaBuscarproducto().rowAtPoint(e.getPoint());
+                    int colum = buscapro.getJTablaBuscarproducto().columnAtPoint(e.getPoint());
+
+//Activar el boton de agregar producto
+            modproduc.setDoc(Integer.parseInt(buscapro.getJTablaBuscarproducto().getValueAt(fila, 0).toString()));
+                }
+            });
+        }
         if (e.getSource().equals(factnuev.getBtnbuscarusuario())) {
             buscar.getLblTitulo().setText("Usuario");
             factnuev.setVisible(false);
@@ -128,7 +195,7 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         if (e.getSource().equals(factnuev.getBtnguardarfactcomp())) {
             //validar campos vacios
             if ((factnuev.getTxtidentiprovefact().getText().isEmpty()) || (factnuev.getTxtidentiusufactcomp().getText().isEmpty()) || (factnuev.getTxtnumerodecomprobante().getText().isEmpty())
-                    ||(factnuev.getCmbtipopagofactcompa().getSelectedItem().equals("Seleccione..."))) {
+                    || (factnuev.getCmbtipopagofactcompa().getSelectedItem().equals("Seleccione..."))) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar información en los campos de Nombre y Descripción");
             } else {
                 modfactnuev.setDocprovee(Integer.parseInt(factnuev.getTxtidentiprovefact().getText()));
@@ -160,7 +227,7 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         modfactnuev.buscarFactcompra(doc);
         factnuev.getTxtnumerodecomprobante().setEnabled(false);
         factnuev.getTxtidentiprovefact().setText(String.valueOf(modfactnuev.getDocprovee()));
-        factnuev.getTxtidentiusufactcomp().setText(String.valueOf( modfactnuev.getDocusu()));
+        factnuev.getTxtidentiusufactcomp().setText(String.valueOf(modfactnuev.getDocusu()));
         factnuev.getTxtnumerodecomprobante().setText(String.valueOf(modfactnuev.getCompro()));
 
         //Llenar tipo de pago
@@ -185,6 +252,7 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         } else {
             modprovee.mostrarTablaProveedor(buscar.getJTablaBuscarusuario(), buscar.getTxtbuscar().getText(), "Nueva Factura");
         }
+        modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), buscapro.getTxtbuscarproducto().getText(), "");
     }
 
     @Override
@@ -194,6 +262,7 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         } else {
             modprovee.mostrarTablaProveedor(buscar.getJTablaBuscarusuario(), buscar.getTxtbuscar().getText(), "Nueva Factura");
         }
+        modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), buscapro.getTxtbuscarproducto().getText(), "");
     }
 
     @Override
@@ -203,6 +272,7 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         } else {
             modprovee.mostrarTablaProveedor(buscar.getJTablaBuscarusuario(), buscar.getTxtbuscar().getText(), "Nueva Factura");
         }
+        modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), buscapro.getTxtbuscarproducto().getText(), "");
     }
 
 }
