@@ -160,12 +160,14 @@ public class ModeloFacturaCompra {
             titulo[titulo.length - 2] = "";
             titulo[titulo.length - 1] = "";
         }
+        
         DefaultTableModel tablaFactcompr = new DefaultTableModel(null, titulo) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
+        
         String sqlFactura;
         if (valor.equals("")) {
             sqlFactura = "SELECT * FROM mostrar_factura_compra";
@@ -224,7 +226,7 @@ public class ModeloFacturaCompra {
         //Personalizar Celdas
         tablaDetalle.setDefaultRenderer(Object.class, new GestionCeldas());
 
-        Object[] titulo = {"N° Factura", "Producto", "Decripción", "Cantidad", "Precio"};
+        Object[] titulo = {"Código", "Producto", "Decripción", "Cantidad", "Precio"};
 
         DefaultTableModel tabla_addProductos = new DefaultTableModel(null, titulo) {
             @Override
@@ -242,7 +244,7 @@ public class ModeloFacturaCompra {
                     dato[1]= tablaProduc.getValueAt(i, 2);
                     dato[2]= tablaProduc.getValueAt(i, 3);
                     Object fila[]={dato[0], dato[1], dato[2]};
-                    tabla_addProductos.addRow(fila);
+                    tabla_addProductos.addRow(fila);                  
                 }
             }
         } else {
@@ -251,6 +253,7 @@ public class ModeloFacturaCompra {
         tablaDetalle.setModel(tabla_addProductos);
     }
 
+    
 //TABLA DE DETALLE FACTURA COMPRA************************************************************************************
     public void mostrarTablaDetalleFactCompra(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();

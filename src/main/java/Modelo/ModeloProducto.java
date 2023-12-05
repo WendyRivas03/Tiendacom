@@ -163,8 +163,10 @@ public class ModeloProducto {
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
         agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png")));
 
-        String[] titulo = {"Código", "Imagen", "Nombre del Producto", "Descripción", "Existencia", "Precio"};
-
+        //String[] titulo = {"Código", "Imagen", "Nombre del Producto", "Descripción", "Existencia", "Precio"};
+ 
+        String[] titulo = nompeste.equals("produ") ? new String[]{"Código", "Imagen", "Nombre del Producto", "Descripción", "Existencia", "Precio"} 
+                : new String[]{"Código", "Imagen", "Nombre del Producto", "Descripción", "Cantidad", "Valor"};
         int opcion = titulo.length; //guarda el tamaño original del titulo
 
         if (nompeste.equals("Producto")) {
@@ -185,7 +187,7 @@ public class ModeloProducto {
 //                    return false;
 //                }
                 if (nompeste.equals("Produ")) {
-                    if (column == 6) {
+                    if (column == 4 || column == 5 || column == 6) {
                         return true;
                     }
                 }
@@ -220,13 +222,13 @@ public class ModeloProducto {
                 dato[4] = rs.getInt(5);
                 dato[5] = rs.getInt(6);
 
-                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5]};
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3],0,0};
                 if (nompeste.equals("Producto")) {
                     fila = Arrays.copyOf(fila, fila.length + 2);
                     fila[fila.length - 2] = editar;
                     fila[fila.length - 1] = eliminar;
                 } else {
-                    fila = Arrays.copyOf(fila, fila.length + 1);
+                    fila = Arrays.copyOf(fila, fila.length + 3);
                     fila[fila.length - 1] = false;//para trabajar con chekbox1
                 }
                 tablaProducto.addRow(fila);

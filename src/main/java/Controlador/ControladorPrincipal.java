@@ -98,7 +98,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
                 if (colum == 9) {
                     prin.setVisible(false);
-                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     controusu.actualizarUsuario(modusu.getDoc());
                 }
                 if (colum == 10) {
@@ -129,7 +128,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
                 if (colum == 8) {
                     prin.setVisible(false);
-                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     controcli.actualizarCliente(modcli.getDoc());
                 }
                 if (colum == 9) {
@@ -160,7 +158,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
                 if (colum == 9) {
                     prin.setVisible(false);
-                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     controprovee.actualizarProveedor(modprovee.getDoc());
                 }
                 if (colum == 10) {
@@ -191,7 +188,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
                 if (colum == 6) {
                     prin.setVisible(false);
-                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     controproduc.actualizarProducto(modproduc.getDoc());
                 }
                 if (colum == 7) {
@@ -222,18 +218,15 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
                 if (colum == 8) {
                     prin.setVisible(false);
-                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     controfact.actualizarFactcompra(modfactcomp.getIdfact());
                     controfact.buscar();
                 }
                 if (colum == 9) {
                     prin.setVisible(false);
-                    controfact.agregarDetalle();
-//                    controfact.modfactnuev.mostrarTablaDetalleFactCompra(agredetaproduc.getJTablaagragarproducto(), "", "Agregarfact");
+                    controfact.agregarDetalle(modfactcomp.getIdfact());
                 }
                 if (colum == 10) {
                     prin.setVisible(false);
-                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     mostradetalle.setVisible(true);
                     mostradetalle.setLocationRelativeTo(null);
                     controfact.modfactnuev.mostrarTablaDetalleFactCompra(mostradetalle.getJTablaMostrarDetalleFactura(), "", "Mostrarfact");
@@ -248,7 +241,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 }
                 if (colum == 11) {
                     prin.setVisible(false);
-                    prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 }
             }
         });

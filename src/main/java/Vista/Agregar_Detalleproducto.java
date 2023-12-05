@@ -150,6 +150,7 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("N° Factura");
 
+        txtnumerofactura.setEditable(false);
         txtnumerofactura.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         txtnumerofactura.setToolTipText("");
 

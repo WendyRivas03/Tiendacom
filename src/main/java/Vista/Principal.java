@@ -186,7 +186,6 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lbltienda = new javax.swing.JLabel();
         tpPrincipal = new javax.swing.JTabbedPane();
         jpusuario = new javax.swing.JPanel();
         btnnuevo = new javax.swing.JButton();
@@ -221,26 +220,17 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbltienda.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        lbltienda.setForeground(new java.awt.Color(0, 153, 153));
-        lbltienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbltienda.setText("TIENDA.COM");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TIENDA.COM", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 48), new java.awt.Color(0, 153, 153))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(328, 328, 328)
-                .addComponent(lbltienda)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lbltienda)
-                .addContainerGap(50, Short.MAX_VALUE))
+            .addGap(0, 61, Short.MAX_VALUE)
         );
 
         tpPrincipal.setForeground(new java.awt.Color(0, 153, 153));
@@ -573,9 +563,9 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(tpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 361, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -615,7 +605,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jtfusuario;
     private javax.swing.JTable jtprovee;
     private javax.swing.JTable jtusuario;
-    private javax.swing.JLabel lbltienda;
     private javax.swing.JTable tablaProducto;
     private javax.swing.JTable tablafactura;
     private javax.swing.JTable tablaventa;
