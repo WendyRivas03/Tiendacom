@@ -78,6 +78,23 @@ LOCK TABLES `detalle_factura` WRITE;
 /*!40000 ALTER TABLE `detalle_factura` DISABLE KEYS */;
 /*!40000 ALTER TABLE `detalle_factura` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `Actualizar_total_venta` BEFORE INSERT ON `detalle_factura` FOR EACH ROW BEGIN
+set @precio :=(select precio from producto where New.producto=idproducto), NEW.total_venta= New.cantidad*@precio-New.cantidad*@precio*NEW.descuento;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `detalle_factura_compra`
@@ -180,7 +197,7 @@ CREATE TABLE `factura` (
 
 LOCK TABLES `factura` WRITE;
 /*!40000 ALTER TABLE `factura` DISABLE KEYS */;
-INSERT INTO `factura` VALUES (7,1099,18374,'Tarjete de Débito','2023-11-29',3,0.19,0);
+INSERT INTO `factura` VALUES (7,1099,18374,'PSE','2023-11-29',3,0.19,0);
 /*!40000 ALTER TABLE `factura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -523,7 +540,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (44,'Cédula de ciudadanía','4',1,'4','4@gmail.com',2,'2','2023-11-01','1','',1),(2222,'Cédula de ciudadanía','ana maria wENDY',1,'10101','hsjshdd@hiot.com',2,'medranosur','2023-10-17','admin','123',1),(18374,'Cédula de ciudadanía','marmar mar camo',1,'2323','sdsff',1,'cabi llll','2023-11-12','123','123',1),(107780,'Cédula de ciudadanía','Yara Eliza',1,'31456','yara@hotamil.com',2,'medranosur','2023-10-17','admin','12345',1),(134560,'Cédula de ciudadanía','Camila',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1111',1),(1077345,'Cédula de ciudadanía','marcelaaaaa',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1010',0);
+INSERT INTO `usuario` VALUES (44,'Cédula de ciudadanía','4',1,'4','4@gmail.com',2,'2','2023-11-01','1','',0),(2222,'Cédula de ciudadanía','ana maria wENDY',1,'10101','hsjshdd@hiot.com',2,'medranosur','2023-10-17','admin','123',1),(18374,'Cédula de ciudadanía','marmar mar camo',1,'2323','sdsff',1,'cabi llll','2023-11-12','123','123',1),(107780,'Cédula de ciudadanía','Yara Eliza',1,'31456','yara@hotamil.com',2,'medranosur','2023-10-17','admin','12345',1),(134560,'Cédula de ciudadanía','Camila',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1111',1),(1077345,'Cédula de ciudadanía','marcelaaaaa',1,'3333','hsjshdd',2,'medranosur','2023-10-17','admin','1010',0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1316,4 +1333,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-30 12:03:12
+-- Dump completed on 2023-12-06  9:21:23
