@@ -21,10 +21,42 @@ import javax.swing.table.TableColumn;
 
 public class ModeloFacturaCompra {
 
-    private int docprovee, docusu, idfact, desc, compro;
-    private float total_compr;
+    private int docprovee, docusu, idfact, desc, compro, idfaccompra, produc, canti;
+    private float total_compr, valor;
     private String tipo_pag;
     private Date fec;
+
+    public int getIdfaccompra() {
+        return idfaccompra;
+    }
+
+    public void setIdfaccompra(int idfaccompra) {
+        this.idfaccompra = idfaccompra;
+    }
+
+    public int getProduc() {
+        return produc;
+    }
+
+    public void setProduc(int produc) {
+        this.produc = produc;
+    }
+
+    public int getCanti() {
+        return canti;
+    }
+
+    public void setCanti(int canti) {
+        this.canti = canti;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
 
     public int getIdfact() {
         return idfact;
@@ -160,14 +192,14 @@ public class ModeloFacturaCompra {
             titulo[titulo.length - 2] = "";
             titulo[titulo.length - 1] = "";
         }
-        
+
         DefaultTableModel tablaFactcompr = new DefaultTableModel(null, titulo) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        
+
         String sqlFactura;
         if (valor.equals("")) {
             sqlFactura = "SELECT * FROM mostrar_factura_compra";
@@ -211,9 +243,13 @@ public class ModeloFacturaCompra {
     public boolean seleccionCheck(JTable tabla) {
         for (int i = 0; i < tabla.getRowCount(); i++) {
             Boolean seleccionar = (Boolean) tabla.getValueAt(i, 6);
-            if (seleccionar != null && seleccionar) {
-                return true;
-            }
+                if (seleccionar != null && seleccionar) {
+                    Object can= tabla.getValueAt(i, 4);
+                    Object val= tabla.getValueAt(i, 5);
+                    if((can == null || !can.toString().equals("0"))&&
+                    (val ==null || !val.toString().equals("0"))) //para validar que alla informacion en los campos 
+                    return true;
+                }
         }
         return false;
     }
@@ -239,21 +275,46 @@ public class ModeloFacturaCompra {
             for (int i = 0; i < tablaProduc.getRowCount(); i++) {
                 Boolean seleccionar = (Boolean) tablaProduc.getValueAt(i, 6);
                 if (seleccionar != null && seleccionar) {
-                    Object dato[]= new Object[titulo.length];
-                    dato[0]= tablaProduc.getValueAt(i, 0);
-                    dato[1]= tablaProduc.getValueAt(i, 2);
-                    dato[2]= tablaProduc.getValueAt(i, 3);
-                    Object fila[]={dato[0], dato[1], dato[2]};
-                    tabla_addProductos.addRow(fila);                  
+                    Object dato[] = new Object[titulo.length];
+                    dato[0] = tablaProduc.getValueAt(i, 0);
+                    dato[1] = tablaProduc.getValueAt(i, 2);
+                    dato[2] = tablaProduc.getValueAt(i, 3);
+                    dato[3] = tablaProduc.getValueAt(i, 4);
+                    dato[4] = tablaProduc.getValueAt(i, 5);
+                    Object fila[] = {dato[0], dato[1], dato[2], dato[3], dato[4]};
+                    tabla_addProductos.addRow(fila);
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos un producto");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos un producto y agregar la cantidad y el valor");
         }
         tablaDetalle.setModel(tabla_addProductos);
     }
+     //insertar detalle factura compra 
+    public void insertarDetalleFactcompra() {
+        Conexion conect = new Conexion();
+        Connection co = conect.iniciarConexion();
+        String sql = "call inst_detalle_factura_compra(?, ?, ?, ?)";
 
-    
+        try {
+            PreparedStatement ps = co.prepareStatement(sql);
+            ps.setInt(1, getIdfact());
+            ps.setInt(2, getProduc());
+            ps.setInt(3, getCanti());
+            ps.setFloat(4, getValor());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Información Guardada");
+
+            co.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        conect.cerrarConexion();
+    }
+
+
 //TABLA DE DETALLE FACTURA COMPRA************************************************************************************
     public void mostrarTablaDetalleFactCompra(JTable tabla, String valor, String nompeste) {
         Conexion conect = new Conexion();

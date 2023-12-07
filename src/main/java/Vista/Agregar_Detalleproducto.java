@@ -5,6 +5,7 @@
 package Vista;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -70,15 +71,14 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         this.btnbuscarproduct = btnbuscarproduct;
     }
 
-    public JTextField getTxtnumerofactura() {
-        return txtnumerofactura;
+    public JLabel getLblfactura() {
+        return lblfactura;
     }
 
-    public void setTxtnumerofactura(JTextField txtnumerofactura) {
-        this.txtnumerofactura = txtnumerofactura;
+    public void setLblfactura(JLabel lblfactura) {
+        this.lblfactura = lblfactura;
     }
     
-     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,7 +100,7 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         btnagregar = new javax.swing.JButton();
         btnbuscarproduct = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtnumerofactura = new javax.swing.JTextField();
+        lblfactura = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,9 +150,8 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("N° Factura");
 
-        txtnumerofactura.setEditable(false);
-        txtnumerofactura.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        txtnumerofactura.setToolTipText("");
+        lblfactura.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblfactura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         javax.swing.GroupLayout JPanelAgregarProductoLayout = new javax.swing.GroupLayout(JPanelAgregarProducto);
         JPanelAgregarProducto.setLayout(JPanelAgregarProductoLayout);
@@ -162,31 +161,28 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
-                        .addComponent(lblidproducto)
-                        .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnagregar))
-                            .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnbuscarproduct)
-                                .addGap(69, 69, 69)
-                                .addComponent(lblcantidadcompra)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtcantidadcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblpreciounitario)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtpreciounita, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
                         .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtnumerofactura, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(lblfactura, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(JPanelAgregarProductoLayout.createSequentialGroup()
+                        .addComponent(lblidproducto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnbuscarproduct)
+                        .addGap(69, 69, 69)
+                        .addComponent(lblcantidadcompra)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcantidadcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblpreciounitario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtpreciounita, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnagregar)
+                        .addGap(172, 172, 172))))
         );
         JPanelAgregarProductoLayout.setVerticalGroup(
             JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,19 +190,18 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtnumerofactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addComponent(lblfactura))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblidproducto)
                         .addComponent(lblcantidadcompra)
                         .addComponent(txtcantidadcompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblpreciounitario)
-                        .addComponent(txtpreciounita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtpreciounita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnagregar))
                     .addComponent(btnbuscarproduct, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(7, 7, 7)
-                .addComponent(btnagregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -241,10 +236,10 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblcantidadcompra;
+    private javax.swing.JLabel lblfactura;
     private javax.swing.JLabel lblidproducto;
     private javax.swing.JLabel lblpreciounitario;
     private javax.swing.JTextField txtcantidadcompra;
-    private javax.swing.JTextField txtnumerofactura;
     private javax.swing.JTextField txtpreciounita;
     // End of variables declaration//GEN-END:variables
 }

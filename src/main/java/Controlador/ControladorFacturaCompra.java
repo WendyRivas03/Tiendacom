@@ -20,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -44,6 +45,7 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         factnuev.getBtnbuscarusuario().addActionListener(this);
         buscar.getTxtbuscar().getDocument().addDocumentListener(this);
         detallefact.getBtnbuscarproduct().addActionListener(this);
+        detallefact.getBtnagregar().addActionListener(this);
         buscapro.getTxtbuscarproducto().getDocument().addDocumentListener(this);
         detallefact.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// para que cuando se cierre se quede en la principal
         mostradetalle.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -85,7 +87,7 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
         detallefact.setVisible(true);
         detallefact.setLocationRelativeTo(null);
         detallefact.setTitle("Agregar Detalle");
-        detallefact.getTxtnumerofactura().setText(String.valueOf(fac));
+        detallefact.getLblfactura().setText(String.valueOf(fac));
     }
 
     public void controlFacturaCompra() {
@@ -170,6 +172,26 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
                     modproduc.setDoc(Integer.parseInt(buscapro.getJTablaBuscarproducto().getValueAt(fila, 0).toString()));
                 }
             });
+        }
+        //boton agrgar producto en agregar detalle factura
+        if (e.getSource().equals(detallefact.getBtnagregar())) {
+            JTable tabla = detallefact.getJTablaagragarproducto();
+            try {
+                for (int i = 0; i < tabla.getRowCount(); i++) {
+                    modfactnuev.setIdfact(Integer.parseInt(detallefact.getLblfactura().getText()));
+                    modfactnuev.setProduc(Integer.parseInt(tabla.getValueAt(i, 0).toString()));
+                    modfactnuev.setCanti(Integer.parseInt(tabla.getValueAt(i, 3).toString()));
+                    modfactnuev.setValor(Float.parseFloat(tabla.getValueAt(i, 4).toString()));
+
+                    modfactnuev.insertarDetalleFactcompra();
+                    System.out.println(i);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            } finally {
+                detallefact.dispose();
+                JOptionPane.showMessageDialog(null, "Registro Almacenado");
+            }
         }
         if (e.getSource().equals(factnuev.getBtnbuscarusuario())) {
             buscar.getLblTitulo().setText("Usuario");

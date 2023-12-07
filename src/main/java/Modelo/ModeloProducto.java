@@ -165,7 +165,7 @@ public class ModeloProducto {
 
         //String[] titulo = {"Código", "Imagen", "Nombre del Producto", "Descripción", "Existencia", "Precio"};
  
-        String[] titulo = nompeste.equals("produ") ? new String[]{"Código", "Imagen", "Nombre del Producto", "Descripción", "Existencia", "Precio"} 
+        String[] titulo = nompeste.equals("Producto") ? new String[]{"Código", "Imagen", "Nombre del Producto", "Descripción", "Existencia", "Precio"} 
                 : new String[]{"Código", "Imagen", "Nombre del Producto", "Descripción", "Cantidad", "Valor"};
         int opcion = titulo.length; //guarda el tamaño original del titulo
 
@@ -221,13 +221,19 @@ public class ModeloProducto {
                 dato[3] = rs.getString(4);
                 dato[4] = rs.getInt(5);
                 dato[5] = rs.getInt(6);
-
-                Object[] fila = {dato[0], dato[1], dato[2], dato[3],0,0};
+//if (nompeste.equals("Producto")) {
+//    
+//}else{
+//    
+//}
+                Object[] fila;
                 if (nompeste.equals("Producto")) {
+                   fila = new Object[]{dato[0], dato[1], dato[2], dato[3], dato[4], dato[5]};
                     fila = Arrays.copyOf(fila, fila.length + 2);
                     fila[fila.length - 2] = editar;
                     fila[fila.length - 1] = eliminar;
                 } else {
+                     fila =  new Object[]{dato[0], dato[1], dato[2], dato[3],0,0};
                     fila = Arrays.copyOf(fila, fila.length + 3);
                     fila[fila.length - 1] = false;//para trabajar con chekbox1
                 }
