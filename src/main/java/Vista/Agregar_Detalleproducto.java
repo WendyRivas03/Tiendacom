@@ -47,22 +47,6 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         this.btnagregar = btnagregar;
     }
 
-    public JTextField getTxtcantidadcompra() {
-        return txtcantidadcompra;
-    }
-
-    public void setTxtcantidadcompra(JTextField txtcantidadcompra) {
-        this.txtcantidadcompra = txtcantidadcompra;
-    }
-
-    public JTextField getTxtpreciounita() {
-        return txtpreciounita;
-    }
-
-    public void setTxtpreciounita(JTextField txtpreciounita) {
-        this.txtpreciounita = txtpreciounita;
-    }
-
     public JButton getBtnbuscarproduct() {
         return btnbuscarproduct;
     }
@@ -93,10 +77,6 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTablaagragarproducto = new javax.swing.JTable();
         lblidproducto = new javax.swing.JLabel();
-        lblcantidadcompra = new javax.swing.JLabel();
-        txtcantidadcompra = new javax.swing.JTextField();
-        lblpreciounitario = new javax.swing.JLabel();
-        txtpreciounita = new javax.swing.JTextField();
         btnagregar = new javax.swing.JButton();
         btnbuscarproduct = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -122,18 +102,6 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
         lblidproducto.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         lblidproducto.setForeground(new java.awt.Color(0, 153, 153));
         lblidproducto.setText("Producto");
-
-        lblcantidadcompra.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblcantidadcompra.setForeground(new java.awt.Color(0, 153, 153));
-        lblcantidadcompra.setText("Cantidad Comprada");
-
-        txtcantidadcompra.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-
-        lblpreciounitario.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblpreciounitario.setForeground(new java.awt.Color(0, 153, 153));
-        lblpreciounitario.setText("Precio Unitario");
-
-        txtpreciounita.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
 
         btnagregar.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         btnagregar.setForeground(new java.awt.Color(0, 153, 153));
@@ -172,17 +140,9 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
                         .addComponent(lblidproducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnbuscarproduct)
-                        .addGap(69, 69, 69)
-                        .addComponent(lblcantidadcompra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcantidadcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblpreciounitario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtpreciounita, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnagregar)
-                        .addGap(172, 172, 172))))
+                        .addGap(423, 423, 423))))
         );
         JPanelAgregarProductoLayout.setVerticalGroup(
             JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,14 +151,10 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
                 .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lblfactura))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblidproducto)
-                        .addComponent(lblcantidadcompra)
-                        .addComponent(txtcantidadcompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblpreciounitario)
-                        .addComponent(txtpreciounita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnagregar))
                     .addComponent(btnbuscarproduct, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(43, 43, 43)
@@ -235,11 +191,7 @@ public class Agregar_Detalleproducto extends javax.swing.JFrame {
     private javax.swing.JButton btnbuscarproduct;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblcantidadcompra;
     private javax.swing.JLabel lblfactura;
     private javax.swing.JLabel lblidproducto;
-    private javax.swing.JLabel lblpreciounitario;
-    private javax.swing.JTextField txtcantidadcompra;
-    private javax.swing.JTextField txtpreciounita;
     // End of variables declaration//GEN-END:variables
 }

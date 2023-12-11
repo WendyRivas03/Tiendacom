@@ -229,15 +229,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     prin.setVisible(false);
                     mostradetalle.setVisible(true);
                     mostradetalle.setLocationRelativeTo(null);
-                    controfact.modfactnuev.mostrarTablaDetalleFactCompra(mostradetalle.getJTablaMostrarDetalleFactura(), "", "Mostrarfact");
-                    //Activar el txt de la vista mostrar detalle
-                    mostradetalle.getTxtbuscardetalle().addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            mostradetalle.getTxtbuscardetalle().setText("");
-                            mostradetalle.getTxtbuscardetalle().setForeground(new java.awt.Color(0, 0, 0));
-                        }
-                    });
+                   // modfactcomp.buscarTablaDetalleFactCompra(mostradetalle.getJTablaMostrarDetalleFactura(),);
                 }
                 if (colum == 11) {
                     prin.setVisible(false);

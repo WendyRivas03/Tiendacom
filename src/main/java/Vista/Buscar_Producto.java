@@ -59,6 +59,8 @@ public class Buscar_Producto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTablaBuscarproducto = new javax.swing.JTable();
         txtbuscarproducto = new javax.swing.JTextField();
+        lblnumcompro = new javax.swing.JLabel();
+        txtnumcompro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +84,12 @@ public class Buscar_Producto extends javax.swing.JFrame {
         txtbuscarproducto.setForeground(new java.awt.Color(204, 204, 204));
         txtbuscarproducto.setText("Buscar Producto");
 
+        lblnumcompro.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        lblnumcompro.setForeground(new java.awt.Color(0, 153, 153));
+        lblnumcompro.setText("N° Comprobante");
+
+        txtnumcompro.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout JPanelbucarproductoLayout = new javax.swing.GroupLayout(JPanelbucarproducto);
         JPanelbucarproducto.setLayout(JPanelbucarproductoLayout);
         JPanelbucarproductoLayout.setHorizontalGroup(
@@ -92,6 +100,10 @@ public class Buscar_Producto extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
                     .addGroup(JPanelbucarproductoLayout.createSequentialGroup()
                         .addComponent(txtbuscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(lblnumcompro)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtnumcompro, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -99,7 +111,10 @@ public class Buscar_Producto extends javax.swing.JFrame {
             JPanelbucarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelbucarproductoLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(txtbuscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(JPanelbucarproductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtbuscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblnumcompro)
+                    .addComponent(txtnumcompro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -131,6 +146,8 @@ public class Buscar_Producto extends javax.swing.JFrame {
     private javax.swing.JPanel JPanelbucarproducto;
     private javax.swing.JTable JTablaBuscarproducto;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblnumcompro;
     private javax.swing.JTextField txtbuscarproducto;
+    private javax.swing.JTextField txtnumcompro;
     // End of variables declaration//GEN-END:variables
 }
