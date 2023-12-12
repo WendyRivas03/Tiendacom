@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
@@ -35,6 +36,70 @@ public class Mostrar_Detalle_Factura_Compra extends javax.swing.JFrame {
     public void setJTablaMostrarDetalleFactura(JTable JTablaMostrarDetalleFactura) {
         this.JTablaMostrarDetalleFactura = JTablaMostrarDetalleFactura;
     }
+
+    public JLabel getLblcomprobante() {
+        return lblcomprobante;
+    }
+
+    public void setLblcomprobante(JLabel lblcomprobante) {
+        this.lblcomprobante = lblcomprobante;
+    }
+
+    public JLabel getLblfactu() {
+        return lblfactu;
+    }
+
+    public void setLblfactu(JLabel lblfactu) {
+        this.lblfactu = lblfactu;
+    }
+
+    public JLabel getLblfecha() {
+        return lblfecha;
+    }
+
+    public void setLblfecha(JLabel lblfecha) {
+        this.lblfecha = lblfecha;
+    }
+
+    public JLabel getLblimpuest() {
+        return lblimpuest;
+    }
+
+    public void setLblimpuest(JLabel lblimpuest) {
+        this.lblimpuest = lblimpuest;
+    }
+
+    public JLabel getLblpagotipo() {
+        return lblpagotipo;
+    }
+
+    public void setLblpagotipo(JLabel lblpagotipo) {
+        this.lblpagotipo = lblpagotipo;
+    }
+
+    public JLabel getLblproveedor() {
+        return lblproveedor;
+    }
+
+    public void setLblproveedor(JLabel lblproveedor) {
+        this.lblproveedor = lblproveedor;
+    }
+
+    public JLabel getLblusuar() {
+        return lblusuar;
+    }
+
+    public void setLblusuar(JLabel lblusuar) {
+        this.lblusuar = lblusuar;
+    }
+
+    public JLabel getLblvalor() {
+        return lblvalor;
+    }
+
+    public void setLblvalor(JLabel lblvalor) {
+        this.lblvalor = lblvalor;
+    }
    
 
     /**
@@ -50,9 +115,9 @@ public class Mostrar_Detalle_Factura_Compra extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTablaMostrarDetalleFactura = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        lblfactura = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         lblfactu = new javax.swing.JLabel();
-        lblprovee = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -62,8 +127,8 @@ public class Mostrar_Detalle_Factura_Compra extends javax.swing.JFrame {
         lblcomprobante = new javax.swing.JLabel();
         lblproveedor = new javax.swing.JLabel();
         lblpagotipo = new javax.swing.JLabel();
-        lblimpu = new javax.swing.JLabel();
-        lblvalorpagar = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         lblimpuest = new javax.swing.JLabel();
         lblvalor = new javax.swing.JLabel();
 
@@ -85,16 +150,16 @@ public class Mostrar_Detalle_Factura_Compra extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(JTablaMostrarDetalleFactura);
 
-        lblfactura.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblfactura.setForeground(new java.awt.Color(0, 153, 153));
-        lblfactura.setText("Factura");
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel1.setText("Factura");
 
         lblfactu.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         lblfactu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        lblprovee.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblprovee.setForeground(new java.awt.Color(0, 153, 153));
-        lblprovee.setText("Proveedor");
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel2.setText("Proveedor");
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 153, 153));
@@ -135,11 +200,11 @@ public class Mostrar_Detalle_Factura_Compra extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblprovee)
+                        .addComponent(jLabel2)
                         .addGap(32, 32, 32)
                         .addComponent(lblproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblfactura)
+                        .addComponent(jLabel1)
                         .addGap(33, 33, 33)
                         .addComponent(lblfactu, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(215, 215, 215)
@@ -167,32 +232,32 @@ public class Mostrar_Detalle_Factura_Compra extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblfactura)
-                    .addComponent(lblfactu)
+                    .addComponent(jLabel1)
+                    .addComponent(lblfactu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(lblfecha))
+                    .addComponent(lblfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblprovee)
-                    .addComponent(lblproveedor)
+                    .addComponent(jLabel2)
+                    .addComponent(lblproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(lblusuar))
+                    .addComponent(lblusuar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(lblcomprobante)
-                    .addComponent(lblpagotipo))
+                    .addComponent(lblcomprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblpagotipo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        lblimpu.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblimpu.setForeground(new java.awt.Color(0, 153, 153));
-        lblimpu.setText("Impuesto");
+        jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel8.setText("Impuesto");
 
-        lblvalorpagar.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblvalorpagar.setForeground(new java.awt.Color(0, 153, 153));
-        lblvalorpagar.setText("Valor a Pagar");
+        jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel9.setText("Valor a Pagar");
 
         lblimpuest.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         lblimpuest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -214,8 +279,8 @@ public class Mostrar_Detalle_Factura_Compra extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelbucardetallefacturaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(JPanelbucardetallefacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblvalorpagar)
-                    .addComponent(lblimpu))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8))
                 .addGap(90, 90, 90)
                 .addGroup(JPanelbucardetallefacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblimpuest, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,13 +295,13 @@ public class Mostrar_Detalle_Factura_Compra extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
-                .addGroup(JPanelbucardetallefacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblimpu)
-                    .addComponent(lblimpuest))
+                .addGroup(JPanelbucardetallefacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblimpuest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(JPanelbucardetallefacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblvalorpagar)
-                    .addComponent(lblvalor))
+                    .addComponent(jLabel9)
+                    .addComponent(lblvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -266,23 +331,23 @@ public class Mostrar_Detalle_Factura_Compra extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelbucardetallefactura;
     private javax.swing.JTable JTablaMostrarDetalleFactura;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblcomprobante;
     private javax.swing.JLabel lblfactu;
-    private javax.swing.JLabel lblfactura;
     private javax.swing.JLabel lblfecha;
-    private javax.swing.JLabel lblimpu;
     private javax.swing.JLabel lblimpuest;
     private javax.swing.JLabel lblpagotipo;
-    private javax.swing.JLabel lblprovee;
     private javax.swing.JLabel lblproveedor;
     private javax.swing.JLabel lblusuar;
     private javax.swing.JLabel lblvalor;
-    private javax.swing.JLabel lblvalorpagar;
     // End of variables declaration//GEN-END:variables
 }

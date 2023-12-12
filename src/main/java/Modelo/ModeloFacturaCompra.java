@@ -314,7 +314,7 @@ public class ModeloFacturaCompra {
         conect.cerrarConexion();
     }
 //TABLA DE VER
-        public void buscarTablaDetalleFactCompra(JTable tabla, int valor) {
+        public String[] buscarTablaDetalleFactCompra(int valor, JTable tabla) {
         Conexion conect = new Conexion();
         Connection co = conect.iniciarConexion();
 
@@ -330,122 +330,45 @@ public class ModeloFacturaCompra {
             "Valor Unitario", "Total"};
         int opcion = titulo.length;//tiene el tamaño original del titulo
 
-        DefaultTableModel tablaFactcompr = new DefaultTableModel(null, titulo) {
+        DefaultTableModel tabladetalleFactcompr = new DefaultTableModel(null, titulo) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        
-        String sqlDetalle_Factura = "detalle_factura_compra_mostrar('" + valor + "')";
+
+        String sql = "call detalle_factura_compra_mostrar(" + valor + ")";
+        String[] dato = null;
         
         try {
-            String[] dato = new String[titulo.length];
-            Statement st = co.createStatement(); //Crea una consulta
-            ResultSet rs = st.executeQuery(sqlDetalle_Factura);
-            int total = rs.getMetaData().getColumnCount();
+            Statement st = co.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            int total = rs.getMetaData().getColumnCount(); //Conocer el total de columnas de un registro de la base de datos
+            dato = new String[total];
             while (rs.next()) {//Como todos los datos son del mismo tipo se puede hacer el ciclo
                 for (int i = 0; i < total; i++) {
                     dato[i] = rs.getString(i + 1);
                 }
                 Object[] fila = {dato[8],dato[9], dato[10], dato[11], dato[12], dato[13]};
 
-                tablaFactcompr.addRow(fila);
+                tabladetalleFactcompr.addRow(fila);
             }
             co.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        tabla.setModel(tablaFactcompr);
+        tabla.setModel(tabladetalleFactcompr);
         //Darle Tamaño a cada Columna
         int cantColum = tabla.getColumnCount();
-        int[] ancho = {100, 180, 100, 150, 100, 160};
+        int[] ancho = {10, 30, 70, 6, 30, 50};
         for (int i = 0; i < cantColum; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(ancho[i]);
         }
         conect.cerrarConexion();
+        return dato;
     }
-
-//TABLA DE DETALLE FACTURA COMPRA************************************************************************************
-//    public void mostrarTablaDetalleFactCompra(JTable tabla, String valor, String nompeste) {
-//        Conexion conect = new Conexion();
-//        Connection co = conect.iniciarConexion();
-//
-//        //Personalizar Encabezado
-//        JTableHeader encabeza = tabla.getTableHeader();
-//        encabeza.setDefaultRenderer(new GestionEncabezado());
-//        tabla.setTableHeader(encabeza);
-//
-//        //Personalizar Celdas
-//        tabla.setDefaultRenderer(Object.class, new GestionCeldas());
-//
-//        JButton editar = new JButton();
-//        JButton eliminar = new JButton();
-//        JButton agregar = new JButton();
-//
-//        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
-//        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
-//        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png")));
-//
-//        String[] titulo = {"N°Factura Detalle Compra", "N°Factura Compra", "Producto", "Cantidad",
-//            "Precio Unitario", "Precio Total"};
-//        int opcion = titulo.length;//tiene el tamaño original del titulo
-//
-//        if (nompeste.equals("Detalle Factura")) {
-//            titulo = Arrays.copyOf(titulo, titulo.length + 3);
-//            titulo[titulo.length - 3] = "";
-//            titulo[titulo.length - 2] = "";
-//            titulo[titulo.length - 1] = "";
-//        }
-//        DefaultTableModel tablaFactcompr = new DefaultTableModel(null, titulo) {
-//            @Override
-//            public boolean isCellEditable(int row, int column) {
-//                return false;
-//            }
-//        };
-//        String sqlDetalle_Factura;
-//        if (valor.equals("")) {
-//            sqlDetalle_Factura = "SELECT * FROM mostrar_detalle_factura_compra";
-//        } else {
-//            sqlDetalle_Factura = "call consultar_detalle_factura_compra('" + valor + "')";
-//        }
-//        try {
-//            String[] dato = new String[titulo.length];
-//            Statement st = co.createStatement(); //Crea una consulta
-//            ResultSet rs = st.executeQuery(sqlDetalle_Factura);
-//            while (rs.next()) {//Como todos los datos son del mismo tipo se puede hacer el ciclo
-//                for (int i = 0; i < opcion; i++) {
-//                    dato[i] = rs.getString(i + 1);
-//                }
-//                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5]};
-////                if (nompeste.equals("Detalle Factura")) {
-////                    fila = Arrays.copyOf(fila, fila.length + 2);
-////                    fila[fila.length - 2] = editar;
-////                    fila[fila.length - 1] = eliminar;
-////                } else {
-////                    fila = Arrays.copyOf(fila, fila.length + 1);
-////                    fila[fila.length - 1] = agregar;
-////                }
-//                tablaFactcompr.addRow(fila);
-//            }
-//            co.close();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        tabla.setModel(tablaFactcompr);
-//        //Darle Tamaño a cada Columna
-//        int cantColum = tabla.getColumnCount();
-//        int[] ancho = {100, 180, 100, 150, 100, 160, 30, 30};
-//        for (int i = 0; i < cantColum; i++) {
-//            TableColumn columna = tabla.getColumnModel().getColumn(i);
-//            columna.setPreferredWidth(ancho[i]);
-//        }
-//        conect.cerrarConexion();
-//    }
-//*************************************************************************************************************************
     //buscar factura compra
 
     public void buscarFactcompra(int valor) {

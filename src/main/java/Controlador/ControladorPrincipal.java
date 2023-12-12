@@ -29,7 +29,7 @@ import javax.swing.event.DocumentListener;
 public class ControladorPrincipal implements ActionListener, ChangeListener, DocumentListener {
 
     Principal prin = new Principal();
-    Nueva_Venta vent = new Nueva_Venta();
+//    Nueva_Venta vent = new Nueva_Venta();
     Mostrar_Detalle_Factura_Compra mostradetalle = new Mostrar_Detalle_Factura_Compra();
     ControladorUsuario controusu = new ControladorUsuario();
     ControladorCliente controcli = new ControladorCliente();
@@ -229,7 +229,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     prin.setVisible(false);
                     mostradetalle.setVisible(true);
                     mostradetalle.setLocationRelativeTo(null);
-                   // modfactcomp.buscarTablaDetalleFactCompra(mostradetalle.getJTablaMostrarDetalleFactura(),);
+                    controfact.ver_Factura(modfactcomp.getIdfact());
                 }
                 if (colum == 11) {
                     prin.setVisible(false);

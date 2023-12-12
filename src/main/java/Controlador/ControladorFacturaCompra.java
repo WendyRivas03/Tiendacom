@@ -134,7 +134,21 @@ public class ControladorFacturaCompra implements ActionListener, DocumentListene
             }
         });
     }
-
+    
+      public void ver_Factura(int fact) {
+        String dato[]= modfactnuev.buscarTablaDetalleFactCompra(fact, mostradetalle.getJTablaMostrarDetalleFactura());
+        mostradetalle.getLblfactu().setText(String.valueOf(fact));
+        mostradetalle.getLblproveedor().setText(dato[1]);
+        mostradetalle.getLblusuar().setText(dato[2]);
+        mostradetalle.getLblpagotipo().setText(dato[3]);
+        mostradetalle.getLblcomprobante().setText(dato[4]);
+        mostradetalle.getLblfecha().setText(dato[7]);
+        mostradetalle.getLblimpuest().setText(dato[5]);
+        mostradetalle.getLblvalor().setText(dato[6]);
+        mostradetalle.setLocationRelativeTo(null);
+        mostradetalle.setVisible(true);
+    }
+  
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(detallefact.getBtnbuscarproduct())) {
