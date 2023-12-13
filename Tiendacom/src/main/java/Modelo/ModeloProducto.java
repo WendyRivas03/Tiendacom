@@ -169,7 +169,7 @@ public class ModeloProducto {
         switch(nompeste){
             case "Producto" : titulo = new String[] {"Código", "Imagen", "Nombre del Producto", "Descripción", "Existencia", "Precio"};
             break;    
-            case "Factura" : titulo = new String[] {"Código", "Imagen", "Nombre del Producto", "Descripción", "Cantidad", "Valor"};
+            case "Produ" : titulo = new String[] {"Código", "Imagen", "Nombre del Producto", "Descripción", "Cantidad", "Valor"};
             break;
             default: titulo = new String[] {"Código", "Imagen", "Nombre del Producto", "Descripción", "Cantidad", "Descuento"};
             break;

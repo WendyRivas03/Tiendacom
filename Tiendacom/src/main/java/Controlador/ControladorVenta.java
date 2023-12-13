@@ -128,7 +128,7 @@ public class ControladorVenta implements ActionListener, DocumentListener {
             });
             buscapro.setVisible(true);
             buscapro.setLocationRelativeTo(null);
-            modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), "", "Produ");
+            modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), "", "");
 //Activar el TXTbuscar producto
             buscapro.getTxtbuscarproducto().addMouseListener(new MouseAdapter() {
                 @Override
@@ -293,21 +293,21 @@ public class ControladorVenta implements ActionListener, DocumentListener {
     public void insertUpdate(DocumentEvent e) {
         modclient.mostrarTablaCliente(buscarcli.getJTablaBuscarcliente(), buscarcli.getTxtbuscarcliente().getText(), "Nueva Venta");
         modusu.mostrarTablaUsuario(buscarusu.getJTablaBuscarusuario(), buscarusu.getTxtbuscar().getText(), "Nueva Venta");
-        modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), buscapro.getTxtbuscarproducto().getText(), "Produ");
+        modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), buscapro.getTxtbuscarproducto().getText(), "");
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
         modclient.mostrarTablaCliente(buscarcli.getJTablaBuscarcliente(), buscarcli.getTxtbuscarcliente().getText(), "Nueva Venta");
         modusu.mostrarTablaUsuario(buscarusu.getJTablaBuscarusuario(), buscarusu.getTxtbuscar().getText(), "Nueva Venta");
-        modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), buscapro.getTxtbuscarproducto().getText(), "Produ");
+        modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), buscapro.getTxtbuscarproducto().getText(), "");
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
         modclient.mostrarTablaCliente(buscarcli.getJTablaBuscarcliente(), buscarcli.getTxtbuscarcliente().getText(), "Nueva Venta");
         modusu.mostrarTablaUsuario(buscarusu.getJTablaBuscarusuario(), buscarusu.getTxtbuscar().getText(), "Nueva Venta");
-        modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), buscapro.getTxtbuscarproducto().getText(), "Produ");
+        modproduc.mostrarTablaProducto(buscapro.getJTablaBuscarproducto(), buscapro.getTxtbuscarproducto().getText(), "");
     }
 
 }
